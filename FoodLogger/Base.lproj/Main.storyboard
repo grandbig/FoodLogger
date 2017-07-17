@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,19 +26,48 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRz-7B-4zR">
+                                <rect key="frame" x="24" y="513" width="56" height="56"/>
+                                <color key="backgroundColor" red="0.37647058823529411" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="04Q-pv-R62"/>
+                                    <constraint firstAttribute="width" constant="56" id="hV2-a5-911"/>
+                                </constraints>
+                                <state key="normal" image="SearchIcon"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowIBColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="2" height="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="search:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OKt-nx-num"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sA3-T9-IRR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="CEi-ru-irt"/>
+                            <constraint firstItem="TRz-7B-4zR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="Orj-Lh-CIg"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sA3-T9-IRR" secondAttribute="bottom" id="cfB-D6-F8g"/>
                             <constraint firstAttribute="trailing" secondItem="sA3-T9-IRR" secondAttribute="trailing" id="jA8-br-SM6"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="TRz-7B-4zR" secondAttribute="bottom" constant="34" id="moP-6h-d9c"/>
                             <constraint firstItem="sA3-T9-IRR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vYV-1G-8Yg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DqC-Ix-l4a">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="mwB-i9-NNg">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpR-on-1Zd">
-                                <rect key="frame" x="276" y="7" width="24" height="24"/>
+                                <rect key="frame" x="335" y="10" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ViewModuleIcon"/>
                             </button>
@@ -56,7 +86,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,6 +102,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SearchIcon" width="48" height="48"/>
         <image name="ViewModuleIcon" width="24" height="24"/>
     </resources>
 </document>
