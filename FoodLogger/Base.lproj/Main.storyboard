@@ -34,7 +34,15 @@
                             <constraint firstItem="sA3-T9-IRR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vYV-1G-8Yg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DqC-Ix-l4a"/>
+                    <navigationItem key="navigationItem" id="DqC-Ix-l4a">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="mwB-i9-NNg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xpR-on-1Zd">
+                                <rect key="frame" x="276" y="7" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ViewModuleIcon"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="sA3-T9-IRR" id="XBN-7U-O4e"/>
                     </connections>
@@ -48,7 +56,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,4 +71,7 @@
             <point key="canvasLocation" x="140" y="-543.77811094452773"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ViewModuleIcon" width="24" height="24"/>
+    </resources>
 </document>
