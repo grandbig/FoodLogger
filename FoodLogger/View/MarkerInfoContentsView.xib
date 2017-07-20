@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarkerInfoContentsView" customModule="FoodLogger" customModuleProvider="target">
+            <connections>
+                <outlet property="categoryName" destination="UJG-Kx-o7y" id="54y-kf-lMi"/>
+                <outlet property="shopImage" destination="stQ-wj-Efz" id="gU0-wL-yU3"/>
+                <outlet property="shopName" destination="pp3-qL-0fE" id="fQv-od-Shz"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="265"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BalloonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dfs-F4-odN">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="265"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店舗名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-qL-0fE">
+                    <rect key="frame" x="16" y="20" width="218" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJG-Kx-o7y">
+                    <rect key="frame" x="16" y="49" width="218" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="stQ-wj-Efz">
+                    <rect key="frame" x="65" y="96" width="120" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="a2A-Aa-J3c"/>
+                        <constraint firstAttribute="height" constant="120" id="xFs-pX-bg8"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pp3-qL-0fE" secondAttribute="trailing" constant="16" id="37i-Oc-lZc"/>
+                <constraint firstAttribute="bottom" secondItem="dfs-F4-odN" secondAttribute="bottom" id="B3e-Tc-bgd"/>
+                <constraint firstItem="stQ-wj-Efz" firstAttribute="top" secondItem="UJG-Kx-o7y" secondAttribute="bottom" constant="30" id="JBI-vp-OKB"/>
+                <constraint firstItem="stQ-wj-Efz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XdR-nM-jvc"/>
+                <constraint firstAttribute="trailing" secondItem="UJG-Kx-o7y" secondAttribute="trailing" constant="16" id="ajg-Wh-PRS"/>
+                <constraint firstItem="UJG-Kx-o7y" firstAttribute="top" secondItem="pp3-qL-0fE" secondAttribute="bottom" constant="8" id="b0G-eI-FYb"/>
+                <constraint firstItem="pp3-qL-0fE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ckJ-CZ-eB7"/>
+                <constraint firstItem="pp3-qL-0fE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="h50-iw-ehe"/>
+                <constraint firstItem="UJG-Kx-o7y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qW9-xd-PVz"/>
+                <constraint firstItem="dfs-F4-odN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tjK-l1-HrG"/>
+                <constraint firstItem="dfs-F4-odN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xne-Wo-kSy"/>
+                <constraint firstAttribute="trailing" secondItem="dfs-F4-odN" secondAttribute="trailing" id="yYL-Z6-WSm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="34" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BalloonIcon" width="137" height="140"/>
+    </resources>
+</document>

@@ -16,6 +16,9 @@
 		2E6642131F1CFB14003AB65A /* FoodLoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642121F1CFB14003AB65A /* FoodLoggerUITests.swift */; };
 		2E6642211F1D002B003AB65A /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E6642201F1D002B003AB65A /* key.plist */; };
 		2E6642241F1D09D0003AB65A /* Gurunavi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642231F1D09D0003AB65A /* Gurunavi.swift */; };
+		2E6642271F1E555B003AB65A /* MarkerInfoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */; };
+		2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */; };
+		2E66422B1F1E617C003AB65A /* CustomGMSMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
 		694DA7D05A0993B8BCFF68E6 /* Pods_Tests_FoodLoggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */; };
@@ -56,6 +59,9 @@
 		2E6642141F1CFB14003AB65A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E6642201F1D002B003AB65A /* key.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
 		2E6642231F1D09D0003AB65A /* Gurunavi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gurunavi.swift; path = Model/Gurunavi.swift; sourceTree = "<group>"; };
+		2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerInfoContentsView.xib; sourceTree = "<group>"; };
+		2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoContentsView.swift; sourceTree = "<group>"; };
+		2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomGMSMarker.swift; path = Model/CustomGMSMarker.swift; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 		2E6641F11F1CFB14003AB65A /* FoodLogger */ = {
 			isa = PBXGroup;
 			children = (
+				2E6642251F1E553A003AB65A /* View */,
 				2E6642221F1D09B3003AB65A /* Model */,
 				2E6641F21F1CFB14003AB65A /* AppDelegate.swift */,
 				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
@@ -162,8 +169,18 @@
 			isa = PBXGroup;
 			children = (
 				2E6642231F1D09D0003AB65A /* Gurunavi.swift */,
+				2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		2E6642251F1E553A003AB65A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
+				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		39619B60ABD51D38FC97173F /* Pods */ = {
@@ -192,6 +209,7 @@
 				2E6641ED1F1CFB14003AB65A /* Resources */,
 				D7A75FDD18137022DC7157FA /* [CP] Embed Pods Frameworks */,
 				6A539EC4341ACB1927766AC0 /* [CP] Copy Pods Resources */,
+				2E66422C1F20F337003AB65A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -301,6 +319,7 @@
 				2E6642211F1D002B003AB65A /* key.plist in Resources */,
 				2E6641FD1F1CFB14003AB65A /* LaunchScreen.storyboard in Resources */,
 				2E6641FA1F1CFB14003AB65A /* Assets.xcassets in Resources */,
+				2E6642271F1E555B003AB65A /* MarkerInfoContentsView.xib in Resources */,
 				2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +341,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2E66422C1F20F337003AB65A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		31BFEB56035B8618C5238D56 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,7 +497,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6642241F1D09D0003AB65A /* Gurunavi.swift in Sources */,
+				2E66422B1F1E617C003AB65A /* CustomGMSMarker.swift in Sources */,
 				2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */,
+				2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

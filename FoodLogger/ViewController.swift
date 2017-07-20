@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import SwiftyJSON
 
-class ViewController: UIViewController, GMSMapViewDelegate {
+class ViewController: UIViewController {
 
     @IBOutlet weak var mapView: GMSMapView!
     internal var locationManager: CLLocationManager?
@@ -20,6 +20,8 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     internal var zoomLevel: Float = 16.0
     /// 初期描画の判断に利用
     internal var initView: Bool = false
+    internal var restaurants: [JSON]?
+    internal let gurunavi = Gurunavi.init()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,18 +52,19 @@ class ViewController: UIViewController, GMSMapViewDelegate {
 
     // MARK: Button Action
     @IBAction func search(_ sender: Any) {
-        let gurunavi = Gurunavi.init()
         guard let myCurrentLocation = self.currentLocation else {
             return
         }
-        gurunavi.searchRestaurant(coordinate: myCurrentLocation) { (result) in
+        self.gurunavi.searchRestaurant(coordinate: myCurrentLocation) { (result) in
             if let restaurants = result.array {
+                self.restaurants = restaurants
                 for restaurant in restaurants {
                     let name = restaurant["name"].string ?? "店舗名不明"
+                    let id = restaurant["id"].string ?? "0"
                     guard let latitude = restaurant["latitude"].string, let longitude = restaurant["longitude"].string else {
                         return
                     }
-                    self.putMarker(title: name, latitude: atof(latitude), longitude: atof(longitude))
+                    self.putMarker(id: id, title: name, latitude: atof(latitude), longitude: atof(longitude))
                 }
             }
         }
@@ -71,17 +74,18 @@ class ViewController: UIViewController, GMSMapViewDelegate {
     /**
      マップにマーカをプロットする処理
      
+     - parameter id: ID
      - parameter title: タイトル
      - parameter latitude: 緯度
      - parameter longitude: 経度
      */
-    private func putMarker(title: String, latitude: Double, longitude: Double) {
-        let marker = GMSMarker()
+    private func putMarker(id: String, title: String, latitude: Double, longitude: Double) {
+        let marker = CustomGMSMarker()
         marker.title = title
+        marker.id = id
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.map = self.mapView
     }
-
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -99,3 +103,25 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
+extension ViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        guard let cMarker = marker as? CustomGMSMarker else {
+            return nil
+        }
+        if let cMarkerId = cMarker.id, let restaurants = self.restaurants {
+            for restaurant in restaurants where restaurant["id"].string! == cMarkerId {
+                if let id = restaurant["id"].string, id == cMarkerId {
+                    let shopName = restaurant["name"].string
+                    let categoryName = restaurant["category"].string
+                    let imageURLString = self.gurunavi.getShopImage(imageURL: restaurant["image_url"])
+                    
+                    let view = MarkerInfoContentsView(frame: CGRect(x: 0, y: 0, width: 250, height: 265))
+                    view.setData(shopName: shopName, categoryName: categoryName, shopImageURLString: imageURLString)
+                    return view
+                }
+            }
+        }
+        return nil
+    }
+}
