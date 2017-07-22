@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     internal var initView: Bool = false
     internal var restaurants: [JSON]?
     internal let gurunavi = Gurunavi.init()
+    internal var selectedShopImageURLString: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,12 +60,15 @@ class ViewController: UIViewController {
             if let restaurants = result.array {
                 self.restaurants = restaurants
                 for restaurant in restaurants {
-                    let name = restaurant["name"].string ?? "店舗名不明"
                     let id = restaurant["id"].string ?? "0"
+                    let shopName = restaurant["name"].string ?? "店舗名不明"
+                    let categoryName = restaurant["category"].string ?? "カテゴリ不明"
+                    let imageURL = self.gurunavi.getShopImage(imageURL: restaurant["image_url"])
                     guard let latitude = restaurant["latitude"].string, let longitude = restaurant["longitude"].string else {
                         return
                     }
-                    self.putMarker(id: id, title: name, latitude: atof(latitude), longitude: atof(longitude))
+                    let coordinate = CLLocationCoordinate2D(latitude: atof(latitude), longitude: atof(longitude))
+                    self.putMarker(id: id, shopName: shopName, categoryName: categoryName, imageURL: imageURL, coordinate: coordinate)
                 }
             }
         }
@@ -75,15 +79,18 @@ class ViewController: UIViewController {
      マップにマーカをプロットする処理
      
      - parameter id: ID
-     - parameter title: タイトル
-     - parameter latitude: 緯度
-     - parameter longitude: 経度
+     - parameter shopName: 店舗名
+     - parameter categoryName: カテゴリ名
+     - parameter imageURL: 店舗画像
+     - parameter coordinate: 位置
      */
-    private func putMarker(id: String, title: String, latitude: Double, longitude: Double) {
+    private func putMarker(id: String, shopName: String, categoryName: String, imageURL: String?, coordinate: CLLocationCoordinate2D) {
         let marker = CustomGMSMarker()
-        marker.title = title
         marker.id = id
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        marker.shopName = shopName
+        marker.categoryName = categoryName
+        marker.imageURL = imageURL
+        marker.position = coordinate
         marker.map = self.mapView
     }
 }
@@ -105,23 +112,21 @@ extension ViewController: CLLocationManagerDelegate {
 
 extension ViewController: GMSMapViewDelegate {
     
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        guard let cMarker = marker as? CustomGMSMarker else {
+            return true
+        }
+        self.selectedShopImageURLString = cMarker.imageURL
+        return false
+    }
+    
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         guard let cMarker = marker as? CustomGMSMarker else {
             return nil
         }
-        if let cMarkerId = cMarker.id, let restaurants = self.restaurants {
-            for restaurant in restaurants where restaurant["id"].string! == cMarkerId {
-                if let id = restaurant["id"].string, id == cMarkerId {
-                    let shopName = restaurant["name"].string
-                    let categoryName = restaurant["category"].string
-                    let imageURLString = self.gurunavi.getShopImage(imageURL: restaurant["image_url"])
-                    
-                    let view = MarkerInfoContentsView(frame: CGRect(x: 0, y: 0, width: 250, height: 265))
-                    view.setData(shopName: shopName, categoryName: categoryName, shopImageURLString: imageURLString)
-                    return view
-                }
-            }
-        }
-        return nil
+        cMarker.tracksInfoWindowChanges = true
+        let view = MarkerInfoContentsView(frame: CGRect(x: 0, y: 0, width: 250, height: 265))
+        view.setData(shopName: cMarker.shopName, categoryName: cMarker.categoryName, shopImageURLString: cMarker.imageURL)
+        return view
     }
 }

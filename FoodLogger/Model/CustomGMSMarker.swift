@@ -13,6 +13,9 @@ import GoogleMaps
 class CustomGMSMarker: GMSMarker {
     /// マーカID
     public var id: String?
+    public var shopName: String?
+    public var categoryName: String?
+    public var imageURL: String?
     
     /// 初期化
     override init() {

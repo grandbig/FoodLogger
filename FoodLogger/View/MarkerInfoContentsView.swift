@@ -58,7 +58,7 @@ class MarkerInfoContentsView: UIView {
         // 画像の設定
         if let shopImageURLStringTextCount = shopImageURLString?.characters.count, shopImageURLStringTextCount > 0 {
             if let shopImageURL = URL(string: shopImageURLString!) {
-                self.shopImage.af_setImage(withURL: shopImageURL)
+                self.shopImage.af_setImage(withURL: shopImageURL, placeholderImage: UIImage(named: "NoImageIcon"))
             } else {
                 self.shopImage.image = UIImage(named: "NoImageIcon")
             }
