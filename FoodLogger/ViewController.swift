@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     /// 初期描画の判断に利用
     internal var initView: Bool = false
     internal var restaurants: [JSON]?
-    internal let gurunavi = Gurunavi.init()
+    internal let hotpepperAPI = HotpepperAPI.init()
     internal var selectedShopImageURLString: String?
     
     override func viewDidLoad() {
@@ -56,19 +56,12 @@ class ViewController: UIViewController {
         guard let myCurrentLocation = self.currentLocation else {
             return
         }
-        self.gurunavi.searchRestaurant(coordinate: myCurrentLocation) { (result) in
+        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation) { (result) in
             if let restaurants = result.array {
                 self.restaurants = restaurants
                 for restaurant in restaurants {
-                    let id = restaurant["id"].string ?? "0"
-                    let shopName = restaurant["name"].string ?? "店舗名不明"
-                    let categoryName = restaurant["category"].string ?? "カテゴリ不明"
-                    let imageURL = self.gurunavi.getShopImage(imageURL: restaurant["image_url"])
-                    guard let latitude = restaurant["latitude"].string, let longitude = restaurant["longitude"].string else {
-                        return
-                    }
-                    let coordinate = CLLocationCoordinate2D(latitude: atof(latitude), longitude: atof(longitude))
-                    self.putMarker(id: id, shopName: shopName, categoryName: categoryName, imageURL: imageURL, coordinate: coordinate)
+                    let shop = HotpepperShop(data: restaurant)
+                    self.putMarker(shop: shop)
                 }
             }
         }
@@ -78,19 +71,15 @@ class ViewController: UIViewController {
     /**
      マップにマーカをプロットする処理
      
-     - parameter id: ID
-     - parameter shopName: 店舗名
-     - parameter categoryName: カテゴリ名
-     - parameter imageURL: 店舗画像
-     - parameter coordinate: 位置
+     - parameter shop: 店舗データ
      */
-    private func putMarker(id: String, shopName: String, categoryName: String, imageURL: String?, coordinate: CLLocationCoordinate2D) {
+    private func putMarker(shop: HotpepperShop) {
         let marker = CustomGMSMarker()
-        marker.id = id
-        marker.shopName = shopName
-        marker.categoryName = categoryName
-        marker.imageURL = imageURL
-        marker.position = coordinate
+        marker.id = shop.id
+        marker.shopName = shop.name
+        marker.categoryName = shop.category
+        marker.imageURL = shop.imageURL
+        marker.position = CLLocationCoordinate2D(latitude: shop.latitude ?? 0, longitude: shop.longitude ?? 0)
         marker.map = self.mapView
     }
 }

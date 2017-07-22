@@ -11,7 +11,10 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 
-class Gurunavi {
+/**
+ ぐるなびAPI
+ */
+class GurunaviAPI {
     
     /// API Key
     private var apiKey: String = String()
@@ -43,24 +46,6 @@ class Gurunavi {
             let result = json["rest"]
             
             completion(result)
-        }
-    }
-    
-    /**
-     ぐるなびレストラン検索APIで取得した店舗画像JSONから有効な店舗画像URLを取得する処理
-     
-     - parameter imageURL: ぐるなびレストラン検索APIで取得した店舗画像JSON
-     - returns: 有効な店舗画像URL
-     */
-    func getShopImage(imageURL: JSON) -> String? {
-        if let image1 = imageURL["shop_image1"].string {
-            return image1
-        } else if let image2 = imageURL["shop_image2"].string {
-            return image2
-        } else if let qrcode = imageURL["qrcode"].string {
-            return qrcode
-        } else {
-            return nil
         }
     }
 }
