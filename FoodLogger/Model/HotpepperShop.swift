@@ -26,6 +26,8 @@ class HotpepperShop {
     var latitude: Double?
     /// 経度
     var longitude: Double?
+    /// チェック
+    var isChecked: Bool = false
 
     /**
      初期化処理
@@ -35,7 +37,7 @@ class HotpepperShop {
      - parameter category: 店舗カテゴリ
      - parameter imageURL: 店舗画像URL
      - parameter latitude: 緯度
-     - paramter longitude: 経度
+     - parameter longitude: 経度
      */
     init(id: String, name: String, category: String, imageURL: String, latitude: Double, longitude: Double) {
         self.id = id

@@ -22,6 +22,9 @@
 		2E66422E1F2380E3003AB65A /* HotPepperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */; };
 		2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422F1F238279003AB65A /* HotpepperShop.swift */; };
 		2E6642321F238464003AB65A /* GurunaviShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642311F238464003AB65A /* GurunaviShop.swift */; };
+		2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642331F238D6D003AB65A /* RealmShop.swift */; };
+		2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642351F238DF4003AB65A /* RealmShopManager.swift */; };
+		2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642381F23904C003AB65A /* ShopValidateError.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
 		694DA7D05A0993B8BCFF68E6 /* Pods_Tests_FoodLoggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */; };
@@ -68,6 +71,9 @@
 		2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotPepperAPI.swift; path = Model/HotPepperAPI.swift; sourceTree = "<group>"; };
 		2E66422F1F238279003AB65A /* HotpepperShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotpepperShop.swift; path = Model/HotpepperShop.swift; sourceTree = "<group>"; };
 		2E6642311F238464003AB65A /* GurunaviShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GurunaviShop.swift; path = Model/GurunaviShop.swift; sourceTree = "<group>"; };
+		2E6642331F238D6D003AB65A /* RealmShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmShop.swift; path = Model/RealmShop.swift; sourceTree = "<group>"; };
+		2E6642351F238DF4003AB65A /* RealmShopManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmShopManager.swift; path = Model/RealmShopManager.swift; sourceTree = "<group>"; };
+		2E6642381F23904C003AB65A /* ShopValidateError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopValidateError.swift; path = Enum/ShopValidateError.swift; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 		2E6641F11F1CFB14003AB65A /* FoodLogger */ = {
 			isa = PBXGroup;
 			children = (
+				2E6642371F23902B003AB65A /* Enum */,
 				2E6642251F1E553A003AB65A /* View */,
 				2E6642221F1D09B3003AB65A /* Model */,
 				2E6641F21F1CFB14003AB65A /* AppDelegate.swift */,
@@ -179,6 +186,8 @@
 				2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */,
 				2E66422F1F238279003AB65A /* HotpepperShop.swift */,
 				2E6642311F238464003AB65A /* GurunaviShop.swift */,
+				2E6642331F238D6D003AB65A /* RealmShop.swift */,
+				2E6642351F238DF4003AB65A /* RealmShopManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -190,6 +199,14 @@
 				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2E6642371F23902B003AB65A /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				2E6642381F23904C003AB65A /* ShopValidateError.swift */,
+			);
+			name = Enum;
 			sourceTree = "<group>";
 		};
 		39619B60ABD51D38FC97173F /* Pods */ = {
@@ -508,11 +525,14 @@
 				2E6642321F238464003AB65A /* GurunaviShop.swift in Sources */,
 				2E6642241F1D09D0003AB65A /* GurunaviAPI.swift in Sources */,
 				2E66422B1F1E617C003AB65A /* CustomGMSMarker.swift in Sources */,
+				2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */,
 				2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */,
 				2E66422E1F2380E3003AB65A /* HotPepperAPI.swift in Sources */,
 				2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */,
 				2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
+				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
+				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
