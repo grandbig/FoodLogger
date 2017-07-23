@@ -24,35 +24,52 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BalloonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dfs-F4-odN">
                     <rect key="frame" x="0.0" y="0.0" width="250" height="265"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店舗名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-qL-0fE">
-                    <rect key="frame" x="16" y="20" width="218" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJG-Kx-o7y">
-                    <rect key="frame" x="16" y="49" width="218" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="stQ-wj-Efz">
-                    <rect key="frame" x="65" y="96" width="120" height="120"/>
+                    <rect key="frame" x="65" y="93" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="a2A-Aa-J3c"/>
                         <constraint firstAttribute="height" constant="120" id="xFs-pX-bg8"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="店舗名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-qL-0fE">
+                    <rect key="frame" x="16" y="20" width="186" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJG-Kx-o7y">
+                    <rect key="frame" x="16" y="46" width="186" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5YB-Nz-0LV">
+                    <rect key="frame" x="210" y="20" width="24" height="24"/>
+                    <color key="backgroundColor" red="0.37647058823529411" green="0.49019607843137253" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="drT-3Y-zxz"/>
+                        <constraint firstAttribute="height" constant="24" id="vJB-OH-6OB"/>
+                    </constraints>
+                    <state key="normal" image="RightArrowIcon"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="pp3-qL-0fE" secondAttribute="trailing" constant="16" id="37i-Oc-lZc"/>
                 <constraint firstAttribute="bottom" secondItem="dfs-F4-odN" secondAttribute="bottom" id="B3e-Tc-bgd"/>
+                <constraint firstAttribute="trailing" secondItem="UJG-Kx-o7y" secondAttribute="trailing" constant="48" id="CsC-Qf-R0h"/>
                 <constraint firstItem="stQ-wj-Efz" firstAttribute="top" secondItem="UJG-Kx-o7y" secondAttribute="bottom" constant="30" id="JBI-vp-OKB"/>
+                <constraint firstItem="5YB-Nz-0LV" firstAttribute="leading" secondItem="pp3-qL-0fE" secondAttribute="trailing" constant="8" id="Pn6-MH-lfr"/>
+                <constraint firstItem="5YB-Nz-0LV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Uqh-1m-9MG"/>
                 <constraint firstItem="stQ-wj-Efz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XdR-nM-jvc"/>
-                <constraint firstAttribute="trailing" secondItem="UJG-Kx-o7y" secondAttribute="trailing" constant="16" id="ajg-Wh-PRS"/>
                 <constraint firstItem="UJG-Kx-o7y" firstAttribute="top" secondItem="pp3-qL-0fE" secondAttribute="bottom" constant="8" id="b0G-eI-FYb"/>
                 <constraint firstItem="pp3-qL-0fE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ckJ-CZ-eB7"/>
+                <constraint firstAttribute="trailing" secondItem="5YB-Nz-0LV" secondAttribute="trailing" constant="16" id="fCi-w4-cmP"/>
                 <constraint firstItem="pp3-qL-0fE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="h50-iw-ehe"/>
                 <constraint firstItem="UJG-Kx-o7y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qW9-xd-PVz"/>
                 <constraint firstItem="dfs-F4-odN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tjK-l1-HrG"/>
@@ -65,5 +82,6 @@
     </objects>
     <resources>
         <image name="BalloonIcon" width="137" height="140"/>
+        <image name="RightArrowIcon" width="24" height="24"/>
     </resources>
 </document>

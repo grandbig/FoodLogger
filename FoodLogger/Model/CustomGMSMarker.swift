@@ -16,6 +16,8 @@ class CustomGMSMarker: GMSMarker {
     public var shopName: String?
     public var categoryName: String?
     public var imageURL: String?
+    public var shopURL: String?
+    public var type: MarkerType?
     
     /// 初期化
     override init() {

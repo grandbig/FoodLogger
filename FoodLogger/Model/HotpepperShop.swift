@@ -26,8 +26,8 @@ class HotpepperShop {
     var latitude: Double?
     /// 経度
     var longitude: Double?
-    /// チェック
-    var isChecked: Bool = false
+    /// 店舗URL
+    var shopURL: String?
 
     /**
      初期化処理
@@ -39,13 +39,14 @@ class HotpepperShop {
      - parameter latitude: 緯度
      - parameter longitude: 経度
      */
-    init(id: String, name: String, category: String, imageURL: String, latitude: Double, longitude: Double) {
+    init(id: String, name: String, category: String, imageURL: String, latitude: Double, longitude: Double, shopURL: String) {
         self.id = id
         self.name = name
         self.category = category
         self.imageURL = imageURL
         self.latitude = latitude
         self.longitude = longitude
+        self.shopURL = shopURL
     }
     
     /**
@@ -60,5 +61,6 @@ class HotpepperShop {
         self.imageURL = data["photo"]["mobile"]["l"].string
         self.latitude = atof(data["lat"].string ?? "0")
         self.longitude = atof(data["lng"].string ?? "0")
+        self.shopURL = data["urls"]["pc"].string
     }
 }

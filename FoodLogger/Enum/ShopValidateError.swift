@@ -12,6 +12,6 @@ import Foundation
  店舗データのバリデーションエラー
  */
 enum ShopValidateError: Error {
-    case Empty
-    case Unknown(String)
+    case empty
+    case unknown(String)
 }

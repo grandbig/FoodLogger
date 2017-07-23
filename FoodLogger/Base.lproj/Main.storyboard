@@ -75,18 +75,66 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="sA3-T9-IRR" id="XBN-7U-O4e"/>
+                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegue" id="mSu-f4-zzX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048.8" y="-544.67766116941539"/>
         </scene>
+        <!--Shop Detail View Controller-->
+        <scene sceneID="HWM-om-9vl">
+            <objects>
+                <viewController id="ssc-hI-PSv" customClass="ShopDetailViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oy6-TJ-enS"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vmz-7X-vSD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VkS-cw-1pU">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loc-6x-4yZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="loc-6x-4yZ" secondAttribute="trailing" id="JWw-dk-f7e"/>
+                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="bqL-cR-yU9"/>
+                            <constraint firstItem="loc-6x-4yZ" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="jIk-NM-Qa2"/>
+                            <constraint firstItem="loc-6x-4yZ" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="zhH-1f-zNY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LOY-Cf-eyV">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="YVx-X7-TvQ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rsz-JF-wt9">
+                                <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="savedIcon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchSaveButton:" destination="ssc-hI-PSv" eventType="touchUpInside" id="ini-F3-VrN"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="loc-6x-4yZ" id="Tud-Gy-qRY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pMN-rP-hOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="-544.67766116941539"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hmz-xv-7ZU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -104,5 +152,6 @@
     <resources>
         <image name="SearchIcon" width="48" height="48"/>
         <image name="ViewModuleIcon" width="24" height="24"/>
+        <image name="savedIcon" width="24" height="24"/>
     </resources>
 </document>

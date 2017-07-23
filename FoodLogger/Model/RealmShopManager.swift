@@ -11,6 +11,9 @@ import RealmSwift
 
 class RealmShopManager {
     
+    /// シングルトン
+    static let sharedInstance = RealmShopManager()
+    
     /// イニシャライザ
     init() {
     }
@@ -20,14 +23,14 @@ class RealmShopManager {
      
      - parameter shop: 店舗データ
      */
-    func createFootprint(shop: HotpepperShop) {
+    func createShop(shop: HotpepperShop) {
         do {
             // 店舗データのバリデーションチェック
             try validateShop(shop: shop)
             
             let realm = try Realm()
             let realmShop = RealmShop()
-            realmShop.id = Int(shop.id!)!
+            realmShop.id = shop.id!
             realmShop.name = shop.name!
             realmShop.category = shop.category!
             realmShop.imageURL = shop.imageURL!
@@ -38,7 +41,7 @@ class RealmShopManager {
             try realm.write {
                 realm.create(RealmShop.self, value: realmShop, update: false)
             }
-        } catch ShopValidateError.Empty {
+        } catch ShopValidateError.empty {
             print("Error: Shop Data is not right")
         } catch let error as NSError {
             print("Error: code - \(error.code), description - \(error.description)")
@@ -50,7 +53,7 @@ class RealmShopManager {
      
      - returns: 保存した店舗の数
      */
-    func countFootprint() -> Int {
+    func countShop() -> Int {
         do {
             let realm = try Realm()
             return realm.objects(RealmShop.self).count
@@ -89,6 +92,26 @@ class RealmShopManager {
             return nil
         } catch _ as NSError {
             return nil
+        }
+    }
+    
+    /**
+     指定したIDの店舗の存在チェック処理
+     
+     - parameter id: 店舗ID
+     - returns: 存在チェック結果
+     */
+    func exsitsById(_ id: String) -> Bool {
+        do {
+            let realm = try Realm()
+            let realmShop = realm.objects(RealmShop.self).filter("id == '\(id)'")
+            if realmShop.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        } catch _ as NSError {
+            return false
         }
     }
     
@@ -134,22 +157,22 @@ class RealmShopManager {
      */
     func validateShop(shop: HotpepperShop) throws {
         guard shop.id != nil else {
-            throw ShopValidateError.Empty
+            throw ShopValidateError.empty
         }
         guard shop.name != nil else {
-            throw ShopValidateError.Empty
+            throw ShopValidateError.empty
         }
         guard shop.category != nil else {
-            throw ShopValidateError.Empty
+            throw ShopValidateError.empty
         }
         guard shop.imageURL != nil else {
-            throw ShopValidateError.Empty
+            throw ShopValidateError.empty
         }
         guard shop.latitude != nil else {
-            throw ShopValidateError.Empty
+            throw ShopValidateError.empty
         }
         guard shop.longitude != nil else {
-            throw ShopValidateError.Empty
+            throw ShopValidateError.empty
         }
     }
 }

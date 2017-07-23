@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     internal var restaurants: [JSON]?
     internal let hotpepperAPI = HotpepperAPI.init()
     internal var selectedShopImageURLString: String?
+    internal var realmShopManager: RealmShopManager = RealmShopManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,13 @@ class ViewController: UIViewController {
         self.locationManager?.delegate = self
         
         self.placesClient = GMSPlacesClient.shared()
+        
+        if let savedShops = self.realmShopManager.selectAll() {
+            for savedShop in savedShops {
+                let shop = HotpepperShop(id: savedShop.id, name: savedShop.name, category: savedShop.category, imageURL: savedShop.imageURL, latitude: savedShop.latitude, longitude: savedShop.longitude, shopURL: savedShop.shopURL)
+                self.putMarker(shop: shop, type: MarkerType.saved)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,13 +64,29 @@ class ViewController: UIViewController {
         guard let myCurrentLocation = self.currentLocation else {
             return
         }
+        // 現在地周辺のレストランを取得
         self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation) { (result) in
             if let restaurants = result.array {
                 self.restaurants = restaurants
                 for restaurant in restaurants {
                     let shop = HotpepperShop(data: restaurant)
-                    self.putMarker(shop: shop)
+                    self.putMarker(shop: shop, type: MarkerType.searched)
                 }
+            }
+        }
+    }
+    
+    // MARK: Storyboard Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem.init()
+        backButton.title = "戻る"
+        backButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem = backButton
+        
+        if segue.identifier == "shopDetailSegue" {
+            if let shopDetailViewController = segue.destination as? ShopDetailViewController, let shop = sender as? HotpepperShop {
+                shopDetailViewController.shop = shop
             }
         }
     }
@@ -73,13 +97,20 @@ class ViewController: UIViewController {
      
      - parameter shop: 店舗データ
      */
-    private func putMarker(shop: HotpepperShop) {
+    private func putMarker(shop: HotpepperShop, type: MarkerType) {
         let marker = CustomGMSMarker()
         marker.id = shop.id
         marker.shopName = shop.name
         marker.categoryName = shop.category
         marker.imageURL = shop.imageURL
+        marker.shopURL = shop.shopURL
         marker.position = CLLocationCoordinate2D(latitude: shop.latitude ?? 0, longitude: shop.longitude ?? 0)
+        marker.type = type
+        if type == MarkerType.saved {
+            marker.icon = UIImage(named: "savedShopIcon")
+        } else {
+            marker.icon = UIImage(named: "searchedShopIcon")
+        }
         marker.map = self.mapView
     }
 }
@@ -117,5 +148,18 @@ extension ViewController: GMSMapViewDelegate {
         let view = MarkerInfoContentsView(frame: CGRect(x: 0, y: 0, width: 250, height: 265))
         view.setData(shopName: cMarker.shopName, categoryName: cMarker.categoryName, shopImageURLString: cMarker.imageURL)
         return view
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        guard let cMarker = marker as? CustomGMSMarker else {
+            return
+        }
+        guard let id = cMarker.id, let name = cMarker.shopName, let category = cMarker.categoryName, let imageURL = cMarker.imageURL, let shopURL = cMarker.shopURL else {
+            return
+        }
+        let shop = HotpepperShop(id: id, name: name, category: category, imageURL: imageURL, latitude: cMarker.position.latitude, longitude: cMarker.position.longitude, shopURL: shopURL)
+        
+        // 画面遷移
+        performSegue(withIdentifier: "shopDetailSegue", sender: shop)
     }
 }
