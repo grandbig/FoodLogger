@@ -36,6 +36,7 @@ class RealmShopManager {
             realmShop.imageURL = shop.imageURL!
             realmShop.latitude = shop.latitude!
             realmShop.longitude = shop.longitude!
+            realmShop.shopURL = shop.shopURL!
             
             // Realmへのオブジェクトの書き込み
             try realm.write {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fXU-gq-Q61">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fXU-gq-Q61">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -98,11 +98,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-Fv-5JJ">
+                                <rect key="frame" x="177" y="291" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerX" secondItem="VkS-cw-1pU" secondAttribute="centerX" id="Hy7-05-ZA7"/>
                             <constraint firstAttribute="trailing" secondItem="loc-6x-4yZ" secondAttribute="trailing" id="JWw-dk-f7e"/>
                             <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="bqL-cR-yU9"/>
+                            <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerY" secondItem="VkS-cw-1pU" secondAttribute="centerY" id="h3R-Mx-qAl"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="jIk-NM-Qa2"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="zhH-1f-zNY"/>
                         </constraints>
@@ -122,6 +127,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="indicatorView" destination="2iL-Fv-5JJ" id="I4v-V6-ywb"/>
+                        <outlet property="saveButton" destination="YVx-X7-TvQ" id="pFe-dl-MYQ"/>
                         <outlet property="webView" destination="loc-6x-4yZ" id="Tud-Gy-qRY"/>
                     </connections>
                 </viewController>
@@ -134,7 +141,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
