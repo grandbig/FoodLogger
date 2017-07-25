@@ -70,6 +70,7 @@ class ViewController: UIViewController {
                 self.restaurants = restaurants
                 for restaurant in restaurants {
                     let shop = HotpepperShop(data: restaurant)
+                    // TODO: 保存済みのショップを差分として間引く
                     self.putMarker(shop: shop, type: MarkerType.searched)
                 }
             }
@@ -87,6 +88,7 @@ class ViewController: UIViewController {
         if segue.identifier == "shopDetailSegue" {
             if let shopDetailViewController = segue.destination as? ShopDetailViewController, let shop = sender as? HotpepperShop {
                 shopDetailViewController.shop = shop
+                shopDetailViewController.myLocation = self.currentLocation
             }
         }
     }

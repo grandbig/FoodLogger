@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */; };
 		2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F21F1CFB14003AB65A /* AppDelegate.swift */; };
 		2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F41F1CFB14003AB65A /* ViewController.swift */; };
 		2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6641F61F1CFB14003AB65A /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		0333A23A4B1F71ABB566364B /* Pods-FoodLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger.debug.xcconfig"; sourceTree = "<group>"; };
 		2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
 		2E6641EF1F1CFB14003AB65A /* FoodLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6641F21F1CFB14003AB65A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E6641F41F1CFB14003AB65A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			children = (
 				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
 				2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */,
+				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
 				2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */,
 				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
+				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
 				2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */,
 			);
