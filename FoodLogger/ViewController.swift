@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import SwiftyJSON
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate {
 
     @IBOutlet weak var mapView: GMSMapView!
     internal var locationManager: CLLocationManager?
@@ -22,12 +22,14 @@ class ViewController: UIViewController {
     internal var initView: Bool = false
     internal var restaurants: [JSON]?
     internal let hotpepperAPI = HotpepperAPI.init()
-    internal var selectedShopImageURLString: String?
+    internal var selectedMarker: CustomGMSMarker?
     internal var realmShopManager: RealmShopManager = RealmShopManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.delegate = self
         
         // GoogleMapの初期化
         self.mapView.isMyLocationEnabled = true
@@ -86,11 +88,29 @@ class ViewController: UIViewController {
         self.navigationItem.backBarButtonItem = backButton
         
         if segue.identifier == "shopDetailSegue" {
-            if let shopDetailViewController = segue.destination as? ShopDetailViewController, let shop = sender as? HotpepperShop {
-                shopDetailViewController.shop = shop
-                shopDetailViewController.myLocation = self.currentLocation
+            guard let shopDetailViewController = segue.destination as? ShopDetailViewController else {
+                return
+            }
+            guard let shop = sender as? HotpepperShop else {
+                return
+            }
+            shopDetailViewController.shop = shop
+            shopDetailViewController.myLocation = self.currentLocation
+        }
+    }
+    
+    // MARK: UINavigationControllerDelegate
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let shopDetailViewController = fromVC as? ShopDetailViewController, toVC as? ViewController != nil {
+            // ShopDetailViewControllerから戻ってきた場合
+            if shopDetailViewController.isSaved {
+                // ショップを新たに保存した場合
+                // マーカを再設置
+                self.selectedMarker?.map = nil
+                self.putMarker(shop: shopDetailViewController.shop, type: MarkerType.saved)
             }
         }
+        return nil
     }
     
     // MARK: Other
@@ -138,7 +158,7 @@ extension ViewController: GMSMapViewDelegate {
         guard let cMarker = marker as? CustomGMSMarker else {
             return true
         }
-        self.selectedShopImageURLString = cMarker.imageURL
+        self.selectedMarker = cMarker
         return false
     }
     

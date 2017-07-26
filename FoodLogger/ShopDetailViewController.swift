@@ -18,8 +18,9 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     // TODO: 取得したmyLocationの精度で許容maxDistanceを変更
     private let maxDistance: Double = 300
     private var realmShopManager: RealmShopManager = RealmShopManager()
-    public var myLocation: CLLocationCoordinate2D!
-    public var shop: HotpepperShop!
+    internal var myLocation: CLLocationCoordinate2D!
+    internal var shop: HotpepperShop!
+    internal var isSaved: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
                 self.saveButton.isEnabled = false
             }
         }
+        self.isSaved = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,9 +74,9 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
                 return
             }
             // データを保存
-            // TODO: 保存したショップのマーカを変更する
             self.realmShopManager.createShop(shop: self.shop)
             self.saveButton.isEnabled = false
+            self.isSaved = true
         }) {
         }
     }
