@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import SwiftyJSON
+import RealmSwift
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
 
@@ -20,7 +21,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     internal var zoomLevel: Float = 16.0
     /// 初期描画の判断に利用
     internal var initView: Bool = false
-    internal var restaurants: [JSON]?
+    internal var savedShops: Results<RealmShop>!
     internal let hotpepperAPI = HotpepperAPI.init()
     internal var selectedMarker: CustomGMSMarker?
     internal var realmShopManager: RealmShopManager = RealmShopManager()
@@ -49,6 +50,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.placesClient = GMSPlacesClient.shared()
         
         if let savedShops = self.realmShopManager.selectAll() {
+            self.savedShops = savedShops
             for savedShop in savedShops {
                 let shop = HotpepperShop(id: savedShop.id, name: savedShop.name, category: savedShop.category, imageURL: savedShop.imageURL, latitude: savedShop.latitude, longitude: savedShop.longitude, shopURL: savedShop.shopURL)
                 self.putMarker(shop: shop, type: MarkerType.saved)
@@ -68,12 +70,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
         // 現在地周辺のレストランを取得
         self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation) { (result) in
-            if let restaurants = result.array {
-                self.restaurants = restaurants
-                for restaurant in restaurants {
-                    let shop = HotpepperShop(data: restaurant)
-                    // TODO: 保存済みのショップを差分として間引く
-                    self.putMarker(shop: shop, type: MarkerType.searched)
+            if let searchShops = result.array {
+                for searchShop in searchShops {
+                    if !self.checkSavedShop(searchShop) {
+                        self.putMarker(shop: HotpepperShop(data: searchShop), type: MarkerType.searched)
+                    }
                 }
             }
         }
@@ -134,6 +135,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             marker.icon = UIImage(named: "searchedShopIcon")
         }
         marker.map = self.mapView
+    }
+    
+    /**
+     保存済みショップ判定処理
+     
+     - parameter shop: ショップ
+     - returns: 保存済み/未保存判定結果 (true: 保存済み, false: 未保存)
+     */
+    private func checkSavedShop(_ shop: JSON) -> Bool {
+        for savedShop in self.savedShops where shop["id"].string == savedShop.id {
+            return true
+        }
+        return false
     }
 }
 
