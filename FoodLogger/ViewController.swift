@@ -8,22 +8,28 @@
 
 import UIKit
 import GoogleMaps
-import GooglePlaces
 import SwiftyJSON
 import RealmSwift
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
 
+    /// マップビュー
     @IBOutlet weak var mapView: GMSMapView!
+    /// 位置情報マネージャ
     internal var locationManager: CLLocationManager?
+    /// 現在地
     internal var currentLocation: CLLocationCoordinate2D?
-    internal var placesClient: GMSPlacesClient!
-    internal var zoomLevel: Float = 16.0
+    /// マップのズームレベル
+    internal let zoomLevel: Float = 16.0
     /// 初期描画の判断に利用
     internal var initView: Bool = false
+    /// 保存済みショップ
     internal var savedShops: Results<RealmShop>!
+    /// ホットペッパーAPI
     internal let hotpepperAPI = HotpepperAPI.init()
+    /// 選択中マーカ
     internal var selectedMarker: CustomGMSMarker?
+    /// Realm管理マネージャ
     internal var realmShopManager: RealmShopManager = RealmShopManager()
     
     override func viewDidLoad() {
@@ -46,8 +52,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.locationManager?.distanceFilter = 50
         self.locationManager?.startUpdatingLocation()
         self.locationManager?.delegate = self
-        
-        self.placesClient = GMSPlacesClient.shared()
         
         if let savedShops = self.realmShopManager.selectAll() {
             self.savedShops = savedShops
@@ -118,7 +122,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     /**
      マップにマーカをプロットする処理
      
-     - parameter shop: 店舗データ
+     - parameter shop: ショップデータ
+     - parameter type: マーカタイプ
      */
     private func putMarker(shop: HotpepperShop, type: MarkerType) {
         let marker = CustomGMSMarker()

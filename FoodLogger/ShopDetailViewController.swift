@@ -12,13 +12,21 @@ import CoreLocation
 
 class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     
+    /// WebView
     @IBOutlet weak var webView: UIWebView!
+    /// IndicatorView
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    /// ショップ保存ボタン
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    /// 現在地からショップまでの許容できる最大距離
     private var maxDistance: Double = 300
+    /// Realm管理マネージャ
     private var realmShopManager: RealmShopManager = RealmShopManager()
+    /// 現在地
     internal var myLocation: CLLocation!
+    /// ショップ
     internal var shop: HotpepperShop!
+    /// ショップの保存済/未保存フラグ
     internal var isSaved: Bool = false
     
     override func viewDidLoad() {
@@ -53,10 +61,6 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     }
     
     // MARK: UIWebViewDelegate
-    func webViewDidStartLoad(_ webView: UIWebView) {
-        
-    }
-    
     func webViewDidFinishLoad(_ webView: UIWebView) {
         self.indicatorView.isHidden = true
     }

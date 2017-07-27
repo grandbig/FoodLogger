@@ -19,13 +19,13 @@ class RealmShopManager {
     }
     
     /**
-     店舗情報をRealmに保存する処理
+     ショップ情報をRealmに保存する処理
      
-     - parameter shop: 店舗データ
+     - parameter shop: ショップデータ
      */
     func createShop(shop: HotpepperShop) {
         do {
-            // 店舗データのバリデーションチェック
+            // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
             
             let realm = try Realm()
@@ -50,9 +50,9 @@ class RealmShopManager {
     }
     
     /**
-     保存した店舗数の取得処理
+     保存したショップ数の取得処理
      
-     - returns: 保存した店舗の数
+     - returns: 保存したショップの数
      */
     func countShop() -> Int {
         do {
@@ -64,9 +64,9 @@ class RealmShopManager {
     }
     
     /**
-     保存した店舗全てを取得する処理
+     保存したショップ全てを取得する処理
      
-     - returns: 全ての店舗
+     - returns: 全てのショップ
      */
     func selectAll() -> Results<RealmShop>? {
         do {
@@ -78,10 +78,10 @@ class RealmShopManager {
     }
     
     /**
-     指定したIDの店舗を取得する処理
+     指定したIDのショップを取得する処理
      
-     - parameter id: 店舗ID
-     - returns: 指定したIDに紐づく店舗
+     - parameter id: ショップID
+     - returns: 指定したIDに紐づくショップ
      */
     func selectById(_ id: String) -> Results<RealmShop>? {
         do {
@@ -97,9 +97,9 @@ class RealmShopManager {
     }
     
     /**
-     指定したIDの店舗の存在チェック処理
+     指定したIDのショップの存在チェック処理
      
-     - parameter id: 店舗ID
+     - parameter id: ショップID
      - returns: 存在チェック結果
      */
     func exsitsById(_ id: String) -> Bool {
@@ -117,7 +117,7 @@ class RealmShopManager {
     }
     
     /**
-     指定したIDの店舗を削除する処理
+     指定したIDのショップを削除する処理
      
      - parameter text: 足跡のタイトル
      */
@@ -137,7 +137,7 @@ class RealmShopManager {
     }
     
     /**
-     保存した全ての店舗を削除する処理
+     保存した全てのショップを削除する処理
      */
     func deleteAll() {
         do {
@@ -151,10 +151,10 @@ class RealmShopManager {
     }
     
     /**
-     店舗データのバリデーションチェック
+     ショップデータのバリデーションチェック
      
-     - parameter shop: 店舗データ
-     - throws: 不足店舗データがある場合にエラー
+     - parameter shop: ショップデータ
+     - throws: 不足ショップデータがある場合にエラー
      */
     func validateShop(shop: HotpepperShop) throws {
         guard shop.id != nil else {

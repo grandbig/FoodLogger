@@ -10,16 +10,24 @@ import Foundation
 import RealmSwift
 
 /**
- Realmに保存する店舗オブジェクト
+ Realmに保存するショップオブジェクト
  */
 class RealmShop: Object {
+    /// ID
     dynamic var id: String = ""
+    /// 名前
     dynamic var name: String = ""
+    /// カテゴリ
     dynamic var category: String = ""
+    /// 画像URL
     dynamic var imageURL: String = ""
+    /// 緯度
     dynamic var latitude: Double = 0.0
+    /// 経度
     dynamic var longitude: Double = 0.0
+    /// ショップURL
     dynamic var shopURL: String = ""
+    /// 保存日時(タイムスタンプ)
     dynamic var created: Double = Date().timeIntervalSince1970
     
     // プライマリーキーの設定

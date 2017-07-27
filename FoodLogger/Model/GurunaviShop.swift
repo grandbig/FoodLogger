@@ -10,17 +10,17 @@ import Foundation
 import SwiftyJSON
 
 /**
- ぐるなびAPIで取得した店舗オブジェクト
+ ぐるなびAPIで取得したショップオブジェクト
  */
 class GurunaviShop {
     
-    /// 店舗ID
+    /// ショップID
     var id: String?
-    /// 店舗名
+    /// ショップ名
     var name: String?
-    /// 店舗カテゴリ
+    /// ショップカテゴリ
     var category: String?
-    /// 店舗画像URL
+    /// ショップ画像URL
     var imageURL: String?
     /// 緯度
     var latitude: Double?
@@ -30,10 +30,10 @@ class GurunaviShop {
     /**
      初期化処理
      
-     - parameter id: 店舗ID
-     - parameter name: 店舗名
-     - parameter category: 店舗カテゴリ
-     - paramter imageURL: 店舗画像URL
+     - parameter id: ショップID
+     - parameter name: ショップ名
+     - parameter category: ショップカテゴリ
+     - paramter imageURL: ショップ画像URL
      - parameter latitude: 緯度
      - parameter longitude: 経度
      */
@@ -49,11 +49,11 @@ class GurunaviShop {
     /**
      初期化処理
      
-     - parameter data: 店舗データ
+     - parameter data: ショップデータ
      */
     init(data: JSON) {
         self.id = data["id"].string ?? "ID不明"
-        self.name = data["name"].string ?? "店舗名不明"
+        self.name = data["name"].string ?? "ショップ名不明"
         self.category = data["category"].string ?? "カテゴリ不明"
         self.imageURL = self.getShopImage(imageURL: data["image_url"])
         self.latitude = atof(data["latitude"].string ?? "0")
@@ -61,10 +61,10 @@ class GurunaviShop {
     }
     
     /**
-     ぐるなびレストラン検索APIで取得した店舗画像JSONから有効な店舗画像URLを取得する処理
+     ぐるなびレストラン検索APIで取得したショップ画像JSONから有効なショップ画像URLを取得する処理
      
-     - parameter imageURL: ぐるなびレストラン検索APIで取得した店舗画像JSON
-     - returns: 有効な店舗画像URL
+     - parameter imageURL: ぐるなびレストラン検索APIで取得したショップ画像JSON
+     - returns: 有効なショップ画像URL
      */
     func getShopImage(imageURL: JSON) -> String? {
         if let image1 = imageURL["shop_image1"].string {

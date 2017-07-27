@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let dic = NSDictionary(contentsOfFile: path) as? [String: Any] {
                 if let apiKey = dic["googleMapsApiKey"] as? String {
                     GMSServices.provideAPIKey(apiKey)
-                    GMSPlacesClient.provideAPIKey(apiKey)
                 }
             }
         }

@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- 店舗データのバリデーションエラー
+ ショップデータのバリデーションエラー
  */
 enum ShopValidateError: Error {
     case empty

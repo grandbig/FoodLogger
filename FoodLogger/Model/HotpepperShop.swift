@@ -10,32 +10,32 @@ import Foundation
 import SwiftyJSON
 
 /**
- ホットペッパーグルメAPIで取得した店舗オブジェクト
+ ホットペッパーグルメAPIで取得したショップオブジェクト
  */
 class HotpepperShop {
     
-    /// 店舗ID
+    /// ショップID
     var id: String?
-    /// 店舗名
+    /// ショップ名
     var name: String?
-    /// 店舗カテゴリ
+    /// ショップカテゴリ
     var category: String?
-    /// 店舗画像URL
+    /// ショップ画像URL
     var imageURL: String?
     /// 緯度
     var latitude: Double?
     /// 経度
     var longitude: Double?
-    /// 店舗URL
+    /// ショップURL
     var shopURL: String?
 
     /**
      初期化処理
      
-     - parameter id: 店舗ID
-     - parameter name: 店舗名
-     - parameter category: 店舗カテゴリ
-     - parameter imageURL: 店舗画像URL
+     - parameter id: ショップID
+     - parameter name: ショップ名
+     - parameter category: ショップカテゴリ
+     - parameter imageURL: ショップ画像URL
      - parameter latitude: 緯度
      - parameter longitude: 経度
      */
@@ -52,11 +52,11 @@ class HotpepperShop {
     /**
      初期化処理
      
-    - parameter data: 店舗データ
+    - parameter data: ショップデータ
      */
     init(data: JSON) {
         self.id = data["id"].string ?? "ID不明"
-        self.name = data["name"].string ?? "店舗名不明"
+        self.name = data["name"].string ?? "ショップ名不明"
         self.category = data["genre"]["name"].string ?? "カテゴリ不明"
         self.imageURL = data["photo"]["mobile"]["l"].string
         self.latitude = atof(data["lat"].string ?? "0")

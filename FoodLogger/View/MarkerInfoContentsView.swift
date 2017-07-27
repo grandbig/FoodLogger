@@ -36,16 +36,16 @@ class MarkerInfoContentsView: UIView {
     /**
      データの設定処理
      
-     - parameter shopName: 店舗名
+     - parameter shopName: ショップ名
      - parameter categoryName: カテゴリ名
      - parameter shopImageURLString: 画像URL
      */
     func setData(shopName: String?, categoryName: String?, shopImageURLString: String?) {
-        // 店舗名の設定
+        // ショップ名の設定
         if let shopNameTextCount = shopName?.characters.count, shopNameTextCount > 0 {
             self.shopName.text = shopName
         } else {
-            self.shopName.text = "店舗名不明"
+            self.shopName.text = "ショップ名不明"
             self.shopName.textColor = UIColor.gray
         }
         // 詳細説明の設定
