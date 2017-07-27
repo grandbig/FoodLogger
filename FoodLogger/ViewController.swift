@@ -96,7 +96,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 return
             }
             shopDetailViewController.shop = shop
-            shopDetailViewController.myLocation = self.currentLocation
+            shopDetailViewController.myLocation = self.mapView.myLocation
         }
     }
     

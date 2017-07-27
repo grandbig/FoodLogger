@@ -15,10 +15,9 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    // TODO: 取得したmyLocationの精度で許容maxDistanceを変更
-    private let maxDistance: Double = 300
+    private var maxDistance: Double = 300
     private var realmShopManager: RealmShopManager = RealmShopManager()
-    internal var myLocation: CLLocationCoordinate2D!
+    internal var myLocation: CLLocation!
     internal var shop: HotpepperShop!
     internal var isSaved: Bool = false
     
@@ -30,6 +29,9 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
         if let shopURL = self.shop.shopURL, let url = URL(string: shopURL) {
             let urlRequest = URLRequest(url: url)
             self.webView.loadRequest(urlRequest)
+        }
+        if self.myLocation.horizontalAccuracy > 0 {
+            self.maxDistance = self.myLocation.horizontalAccuracy
         }
     }
     
@@ -68,7 +70,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
                 return
             }
             let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
-            if self.getDistance(from: self.myLocation, to: shopLocation) > self.maxDistance {
+            if self.getDistance(from: self.myLocation.coordinate, to: shopLocation) > self.maxDistance {
                 // ショップから離れすぎている場合
                 self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
                 return
