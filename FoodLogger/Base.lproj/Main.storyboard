@@ -70,17 +70,81 @@
                                 <rect key="frame" x="335" y="10" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ViewModuleIcon"/>
+                                <connections>
+                                    <action selector="changeListView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TcN-fx-vu5"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="sA3-T9-IRR" id="XBN-7U-O4e"/>
-                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegue" id="mSu-f4-zzX"/>
+                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegueFromMap" id="mSu-f4-zzX"/>
+                        <segue destination="K9I-A9-oWB" kind="show" identifier="shopListSegue" customClass="PushFadeSegue" customModule="FoodLogger" customModuleProvider="target" id="q08-bv-kqw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048.8" y="-544.67766116941539"/>
+        </scene>
+        <!--Shop List View Controller-->
+        <scene sceneID="pzh-IA-2iK">
+            <objects>
+                <viewController id="K9I-A9-oWB" customClass="ShopListViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dUV-GX-a5k"/>
+                        <viewControllerLayoutGuide type="bottom" id="wa4-En-0xQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="itm-r3-gXz">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rZ9-sF-NTt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopInfoCell" id="Odp-Vr-YC9">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Odp-Vr-YC9" id="Cl8-YA-3uz">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rZ9-sF-NTt" secondAttribute="trailing" id="3WH-Of-X0e"/>
+                            <constraint firstItem="rZ9-sF-NTt" firstAttribute="top" secondItem="dUV-GX-a5k" secondAttribute="bottom" id="9NU-nv-K2Z"/>
+                            <constraint firstItem="rZ9-sF-NTt" firstAttribute="leading" secondItem="itm-r3-gXz" secondAttribute="leading" id="F2H-12-ZTE"/>
+                            <constraint firstItem="rZ9-sF-NTt" firstAttribute="leading" secondItem="itm-r3-gXz" secondAttribute="leading" id="Wnv-Pe-puE"/>
+                            <constraint firstAttribute="trailing" secondItem="rZ9-sF-NTt" secondAttribute="trailing" id="epo-tl-pXZ"/>
+                            <constraint firstItem="wa4-En-0xQ" firstAttribute="top" secondItem="rZ9-sF-NTt" secondAttribute="bottom" id="uLd-Yk-wr4"/>
+                            <constraint firstItem="wa4-En-0xQ" firstAttribute="top" secondItem="rZ9-sF-NTt" secondAttribute="bottom" id="zYl-EE-x0Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="p5W-0S-pgM">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="TyT-Ej-YwL">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hiv-sD-VIw">
+                                <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="MapIcon"/>
+                                <connections>
+                                    <segue destination="yAa-s2-FiC" kind="unwind" customClass="UnwindFadeSegue" customModule="FoodLogger" customModuleProvider="target" unwindAction="unwindToViewControllerWithSegue:" id="M0D-WK-2yo"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="rZ9-sF-NTt" id="1bj-ib-h1I"/>
+                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegueFromList" id="aYZ-vF-fGh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cco-hE-UrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yAa-s2-FiC" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1048.8" y="150.67466266866569"/>
         </scene>
         <!--Shop Detail View Controller-->
         <scene sceneID="HWM-om-9vl">
@@ -99,7 +163,7 @@
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-Fv-5JJ">
-                                <rect key="frame" x="177" y="291" width="20" height="20"/>
+                                <rect key="frame" x="177" y="291.5" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,8 +221,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="MapIcon" width="24" height="24"/>
         <image name="SearchIcon" width="48" height="48"/>
         <image name="ViewModuleIcon" width="24" height="24"/>
         <image name="savedIcon" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aYZ-vF-fGh"/>
+    </inferredMetricsTieBreakers>
 </document>

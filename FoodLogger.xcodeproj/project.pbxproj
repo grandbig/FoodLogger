@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */; };
+		2E23DD871F2E10200088BE5F /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */; };
+		2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */; };
+		2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */; };
 		2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */; };
+		2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */; };
 		2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F21F1CFB14003AB65A /* AppDelegate.swift */; };
 		2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F41F1CFB14003AB65A /* ViewController.swift */; };
 		2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6641F61F1CFB14003AB65A /* Main.storyboard */; };
@@ -28,6 +33,7 @@
 		2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642381F23904C003AB65A /* ShopValidateError.swift */; };
 		2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423A1F23BBCE003AB65A /* MarkerType.swift */; };
 		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
+		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
 		694DA7D05A0993B8BCFF68E6 /* Pods_Tests_FoodLoggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */; };
@@ -53,7 +59,12 @@
 /* Begin PBXFileReference section */
 		0333A23A4B1F71ABB566364B /* Pods-FoodLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger.debug.xcconfig"; sourceTree = "<group>"; };
 		2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushFadeSegue.swift; path = Model/PushFadeSegue.swift; sourceTree = "<group>"; };
+		2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwindFadeSegue.swift; path = Model/UnwindFadeSegue.swift; sourceTree = "<group>"; };
 		2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
+		2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
 		2E6641EF1F1CFB14003AB65A /* FoodLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6641F21F1CFB14003AB65A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E6641F41F1CFB14003AB65A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +92,7 @@
 		2E66423A1F23BBCE003AB65A /* MarkerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkerType.swift; path = Enum/MarkerType.swift; sourceTree = "<group>"; };
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +208,9 @@
 				2E6642311F238464003AB65A /* GurunaviShop.swift */,
 				2E6642331F238D6D003AB65A /* RealmShop.swift */,
 				2E6642351F238DF4003AB65A /* RealmShopManager.swift */,
+				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
+				2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */,
+				2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -205,6 +220,8 @@
 			children = (
 				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
 				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
+				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
+				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,8 +238,9 @@
 		2E66423E1F23C7FF003AB65A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
 				2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */,
+				2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */,
+				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
 				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
 			);
 			name = ViewController;
@@ -363,6 +381,7 @@
 			files = (
 				2E6642211F1D002B003AB65A /* key.plist in Resources */,
 				2E6641FD1F1CFB14003AB65A /* LaunchScreen.storyboard in Resources */,
+				2E23DD871F2E10200088BE5F /* CustomTableViewCell.xib in Resources */,
 				2E6641FA1F1CFB14003AB65A /* Assets.xcassets in Resources */,
 				2E6642271F1E555B003AB65A /* MarkerInfoContentsView.xib in Resources */,
 				2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */,
@@ -549,10 +568,15 @@
 				2E66422E1F2380E3003AB65A /* HotPepperAPI.swift in Sources */,
 				2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */,
 				2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */,
+				2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */,
+				2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */,
+				2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
 				2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */,
+				2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */,
 				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
+				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
 				2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */,
 			);

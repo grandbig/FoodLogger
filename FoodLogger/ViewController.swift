@@ -25,6 +25,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     internal var initView: Bool = false
     /// 保存済みショップ
     internal var savedShops: Results<RealmShop>!
+    /// 検索ショップ
+    internal var searchShops: [JSON]!
     /// ホットペッパーAPI
     internal let hotpepperAPI = HotpepperAPI.init()
     /// 選択中マーカ
@@ -69,12 +71,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: Button Action
     @IBAction func search(_ sender: Any) {
+        // TODO: 連続タップ時の処理
         guard let myCurrentLocation = self.currentLocation else {
             return
         }
         // 現在地周辺のレストランを取得
         self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation) { (result) in
             if let searchShops = result.array {
+                self.searchShops = searchShops
                 for searchShop in searchShops {
                     if !self.checkSavedShop(searchShop) {
                         self.putMarker(shop: HotpepperShop(data: searchShop), type: MarkerType.searched)
@@ -82,6 +86,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 }
             }
         }
+    }
+    
+    @IBAction func changeListView(_ sender: Any) {
+        self.performSegue(withIdentifier: "shopListSegue", sender: nil)
     }
     
     // MARK: Storyboard Segue
@@ -92,7 +100,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.backBarButtonItem = backButton
         
-        if segue.identifier == "shopDetailSegue" {
+        if segue.identifier == "shopDetailSegueFromMap" {
             guard let shopDetailViewController = segue.destination as? ShopDetailViewController else {
                 return
             }
@@ -102,6 +110,17 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             shopDetailViewController.shop = shop
             shopDetailViewController.myLocation = self.mapView.myLocation
         }
+        
+        if segue.identifier == "shopListSegue" {
+            guard let shopListViewController = segue.destination as? ShopListViewController else {
+                return
+            }
+            shopListViewController.shops = self.searchShops
+            shopListViewController.myLocation = self.mapView.myLocation
+        }
+    }
+    
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
     }
     
     // MARK: UINavigationControllerDelegate
@@ -201,6 +220,6 @@ extension ViewController: GMSMapViewDelegate {
         let shop = HotpepperShop(id: id, name: name, category: category, imageURL: imageURL, latitude: cMarker.position.latitude, longitude: cMarker.position.longitude, shopURL: shopURL)
         
         // 画面遷移
-        performSegue(withIdentifier: "shopDetailSegue", sender: shop)
+        performSegue(withIdentifier: "shopDetailSegueFromMap", sender: shop)
     }
 }
