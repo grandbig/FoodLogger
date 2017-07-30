@@ -9,23 +9,22 @@
 import Foundation
 import UIKit
 import CoreLocation
+import RealmSwift
 import SwiftyJSON
 import AlamofireImage
 
 class ShopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     /// UITableView
     @IBOutlet weak var tableView: UITableView!
+    /// Realm管理マネージャ
+    internal var realmShopManager: RealmShopManager = RealmShopManager()
     /// 検索ショップ
-    internal var shops: [JSON]!
-    /// 現在地
-    internal var myLocation: CLLocation!
+    internal var shops: Results<RealmShop>!
     /// UITableViewCellの高さ
     private let rowHeight: CGFloat = 88.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.hidesBackButton = true
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -33,6 +32,10 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         let nib = UINib.init(nibName: "CustomTableViewCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "ShopInfoCell")
         self.tableView.rowHeight = self.rowHeight
+        
+        if let savedShops = self.realmShopManager.selectAll() {
+            self.shops = savedShops
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,8 +48,9 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         // 選択時にハイライト解除
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let selectedShop = self.shops[indexPath.row]
+        let shop = HotpepperShop(id: selectedShop.id, name: selectedShop.name, category: selectedShop.category, imageURL: selectedShop.imageURL, latitude: selectedShop.latitude, longitude: selectedShop.longitude, shopURL: selectedShop.shopURL)
         // 画面遷移
-        let shop = HotpepperShop(data: self.shops[indexPath.row])
         performSegue(withIdentifier: "shopDetailSegueFromList", sender: shop)
     }
     
@@ -57,21 +61,14 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopInfoCell", for: indexPath) as? CustomTableViewCell
-        cell?.nameLabel.text = self.shops[indexPath.row]["name"].string ?? "-"
-        cell?.categoryLabel.text = self.shops[indexPath.row]["genre"]["name"].string ?? "-"
-        if let imageURL = URL(string: self.shops[indexPath.row]["photo"]["mobile"]["l"].string!) {
+        cell?.nameLabel.text = self.shops[indexPath.row].name
+        cell?.categoryLabel.text = self.shops[indexPath.row].category 
+        if let imageURL = URL(string: self.shops[indexPath.row].imageURL) {
             cell?.imgView?.af_setImage(withURL: imageURL, placeholderImage: UIImage(named: "NoImageIcon"))
         }
         cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell!
-    }
-    
-    // MARK: Button Action
-    @IBAction func changeMapView(_ sender: Any) {
-        // 画面遷移
-        self.dismiss(animated: true, completion: {
-        })
     }
     
     // MARK: Storyboard Segue
@@ -90,7 +87,6 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
                 return
             }
             shopDetailViewController.shop = shop
-            shopDetailViewController.myLocation = self.myLocation
         }
     }
 }

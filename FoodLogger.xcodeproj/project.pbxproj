@@ -11,6 +11,7 @@
 		2E23DD871F2E10200088BE5F /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */; };
 		2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */; };
 		2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */; };
+		2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */; };
 		2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */; };
 		2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */; };
 		2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F21F1CFB14003AB65A /* AppDelegate.swift */; };
@@ -63,6 +64,7 @@
 		2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushFadeSegue.swift; path = Model/PushFadeSegue.swift; sourceTree = "<group>"; };
 		2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwindFadeSegue.swift; path = Model/UnwindFadeSegue.swift; sourceTree = "<group>"; };
+		2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
 		2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
 		2E6641EF1F1CFB14003AB65A /* FoodLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +244,7 @@
 				2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */,
 				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
 				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
+				2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */,
 				2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */,
 				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
+				2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,

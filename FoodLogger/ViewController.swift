@@ -88,10 +88,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    @IBAction func changeListView(_ sender: Any) {
-        self.performSegue(withIdentifier: "shopListSegue", sender: nil)
-    }
-    
     // MARK: Storyboard Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backButton = UIBarButtonItem.init()
@@ -109,14 +105,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             }
             shopDetailViewController.shop = shop
             shopDetailViewController.myLocation = self.mapView.myLocation
-        }
-        
-        if segue.identifier == "shopListSegue" {
-            guard let shopListViewController = segue.destination as? ShopListViewController else {
-                return
-            }
-            shopListViewController.shops = self.searchShops
-            shopListViewController.myLocation = self.mapView.myLocation
         }
     }
     

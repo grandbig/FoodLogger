@@ -23,7 +23,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     /// Realm管理マネージャ
     private var realmShopManager: RealmShopManager = RealmShopManager()
     /// 現在地
-    internal var myLocation: CLLocation!
+    internal var myLocation: CLLocation?
     /// ショップ
     internal var shop: HotpepperShop!
     /// ショップの保存済/未保存フラグ
@@ -38,8 +38,8 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
             let urlRequest = URLRequest(url: url)
             self.webView.loadRequest(urlRequest)
         }
-        if self.myLocation.horizontalAccuracy > 0 {
-            self.maxDistance = self.myLocation.horizontalAccuracy
+        if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 0 {
+            self.maxDistance = accuracy
         }
     }
     
@@ -73,8 +73,12 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
                 self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
                 return
             }
+            guard let coordinate = self.myLocation?.coordinate else {
+                self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
+                return
+            }
             let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
-            if self.getDistance(from: self.myLocation.coordinate, to: shopLocation) > self.maxDistance {
+            if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
                 // ショップから離れすぎている場合
                 self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
                 return
