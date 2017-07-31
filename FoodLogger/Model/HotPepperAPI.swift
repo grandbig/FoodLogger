@@ -35,15 +35,20 @@ class HotpepperAPI {
      ホットペッパーグルメサーチAPI
      
      - parameter coordinate: 位置
-     - parameter completion: レストラン情報を返却するcallback
+     - parameter success: レストラン情報を返却するcallback
+     - parameter failure: エラー情報を返却するcallback
      */
-    func searchRestaurant(coordinate: CLLocationCoordinate2D, completion: @escaping ((JSON) -> Void)) {
+    func searchRestaurant(coordinate: CLLocationCoordinate2D, success: @escaping ((JSON) -> Void), failure: @escaping ((Error) -> Void)) {
         let parameters = ["key": self.apiKey, "format": "json", "lat": coordinate.latitude, "lng": coordinate.longitude, "range": 2] as [String : Any]
         Alamofire.request(baseURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            if response.result.isFailure {
+                failure(response.result.error!)
+                return
+            }
             let json = JSON(response.result.value as Any)
             let result = json["results"]["shop"]
             
-            completion(result)
+            success(result)
         }
     }
 }

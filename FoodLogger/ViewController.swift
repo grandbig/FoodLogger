@@ -76,7 +76,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             return
         }
         // 現在地周辺のレストランを取得
-        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation) { (result) in
+        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation, success: { (result) in
             if let searchShops = result.array {
                 self.searchShops = searchShops
                 for searchShop in searchShops {
@@ -85,6 +85,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                     }
                 }
             }
+        }) { _ in
+            self.showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
         }
     }
     
