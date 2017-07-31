@@ -34,6 +34,7 @@
 		2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642381F23904C003AB65A /* ShopValidateError.swift */; };
 		2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423A1F23BBCE003AB65A /* MarkerType.swift */; };
 		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
+		2EA98CC91F2F126E004F285F /* HotpepperAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CC81F2F126E004F285F /* HotpepperAPIViewModel.swift */; };
 		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
@@ -94,6 +95,7 @@
 		2E66423A1F23BBCE003AB65A /* MarkerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkerType.swift; path = Enum/MarkerType.swift; sourceTree = "<group>"; };
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		2EA98CC81F2F126E004F285F /* HotpepperAPIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotpepperAPIViewModel.swift; sourceTree = "<group>"; };
 		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,14 +170,13 @@
 		2E6641F11F1CFB14003AB65A /* FoodLogger */ = {
 			isa = PBXGroup;
 			children = (
+				2EA98CC71F2F1224004F285F /* ViewModel */,
 				2E66423E1F23C7FF003AB65A /* ViewController */,
 				2E6642371F23902B003AB65A /* Enum */,
 				2E6642251F1E553A003AB65A /* View */,
 				2E6642221F1D09B3003AB65A /* Model */,
 				2E6641F21F1CFB14003AB65A /* AppDelegate.swift */,
-				2E6641F61F1CFB14003AB65A /* Main.storyboard */,
 				2E6641F91F1CFB14003AB65A /* Assets.xcassets */,
-				2E6641FB1F1CFB14003AB65A /* LaunchScreen.storyboard */,
 				2E6641FE1F1CFB14003AB65A /* Info.plist */,
 				2E6642201F1D002B003AB65A /* key.plist */,
 			);
@@ -220,10 +221,12 @@
 		2E6642251F1E553A003AB65A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
-				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
 				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
 				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
+				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
+				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
+				2E6641F61F1CFB14003AB65A /* Main.storyboard */,
+				2E6641FB1F1CFB14003AB65A /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +250,14 @@
 				2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		2EA98CC71F2F1224004F285F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2EA98CC81F2F126E004F285F /* HotpepperAPIViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		39619B60ABD51D38FC97173F /* Pods */ = {
@@ -581,6 +592,7 @@
 				2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,
+				2EA98CC91F2F126E004F285F /* HotpepperAPIViewModel.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
 				2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */,
 			);
@@ -624,6 +636,7 @@
 				2E6641F71F1CFB14003AB65A /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2E6641FB1F1CFB14003AB65A /* LaunchScreen.storyboard */ = {
@@ -632,6 +645,7 @@
 				2E6641FC1F1CFB14003AB65A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

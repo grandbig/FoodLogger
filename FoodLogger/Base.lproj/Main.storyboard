@@ -78,6 +78,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="sA3-T9-IRR" id="XBN-7U-O4e"/>
+                        <outlet property="searchButton" destination="TRz-7B-4zR" id="cLB-2Z-8Qq"/>
                         <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegueFromMap" id="mSu-f4-zzX"/>
                     </connections>
                 </viewController>
@@ -100,7 +101,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SO9-qD-dYA">
                                 <rect key="frame" x="8" y="8" width="359" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">【RealmSwift】
+                                <string key="text">【RealmSwift】
 
 TABLE OF CONTENTS
 
@@ -1400,7 +1401,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
 
 【Icons】
-All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.</mutableString>
+All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1570,7 +1571,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -1591,6 +1592,6 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
         <image name="savedIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aYZ-vF-fGh"/>
+        <segue reference="mSu-f4-zzX"/>
     </inferredMetricsTieBreakers>
 </document>

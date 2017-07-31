@@ -15,6 +15,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
     /// マップビュー
     @IBOutlet weak var mapView: GMSMapView!
+    /// 検索ボタン
+    @IBOutlet weak var searchButton: UIButton!
     /// 位置情報マネージャ
     internal var locationManager: CLLocationManager?
     /// 現在地
@@ -33,6 +35,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     internal var selectedMarker: CustomGMSMarker?
     /// Realm管理マネージャ
     internal var realmShopManager: RealmShopManager = RealmShopManager()
+    internal var hotpepperAPIVM = HotpepperAPIViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 self.putMarker(shop: shop, type: MarkerType.saved)
             }
         }
+        self.setUpBind()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +80,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             return
         }
         // 現在地周辺のレストランを取得
-        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation) { (result) in
+        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation, success: { (result) in
             if let searchShops = result.array {
                 self.searchShops = searchShops
                 for searchShop in searchShops {
@@ -85,6 +89,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                     }
                 }
             }
+        }) { _ in
+            self.showAlert(title: "確認", message: "周辺のショップ情報の取得に失敗しました", completion: {})
         }
     }
     
@@ -160,6 +166,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             return true
         }
         return false
+    }
+    
+    private func setUpBind() {
+        _ = self.searchButton.reactive.tap.observeNext { _ in
+            self.hotpepperAPIVM.searchRestaurant(coordinate: self.currentLocation!)
+        }
+        _ = self.hotpepperAPIVM.finishSearchRestaurant.ignoreNil().observeNext(with: { (result) in
+            print(result)
+        })
     }
 }
 
