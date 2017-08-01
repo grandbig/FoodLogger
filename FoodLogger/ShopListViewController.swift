@@ -62,7 +62,8 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopInfoCell", for: indexPath) as? CustomTableViewCell
         cell?.nameLabel.text = self.shops[indexPath.row].name
-        cell?.categoryLabel.text = self.shops[indexPath.row].category 
+        cell?.categoryLabel.text = self.shops[indexPath.row].category
+        cell?.datetimeLabel.text = self.formatTimestamp(timestamp: self.shops[indexPath.row].created)
         if let imageURL = URL(string: self.shops[indexPath.row].imageURL) {
             cell?.imgView?.af_setImage(withURL: imageURL, placeholderImage: UIImage(named: "NoImageIcon"))
         }
@@ -88,5 +89,19 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
             }
             shopDetailViewController.shop = shop
         }
+    }
+    
+    // MARK: Other
+    /**
+     タイムスタンプを指定フォーマットの文字列に日時を変換する処理
+     
+     - parameter timestamp: タイムスタンプ
+     - returns: 指定フォーマットの文字列の日時
+     */
+    private func formatTimestamp(timestamp: Double) -> String {
+        let date = Date.init(timeIntervalSince1970: timestamp)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
+        return formatter.string(from: date)
     }
 }
