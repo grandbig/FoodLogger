@@ -34,6 +34,7 @@
 		2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642381F23904C003AB65A /* ShopValidateError.swift */; };
 		2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423A1F23BBCE003AB65A /* MarkerType.swift */; };
 		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
+		2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */; };
 		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
@@ -94,6 +95,7 @@
 		2E66423A1F23BBCE003AB65A /* MarkerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkerType.swift; path = Enum/MarkerType.swift; sourceTree = "<group>"; };
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoViewController.swift; sourceTree = "<group>"; };
 		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
 				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
 				2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */,
+				2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 			files = (
 				2E6642321F238464003AB65A /* GurunaviShop.swift in Sources */,
 				2E6642241F1D09D0003AB65A /* GurunaviAPI.swift in Sources */,
+				2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */,
 				2E66422B1F1E617C003AB65A /* CustomGMSMarker.swift in Sources */,
 				2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */,
 				2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */,

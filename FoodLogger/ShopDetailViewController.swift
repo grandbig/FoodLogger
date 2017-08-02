@@ -68,7 +68,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     // MARK: Button Action
     @IBAction func touchSaveButton(_ sender: Any) {
         // 確認アラートを表示
-        self.showConfirm(title: "確認", message: "このショップに訪れましたか？", okCompletion: {
+        self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
             guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
                 self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
                 return
@@ -87,6 +87,16 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
             self.realmShopManager.createShop(shop: self.shop)
             self.saveButton.isEnabled = false
             self.isSaved = true
+            
+            let message = "続けて来店ショップに対する詳細メモを追加しますか？\n(後から、設定 > ショップ履歴より情報を追加できます。)"
+            self.showConfirm(title: "確認", message: message, okCompletion: { 
+                self.performSegue(withIdentifier: "createShopMemoSegue", sender: nil)
+            }, cancelCompletion: {
+            })
+            
+            // TODO: 設定 > ショップ履歴から遷移する画面は詳細メモ画面に変更する (WebViewへの遷移はできるようにする)
+            // TODO: 別ビューは「料理写真の保存, 人数, 用途, 自己評価, 備考」を編集可能にする
+            // TODO: 保存日時は自動で表示
         }) {
         }
     }
