@@ -38,6 +38,7 @@ class HotpepperShop {
      - parameter imageURL: ショップ画像URL
      - parameter latitude: 緯度
      - parameter longitude: 経度
+     - parameter shopURL: ショップURL
      */
     init(id: String, name: String, category: String, imageURL: String, latitude: Double, longitude: Double, shopURL: String) {
         self.id = id

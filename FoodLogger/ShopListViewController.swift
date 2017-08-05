@@ -17,7 +17,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     /// UITableView
     @IBOutlet weak var tableView: UITableView!
     /// Realm管理マネージャ
-    internal var realmShopManager: RealmShopManager = RealmShopManager()
+    internal var realmShopManager = RealmShopManager.sharedInstance
     /// 検索ショップ
     internal var shops: Results<RealmShop>!
     /// UITableViewCellの高さ

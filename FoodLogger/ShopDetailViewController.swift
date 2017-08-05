@@ -21,7 +21,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     /// 現在地からショップまでの許容できる最大距離
     private var maxDistance: Double = 300
     /// Realm管理マネージャ
-    private var realmShopManager: RealmShopManager = RealmShopManager()
+    private var realmShopManager = RealmShopManager.sharedInstance
     /// 現在地
     internal var myLocation: CLLocation?
     /// ショップ
@@ -95,9 +95,24 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
             })
             
             // TODO: 設定 > ショップ履歴から遷移する画面は詳細メモ画面に変更する (WebViewへの遷移はできるようにする)
-            // TODO: 別ビューは「料理写真の保存, 人数, 用途, 自己評価, 備考」を編集可能にする
-            // TODO: 保存日時は自動で表示
+            // TODO: 別ビューは「料理写真の保存, 自己評価, 備考」を編集可能にする
         }) {
+        }
+    }
+    
+    // MARK: Storyboard Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem.init()
+        backButton.title = "戻る"
+        backButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem = backButton
+        
+        if segue.identifier == "createShopMemoSegue" {
+            guard let createShopMemoViewController = segue.destination as? CreateShopMemoViewController else {
+                return
+            }
+            createShopMemoViewController.shopId = self.shop.id ?? ""
         }
     }
     

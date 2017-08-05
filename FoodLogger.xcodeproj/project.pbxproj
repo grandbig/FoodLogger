@@ -35,6 +35,10 @@
 		2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423A1F23BBCE003AB65A /* MarkerType.swift */; };
 		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
 		2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */; };
+		2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCD1F361375004F285F /* RealmFood.swift */; };
+		2EA98CD11F362789004F285F /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCF1F362789004F285F /* CustomCollectionViewCell.swift */; };
+		2EA98CD21F362789004F285F /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA98CD01F362789004F285F /* CustomCollectionViewCell.xib */; };
+		2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */; };
 		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
@@ -96,6 +100,10 @@
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoViewController.swift; sourceTree = "<group>"; };
+		2EA98CCD1F361375004F285F /* RealmFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmFood.swift; path = Model/RealmFood.swift; sourceTree = "<group>"; };
+		2EA98CCF1F362789004F285F /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		2EA98CD01F362789004F285F /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
 		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -205,15 +213,14 @@
 		2E6642221F1D09B3003AB65A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2E6642231F1D09D0003AB65A /* GurunaviAPI.swift */,
+				2EA98CCC1F361358004F285F /* Realm */,
 				2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */,
+				2E6642231F1D09D0003AB65A /* GurunaviAPI.swift */,
+				2E6642311F238464003AB65A /* GurunaviShop.swift */,
 				2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */,
 				2E66422F1F238279003AB65A /* HotpepperShop.swift */,
-				2E6642311F238464003AB65A /* GurunaviShop.swift */,
-				2E6642331F238D6D003AB65A /* RealmShop.swift */,
-				2E6642351F238DF4003AB65A /* RealmShopManager.swift */,
-				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
 				2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */,
+				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
 				2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */,
 			);
 			name = Model;
@@ -224,8 +231,11 @@
 			children = (
 				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
 				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
-				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
 				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
+				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
+				2EA98CD01F362789004F285F /* CustomCollectionViewCell.xib */,
+				2EA98CCF1F362789004F285F /* CustomCollectionViewCell.swift */,
+				2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -242,14 +252,24 @@
 		2E66423E1F23C7FF003AB65A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */,
+				2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */,
 				2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */,
 				2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */,
 				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
 				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
-				2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */,
-				2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		2EA98CCC1F361358004F285F /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				2EA98CCD1F361375004F285F /* RealmFood.swift */,
+				2E6642331F238D6D003AB65A /* RealmShop.swift */,
+				2E6642351F238DF4003AB65A /* RealmShopManager.swift */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 		39619B60ABD51D38FC97173F /* Pods */ = {
@@ -391,6 +411,7 @@
 				2E6641FA1F1CFB14003AB65A /* Assets.xcassets in Resources */,
 				2E6642271F1E555B003AB65A /* MarkerInfoContentsView.xib in Resources */,
 				2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */,
+				2EA98CD21F362789004F285F /* CustomCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,15 +594,18 @@
 				2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */,
 				2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */,
 				2E66422E1F2380E3003AB65A /* HotPepperAPI.swift in Sources */,
+				2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */,
 				2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */,
 				2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */,
 				2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */,
 				2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */,
+				2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */,
 				2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
 				2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */,
 				2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */,
 				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
+				2EA98CD11F362789004F285F /* CustomCollectionViewCell.swift in Sources */,
 				2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,

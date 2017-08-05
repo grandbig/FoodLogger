@@ -32,7 +32,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     /// 選択中マーカ
     internal var selectedMarker: CustomGMSMarker?
     /// Realm管理マネージャ
-    internal var realmShopManager: RealmShopManager = RealmShopManager()
+    internal var realmShopManager = RealmShopManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()

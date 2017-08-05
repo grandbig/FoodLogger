@@ -50,6 +50,46 @@ class RealmShopManager {
     }
     
     /**
+     Realmに保存したショップ情報を更新する処理
+     
+     - parameter number: 人数
+     - parameter rating: 評価
+     - parameter memo: メモ
+     - parameter images: 画像データリスト
+     */
+    func updateShop(id: String, number: Int?, rating: Int?, memo: String?, images: [Data]?) {
+        do {
+            let realm = try Realm()
+            let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")
+            try realm.write {
+                // 評価が指定されている場合
+                if let shopRating = rating {
+                    shop.setValue(shopRating, forKey: "rating")
+                }
+                // メモが指定されている場合
+                if let shopMemo = memo {
+                    shop.setValue(shopMemo, forKey: "memo")
+                }
+                // 画像が指定されている場合
+                if let foodImages = images {
+                    let foods = List<RealmFood>()
+                    for image in foodImages {
+                        let realmFood = RealmFood()
+                        realmFood.id = (selectAllFoods()?.last != nil) ? ((selectAllFoods()?.last?.id)! + 1) : 0
+                        realmFood.imageData = image
+                        foods.append(realmFood)
+                    }
+                    shop.setValue(foods, forKey: "foodImages")
+                }
+                // 更新日時の更新
+                shop.setValue(Date().timeIntervalSince1970, forKey: "updated")
+            }
+        } catch let error as NSError {
+            print("Error: code - \(error.code), description - \(error.description)")
+        }
+    }
+    
+    /**
      保存したショップ数の取得処理
      
      - returns: 保存したショップの数
@@ -113,6 +153,20 @@ class RealmShopManager {
             }
         } catch _ as NSError {
             return false
+        }
+    }
+    
+    /**
+     保存した食品全てを取得する処理
+     
+     - returns: 全ての食品
+     */
+    func selectAllFoods() -> Results<RealmFood>? {
+        do {
+            let realmFoods = try Realm().objects(RealmFood.self)
+            return realmFoods
+        } catch _ as NSError {
+            return nil
         }
     }
     
