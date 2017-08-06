@@ -36,8 +36,6 @@
 		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
 		2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */; };
 		2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCD1F361375004F285F /* RealmFood.swift */; };
-		2EA98CD11F362789004F285F /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCF1F362789004F285F /* CustomCollectionViewCell.swift */; };
-		2EA98CD21F362789004F285F /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EA98CD01F362789004F285F /* CustomCollectionViewCell.xib */; };
 		2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */; };
 		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
@@ -101,8 +99,6 @@
 		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoViewController.swift; sourceTree = "<group>"; };
 		2EA98CCD1F361375004F285F /* RealmFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmFood.swift; path = Model/RealmFood.swift; sourceTree = "<group>"; };
-		2EA98CCF1F362789004F285F /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		2EA98CD01F362789004F285F /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
 		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -233,8 +229,6 @@
 				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
 				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
 				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
-				2EA98CD01F362789004F285F /* CustomCollectionViewCell.xib */,
-				2EA98CCF1F362789004F285F /* CustomCollectionViewCell.swift */,
 				2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */,
 			);
 			path = View;
@@ -411,7 +405,6 @@
 				2E6641FA1F1CFB14003AB65A /* Assets.xcassets in Resources */,
 				2E6642271F1E555B003AB65A /* MarkerInfoContentsView.xib in Resources */,
 				2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */,
-				2EA98CD21F362789004F285F /* CustomCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +598,6 @@
 				2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */,
 				2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */,
 				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
-				2EA98CD11F362789004F285F /* CustomCollectionViewCell.swift in Sources */,
 				2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,

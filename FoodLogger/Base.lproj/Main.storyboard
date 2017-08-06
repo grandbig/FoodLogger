@@ -1535,8 +1535,8 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         <constraints>
                             <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerX" secondItem="VkS-cw-1pU" secondAttribute="centerX" id="Hy7-05-ZA7"/>
                             <constraint firstAttribute="trailing" secondItem="loc-6x-4yZ" secondAttribute="trailing" id="JWw-dk-f7e"/>
-                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="bqL-cR-yU9"/>
                             <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerY" secondItem="VkS-cw-1pU" secondAttribute="centerY" id="h3R-Mx-qAl"/>
+                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="is3-Uf-dCB"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="jIk-NM-Qa2"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="zhH-1f-zNY"/>
                         </constraints>
@@ -1544,9 +1544,10 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <navigationItem key="navigationItem" id="LOY-Cf-eyV">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="YVx-X7-TvQ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rsz-JF-wt9">
-                                <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                <rect key="frame" x="259" y="10" width="100" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="savedIcon">
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-5" maxY="0.0"/>
+                                <state key="normal" title="行った" image="savedIcon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1564,7 +1565,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMN-rP-hOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-544.67766116941539"/>
+            <point key="canvasLocation" x="1844" y="-545.57721139430294"/>
         </scene>
         <!--Create Shop Memo View Controller-->
         <scene sceneID="jxx-zH-tQz">
@@ -1626,7 +1627,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomCell" id="NzR-1H-pfM" customClass="CustomCollectionViewCell" customModule="FoodLogger" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="NzR-1H-pfM">
                                         <rect key="frame" x="0.0" y="4" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1636,11 +1637,28 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-SB-4I0">
+                                <rect key="frame" x="0.0" y="554" width="375" height="49"/>
+                                <color key="backgroundColor" red="0.5450980392" green="0.76078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="7Nt-TG-g3e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="保存する">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveShop:" destination="6Nb-tj-3k2" eventType="touchUpInside" id="Ytt-q9-UuR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="top" secondItem="uz8-5f-oc0" secondAttribute="bottom" constant="24" id="DnZ-zQ-H0E"/>
+                            <constraint firstAttribute="trailing" secondItem="cNb-SB-4I0" secondAttribute="trailing" id="EWB-sO-8za"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="FcH-gL-E0c"/>
+                            <constraint firstItem="QN1-Fs-8xE" firstAttribute="top" secondItem="cNb-SB-4I0" secondAttribute="bottom" id="I1q-qj-KJN"/>
+                            <constraint firstItem="cNb-SB-4I0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leading" id="Lga-xH-o8C"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="top" secondItem="ERh-MO-cwb" secondAttribute="bottom" constant="24" id="Lzz-vV-l4D"/>
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="R6N-aS-dD9"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="Y4e-GT-jXe"/>

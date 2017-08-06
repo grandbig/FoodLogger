@@ -22,14 +22,19 @@ class RealmShopManager {
      ショップ情報をRealmに保存する処理
      
      - parameter shop: ショップデータ
+     - parameter rating: 評価
+     - parameter images: 画像データリスト
+     - parameter memo: メモ
      */
-    func createShop(shop: HotpepperShop) {
+    func createShop(shop: HotpepperShop, rating: Double?, images: [Data]?, memo: String?) {
         do {
             // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
             
             let realm = try Realm()
             let realmShop = RealmShop()
+            
+            // 保存必須項目
             realmShop.id = shop.id!
             realmShop.name = shop.name!
             realmShop.category = shop.category!
@@ -37,6 +42,26 @@ class RealmShopManager {
             realmShop.latitude = shop.latitude!
             realmShop.longitude = shop.longitude!
             realmShop.shopURL = shop.shopURL!
+            
+            // 評価が指定されている場合
+            if let shopRating = rating {
+                realmShop.rating = Double(shopRating)
+            }
+            // メモが指定されている場合
+            if let shopMemo = memo {
+                realmShop.memo = shopMemo
+            }
+            // 画像が指定されている場合
+            if let foodImages = images {
+                let foods = List<RealmFood>()
+                for image in foodImages {
+                    let realmFood = RealmFood()
+                    realmFood.id = (selectAllFoods()?.last != nil) ? ((selectAllFoods()?.last?.id)! + 1) : 0
+                    realmFood.imageData = image
+                    foods.append(realmFood)
+                }
+                realmShop.foods.append(objectsIn: foods)
+            }
             
             // Realmへのオブジェクトの書き込み
             try realm.write {
@@ -52,12 +77,11 @@ class RealmShopManager {
     /**
      Realmに保存したショップ情報を更新する処理
      
-     - parameter number: 人数
      - parameter rating: 評価
      - parameter memo: メモ
      - parameter images: 画像データリスト
      */
-    func updateShop(id: String, number: Int?, rating: Int?, memo: String?, images: [Data]?) {
+    func updateShop(id: String, rating: Int?, memo: String?, images: [Data]?) {
         do {
             let realm = try Realm()
             let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")

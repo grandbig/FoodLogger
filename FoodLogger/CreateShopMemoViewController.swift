@@ -8,10 +8,11 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 import AARatingBar
 import RealmSwift
 
-class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource {
+class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /// 評価用のレーティングビュー
     @IBOutlet weak var ratingBar: AARatingBar!
@@ -19,26 +20,48 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var collectionView: UICollectionView!
     /// テキストエリア
     @IBOutlet weak var placeTextArea: UIPlaceHolderTextView!
+    /// 現在地
+    internal var myLocation: CLLocation?
+    /// ショップ
+    internal var shop: HotpepperShop!
+    /// ショップの保存済/未保存フラグ
+    internal var isSaved: Bool = false
     /// Realm管理マネージャ
     private var realmShopManager = RealmShopManager.sharedInstance
-    /// ショップ
-    internal var shop: Results<RealmShop>?
-    /// ショップID
-    internal var shopId: String!
+    /// 現在地からショップまでの許容できる最大距離
+    private var maxDistance: Double = 300
+    /// 食品画像リスト
+    private var images: [UIImage]! = [UIImage]()
+    /// 選択したIndexPath
+    private var selectedIndexPath: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.collectionView.dataSource = self
+        self.collectionView.delegate = self
         
         self.placeTextArea.placeHolder = "メモを入力"
         self.placeTextArea.placeHolderColor = UIColor(red: 0.75, green: 0.75, blue: 0.77, alpha: 1.0)
         self.createToolBar()
         
-        self.shop = self.realmShopManager.selectById(self.shopId)
-        if let shop = self.shop {
-            self.ratingBar.value = CGFloat(shop[0].rating)
-            self.placeTextArea.text = shop[0].memo
+        if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 0 {
+            self.maxDistance = accuracy
+        }
+        
+        guard let shopId = self.shop.id else {
+            return
+        }
+        
+        if let shop = self.realmShopManager.selectById(shopId)?[0] {
+            self.ratingBar.value = CGFloat(shop.rating)
+            self.placeTextArea.text = shop.memo
+            let foods = shop.foods
+            for food in foods {
+                let image = UIImage(data: food.imageData)
+                self.images.append(image!)
+            }
+            self.isSaved = true
         }
     }
     
@@ -51,27 +74,38 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as? CustomCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
         
-        // 分かりやすいように背景色を青に
-        //cell.backgroundColor = UIColor.blue
-        
-        if let foods = self.shop?[0].foods, foods.count > 0 {
-            cell?.imageView.image = UIImage(data: foods[indexPath.row].imageData)
+        if self.images.count > 0 {
+            // 保存した写真がある場合
+            if (self.images.count - 1) >= indexPath.row {
+                // 保存した写真の場合
+                cell.backgroundView = UIImageView(image: self.images[indexPath.row])
+            } else {
+                // 写真追加枠
+                cell.backgroundView = UIImageView(image: UIImage(named: "NoImageIcon"))
+            }
         } else {
-            cell?.imageView.image = UIImage(named: "NoImageIcon")
+            // 保存した写真がない場合
+            cell.backgroundView = UIImageView(image: UIImage(named: "NoImageIcon"))
         }
         
-        return cell!
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let foods = self.shop?[0].foods, foods.count > 0 {
-            return foods.count
+        if self.images.count > 0 {
+            return self.images.count + 1
         }
         return 1
+    }
+    
+    // MARK: UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
+        self.pickImageFromCamera()
     }
     
     // MARK: UITextFieldDelegate
@@ -80,6 +114,66 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let info = info[UIImagePickerControllerOriginalImage] else {
+            return
+        }
+        guard let image = info as? UIImage else {
+            return
+        }
+        if let selectedCell = self.collectionView.cellForItem(at: self.selectedIndexPath) {
+            selectedCell.backgroundView = UIImageView(image: image)
+            
+            if self.images.count < self.selectedIndexPath.row + 1 {
+                self.images.append(image)
+                // UICollectionViewのリロード
+                self.collectionView.reloadData()
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // Button Action
+    @IBAction func saveShop(_ sender: Any) {
+        // 確認アラートを表示
+        self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
+            guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
+                // ショップの位置が不明な場合
+                self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
+                return
+            }
+            guard let coordinate = self.myLocation?.coordinate else {
+                // 現在地が不明な場合
+                self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
+                return
+            }
+            let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
+            if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
+                // ショップが現在地から遠い場合
+                self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
+                return
+            }
+            // 画像データの変換
+            var imageDatas: [Data]? = nil
+            if let images = self.images, images.count > 0 {
+                imageDatas = [Data]()
+                for image in images {
+                    let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
+                    imageDatas?.append(imageData)
+                }
+            }
+            // データを保存
+            self.realmShopManager.createShop(shop: self.shop, rating: Double(self.ratingBar.value), images: imageDatas, memo: self.placeTextArea.text)
+            // 保存完了アラートを表示
+            self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
+                self.isSaved = true
+                self.navigationController?.popToRootViewController(animated: true)
+            })
+        }) {
+        }
     }
     
     // MARK: Other
@@ -98,5 +192,28 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     /// ツールバーのDONEボタンタップ時の処理
     func doneButtonTapped() {
         self.view.endEditing(true)
+    }
+    
+    /// カメラビューの表示処理
+    func pickImageFromCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = UIImagePickerControllerSourceType.camera
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    /**
+     2点間の距離を取得
+     
+     - parameter from: 1つ目の位置情報
+     - parameter to: 2つ目のいち1つ目の位置情報
+     - returns: 2点間の距離 (単位は [m] )
+     */
+    private func getDistance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
+        let fromLocation = CLLocation(latitude: from.latitude, longitude: to.longitude)
+        let toLocation = CLLocation(latitude: to.latitude, longitude: to.longitude)
+        return toLocation.distance(from: fromLocation)
     }
 }
