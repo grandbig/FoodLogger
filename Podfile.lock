@@ -1,5 +1,4 @@
 PODS:
-  - AARatingBar (0.1.0)
   - Alamofire (4.5.0)
   - AlamofireImage (3.2.0):
     - Alamofire (~> 4.1)
@@ -10,6 +9,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.4.0):
     - GoogleMaps/Base (= 2.4.0)
+  - HCSStarRatingView (1.5)
   - Nimble (7.0.1)
   - Quick (1.1.0)
   - Realm (2.9.1):
@@ -20,28 +20,28 @@ PODS:
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - AARatingBar
   - Alamofire (~> 4.4)
   - AlamofireImage (~> 3.1)
   - GoogleMaps
   - GooglePlaces
+  - HCSStarRatingView (~> 1.5)
   - Nimble
   - Quick
   - RealmSwift
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  AARatingBar: dd2f4b489478f5206930bb5f8f67b4db476265c8
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
   RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: a9ea744ab5ce27a248f4475784d647ee81b7ba53
+PODFILE CHECKSUM: c254b91a233858f4dac44546b7c637bc3951c911
 
 COCOAPODS: 1.1.1

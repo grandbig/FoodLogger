@@ -28,7 +28,7 @@ class RealmShop: Object {
     /// ショップURL
     dynamic var shopURL: String = ""
     /// 評価
-    dynamic var rating: Double = 0
+    dynamic var rating: Int = 0
     /// メモ
     dynamic var memo: String = ""
     /// 食品データリスト

@@ -1461,7 +1461,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrX-BF-oH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="150.67466266866569"/>
+            <point key="canvasLocation" x="140" y="215"/>
         </scene>
         <!--Shop List View Controller-->
         <scene sceneID="pzh-IA-2iK">
@@ -1504,12 +1504,12 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <navigationItem key="navigationItem" id="p5W-0S-pgM"/>
                     <connections>
                         <outlet property="tableView" destination="rZ9-sF-NTt" id="1bj-ib-h1I"/>
-                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegueFromList" id="aYZ-vF-fGh"/>
+                        <segue destination="6Nb-tj-3k2" kind="show" identifier="editShopMemoSegue" id="xnM-7s-S7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cco-hE-UrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048.8" y="150.67466266866569"/>
+            <point key="canvasLocation" x="1049" y="215"/>
         </scene>
         <!--Shop Detail View Controller-->
         <scene sceneID="HWM-om-9vl">
@@ -1579,20 +1579,25 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERh-MO-cwb" customClass="AARatingBar" customModule="AARatingBar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERh-MO-cwb" customClass="HCSStarRatingView">
                                 <rect key="frame" x="16" y="16" width="343" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="57F-wB-qVU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isAbsValue" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="canAnimate" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="spacing">
                                         <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="starBorderColor">
+                                        <color key="value" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -1671,12 +1676,12 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <connections>
                         <outlet property="collectionView" destination="uz8-5f-oc0" id="4gL-2a-IGk"/>
                         <outlet property="placeTextArea" destination="Cp7-Xr-bas" id="Yb1-aF-vxT"/>
-                        <outlet property="ratingBar" destination="ERh-MO-cwb" id="Vre-nz-U4R"/>
+                        <outlet property="ratingBar" destination="ERh-MO-cwb" id="MWP-Kx-3Ay"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLk-Rh-Kzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2560.8000000000002" y="-546.47676161919048"/>
+            <point key="canvasLocation" x="1844" y="215"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hmz-xv-7ZU">
@@ -1704,6 +1709,6 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
         <image name="savedIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aYZ-vF-fGh"/>
+        <segue reference="xnM-7s-S7X"/>
     </inferredMetricsTieBreakers>
 </document>

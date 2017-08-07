@@ -44,6 +44,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
         self.isSaved = false
         if let id = shop.id {
             if self.realmShopManager.exsitsById(id) {
+                // TODO: 既に保存済みの場合は編集ボタンに変える
                 // 既に保存済みの場合はボタンをDisabledに変更
                 self.saveButton.isEnabled = false
                 self.isSaved = true

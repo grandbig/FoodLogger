@@ -26,7 +26,7 @@ class RealmShopManager {
      - parameter images: 画像データリスト
      - parameter memo: メモ
      */
-    func createShop(shop: HotpepperShop, rating: Double?, images: [Data]?, memo: String?) {
+    func createShop(shop: HotpepperShop, rating: Int?, images: [Data]?, memo: String?) {
         do {
             // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
@@ -45,7 +45,7 @@ class RealmShopManager {
             
             // 評価が指定されている場合
             if let shopRating = rating {
-                realmShop.rating = Double(shopRating)
+                realmShop.rating = shopRating
             }
             // メモが指定されている場合
             if let shopMemo = memo {
@@ -77,6 +77,7 @@ class RealmShopManager {
     /**
      Realmに保存したショップ情報を更新する処理
      
+     - parameter id: ショップID
      - parameter rating: 評価
      - parameter memo: メモ
      - parameter images: 画像データリスト

@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 import CoreLocation
-import AARatingBar
+import HCSStarRatingView
 import RealmSwift
 
 class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     /// 評価用のレーティングビュー
-    @IBOutlet weak var ratingBar: AARatingBar!
+    @IBOutlet weak var ratingBar: HCSStarRatingView!
     /// UICollectionView
     @IBOutlet weak var collectionView: UICollectionView!
     /// テキストエリア
@@ -54,6 +54,7 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
         }
         
         if let shop = self.realmShopManager.selectById(shopId)?[0] {
+            // 保存済みショップの場合
             self.ratingBar.value = CGFloat(shop.rating)
             self.placeTextArea.text = shop.memo
             let foods = shop.foods
@@ -63,6 +64,7 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
             }
             self.isSaved = true
         }
+        // TODO: 既に保存済の場合はヘッダー右端に「店舗情報」ボタンを設置
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -138,41 +140,66 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     
     // Button Action
     @IBAction func saveShop(_ sender: Any) {
-        // 確認アラートを表示
-        self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
-            guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
-                // ショップの位置が不明な場合
-                self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
-                return
-            }
-            guard let coordinate = self.myLocation?.coordinate else {
-                // 現在地が不明な場合
-                self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
-                return
-            }
-            let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
-            if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
-                // ショップが現在地から遠い場合
-                self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
-                return
-            }
-            // 画像データの変換
-            var imageDatas: [Data]? = nil
-            if let images = self.images, images.count > 0 {
-                imageDatas = [Data]()
-                for image in images {
-                    let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
-                    imageDatas?.append(imageData)
+        if !self.isSaved {
+            // 新規保存の場合
+            // 確認アラートを表示
+            self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
+                guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
+                    // ショップの位置が不明な場合
+                    self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
+                    return
                 }
+                guard let coordinate = self.myLocation?.coordinate else {
+                    // 現在地が不明な場合
+                    self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
+                    return
+                }
+                let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
+                if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
+                    // ショップが現在地から遠い場合
+                    self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
+                    return
+                }
+                // 画像データの変換
+                var imageDatas: [Data]? = nil
+                if let images = self.images, images.count > 0 {
+                    imageDatas = [Data]()
+                    for image in images {
+                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
+                        imageDatas?.append(imageData)
+                    }
+                }
+                // データを保存
+                self.realmShopManager.createShop(shop: self.shop, rating: Int(self.ratingBar.value), images: imageDatas, memo: self.placeTextArea.text)
+                // 保存完了アラートを表示
+                self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
+                    self.isSaved = true
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+            }) {
             }
-            // データを保存
-            self.realmShopManager.createShop(shop: self.shop, rating: Double(self.ratingBar.value), images: imageDatas, memo: self.placeTextArea.text)
-            // 保存完了アラートを表示
-            self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
-                self.isSaved = true
-                self.navigationController?.popToRootViewController(animated: true)
-            })
-        }) {
+        } else {
+            // 既存の更新の場合
+            // 確認アラートを表示
+            self.showConfirm(title: "確認", message: "このショップへの記録を更新しますか？", okCompletion: {
+                // 画像データの変換
+                var imageDatas: [Data]? = nil
+                if let images = self.images, images.count > 0 {
+                    imageDatas = [Data]()
+                    for image in images {
+                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
+                        imageDatas?.append(imageData)
+                    }
+                }
+                // データを更新
+                self.realmShopManager.updateShop(id: self.shop.id, rating: self.shop.rating, memo: self.shop.memo, images: imageDatas)
+                // 保存完了アラートを表示
+                self.showAlert(title: "確認", message: "ショップの記録を更新しました", completion: {
+                    self.isSaved = true
+                    // TODO: 1つ前に戻る処理
+                })
+            }) {
+            }
         }
     }
     
