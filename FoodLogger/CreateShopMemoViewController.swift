@@ -58,7 +58,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
         self.placeTextArea.placeHolderColor = UIColor(red: 0.75, green: 0.75, blue: 0.77, alpha: 1.0)
         self.createToolBar()
         
-        if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 0 {
+        if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 10 {
             self.maxDistance = accuracy
         }
         
@@ -247,6 +247,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
                     // ショップの位置が不明な場合
                     mainQueue.async {
+                        // ローディングビューの非表示
+                        self.hiddenLoadingView()
                         self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
                     }
                     return
@@ -254,6 +256,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 guard let coordinate = self.myLocation?.coordinate else {
                     // 現在地が不明な場合
                     mainQueue.async {
+                        // ローディングビューの非表示
+                        self.hiddenLoadingView()
                         self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
                     }
                     return
@@ -262,6 +266,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
                     // ショップが現在地から遠い場合
                     mainQueue.async {
+                        // ローディングビューの非表示
+                        self.hiddenLoadingView()
                         self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
                     }
                     return
@@ -318,6 +324,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 // データを更新
                 guard let shopId = self.shop.id else {
                     mainQueue.async {
+                        // ローディングビューの非表示
+                        self.hiddenLoadingView()
                         self.showAlert(title: "確認", message: "ショップ情報が正しく取得できません。", completion: {})
                     }
                     return

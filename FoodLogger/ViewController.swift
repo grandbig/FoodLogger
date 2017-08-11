@@ -193,13 +193,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        // 現在地の更新
+        self.currentLocation = locations.last?.coordinate
         
         if !self.initView {
             // 初期描画時のマップ中心位置の移動
-            self.currentLocation = locations.last?.coordinate
             let camera = GMSCameraPosition.camera(withTarget: self.currentLocation!, zoom: self.zoomLevel)
             self.mapView.camera = camera
-            self.locationManager?.stopUpdatingLocation()
             self.initView = true
         }
     }
