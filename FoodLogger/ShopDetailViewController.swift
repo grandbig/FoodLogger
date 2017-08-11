@@ -17,7 +17,9 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     /// ショップ保存ボタン
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    /// ローディングビュー
     @IBOutlet weak var loadingView: UIView!
+    /// ローディングアイコン
     @IBOutlet weak var indicatorView: NVActivityIndicatorView!
     /// Realm管理マネージャ
     private var realmShopManager = RealmShopManager.sharedInstance

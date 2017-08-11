@@ -1789,10 +1789,26 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="xNJ-Kp-9Bf"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="UQn-hl-IYa">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="tFH-Zg-lUd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kl6-32-s2f">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="店舗情報">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showShopInfo:" destination="6Nb-tj-3k2" eventType="touchUpInside" id="TQ5-Hd-c8l"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="uz8-5f-oc0" id="4gL-2a-IGk"/>
                         <outlet property="indicatorView" destination="PMe-1m-QO3" id="v2K-Mc-J7N"/>
                         <outlet property="loadingView" destination="evb-GM-UEW" id="zAo-E3-kTv"/>
+                        <outlet property="navRightButton" destination="Kl6-32-s2f" id="1fw-8m-a1M"/>
                         <outlet property="placeTextArea" destination="Cp7-Xr-bas" id="Yb1-aF-vxT"/>
                         <outlet property="ratingBar" destination="ERh-MO-cwb" id="MWP-Kx-3Ay"/>
                     </connections>

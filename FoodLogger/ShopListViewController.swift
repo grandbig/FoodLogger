@@ -101,6 +101,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
                 return
             }
             createShopMemoViewController.shop = shop
+            createShopMemoViewController.isRightButton = true
         }
     }
     

@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 import CoreLocation
+import SafariServices
 import HCSStarRatingView
 import NVActivityIndicatorView
 import RealmSwift
 
-class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
+UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewControllerDelegate {
     
     /// 評価用のレーティングビュー
     @IBOutlet weak var ratingBar: HCSStarRatingView!
@@ -21,14 +23,20 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var collectionView: UICollectionView!
     /// テキストエリア
     @IBOutlet weak var placeTextArea: UIPlaceHolderTextView!
+    /// ローディングビュー
     @IBOutlet weak var loadingView: UIView!
+    /// ローディングアイコン
     @IBOutlet weak var indicatorView: NVActivityIndicatorView!
+    /// ナビゲーションバーに右ボタン
+    @IBOutlet weak var navRightButton: UIButton!
     /// 現在地
     internal var myLocation: CLLocation?
     /// ショップ
     internal var shop: HotpepperShop!
     /// ショップの保存済/未保存フラグ
     internal var isSaved: Bool = false
+    /// 店舗情報ボタンの表示/非表示フラグ
+    internal var isRightButton: Bool = false
     /// Realm管理マネージャ
     private var realmShopManager = RealmShopManager.sharedInstance
     /// 現在地からショップまでの許容できる最大距離
@@ -67,7 +75,10 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
             }
             self.isSaved = true
         }
-        // TODO: 既に保存済の場合はヘッダー右端に「店舗情報」ボタンを設置
+        
+        if !self.isRightButton {
+            self.navRightButton.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -149,6 +160,15 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
         } else {
             // 既存の更新の場合
             self.updateShop()
+        }
+    }
+    
+    @IBAction func showShopInfo(_ sender: Any) {
+        let shopURL = NSURL(string: self.shop.shopURL!)
+        
+        if let shopURL = shopURL {
+            let safariViewController = SFSafariViewController(url: shopURL as URL)
+            present(safariViewController, animated: true, completion: nil)
         }
     }
     

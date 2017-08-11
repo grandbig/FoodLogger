@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E1DDBAC1F3DB2D500DFA9C6 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E66423C1F23C6DD003AB65A /* SafariServices.framework */; };
 		2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */; };
 		2E23DD871F2E10200088BE5F /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */; };
 		2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */; };
@@ -115,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E1DDBAC1F3DB2D500DFA9C6 /* SafariServices.framework in Frameworks */,
 				4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
