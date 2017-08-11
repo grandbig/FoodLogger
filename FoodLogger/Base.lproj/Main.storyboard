@@ -100,7 +100,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SO9-qD-dYA">
                                 <rect key="frame" x="8" y="8" width="359" height="587"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">【RealmSwift】
+                                <mutableString key="text">【RealmSwift】
 
 TABLE OF CONTENTS
 
@@ -372,6 +372,27 @@ THE SOFTWARE.
 
 【Alamofire】
 Copyright (c) 2014-2016 Alamofire Software Foundation (http://alamofire.org/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+【AlamofireImage】
+Copyright (c) 2015-2016 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1398,9 +1419,52 @@ DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
 
+【HCSStarRatingView】
+Copyright (c) 2015 Hugo Sousa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+【NVActivityIndicatorView】
+The MIT License (MIT)
+
+Copyright (c) 2016 Vinh Nguyen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
 【Icons】
-All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.</string>
+All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1461,7 +1525,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrX-BF-oH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="150.67466266866569"/>
+            <point key="canvasLocation" x="140" y="215"/>
         </scene>
         <!--Shop List View Controller-->
         <scene sceneID="pzh-IA-2iK">
@@ -1504,12 +1568,12 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <navigationItem key="navigationItem" id="p5W-0S-pgM"/>
                     <connections>
                         <outlet property="tableView" destination="rZ9-sF-NTt" id="1bj-ib-h1I"/>
-                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegueFromList" id="aYZ-vF-fGh"/>
+                        <segue destination="6Nb-tj-3k2" kind="show" identifier="editShopMemoSegue" id="xnM-7s-S7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cco-hE-UrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048.8" y="150.67466266866569"/>
+            <point key="canvasLocation" x="1049" y="215"/>
         </scene>
         <!--Shop Detail View Controller-->
         <scene sceneID="HWM-om-9vl">
@@ -1527,16 +1591,39 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-Fv-5JJ">
-                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-zm-yff">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37Z-AB-xd9" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="155" y="269" width="64" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="Nyq-rS-Idc"/>
+                                            <constraint firstAttribute="width" constant="64" id="b3v-mz-2Wh"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallRotateChase"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="37Z-AB-xd9" firstAttribute="centerX" secondItem="LFf-zm-yff" secondAttribute="centerX" id="3Us-A1-DTY"/>
+                                    <constraint firstItem="37Z-AB-xd9" firstAttribute="centerY" secondItem="LFf-zm-yff" secondAttribute="centerY" id="yzf-gW-ZQt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerX" secondItem="VkS-cw-1pU" secondAttribute="centerX" id="Hy7-05-ZA7"/>
                             <constraint firstAttribute="trailing" secondItem="loc-6x-4yZ" secondAttribute="trailing" id="JWw-dk-f7e"/>
-                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="bqL-cR-yU9"/>
-                            <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerY" secondItem="VkS-cw-1pU" secondAttribute="centerY" id="h3R-Mx-qAl"/>
+                            <constraint firstItem="LFf-zm-yff" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="Mbx-Wq-ViN"/>
+                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="LFf-zm-yff" secondAttribute="bottom" id="Tfy-SI-BEH"/>
+                            <constraint firstAttribute="trailing" secondItem="LFf-zm-yff" secondAttribute="trailing" id="ZvZ-bD-gKd"/>
+                            <constraint firstItem="LFf-zm-yff" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="exD-MD-NhK"/>
+                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="is3-Uf-dCB"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="jIk-NM-Qa2"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="zhH-1f-zNY"/>
                         </constraints>
@@ -1544,9 +1631,10 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <navigationItem key="navigationItem" id="LOY-Cf-eyV">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="YVx-X7-TvQ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rsz-JF-wt9">
-                                <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                <rect key="frame" x="259" y="10" width="100" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="savedIcon">
+                                <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-5" maxY="0.0"/>
+                                <state key="normal" title="行った" image="savedIcon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1556,21 +1644,185 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="indicatorView" destination="2iL-Fv-5JJ" id="I4v-V6-ywb"/>
+                        <outlet property="indicatorView" destination="37Z-AB-xd9" id="a8s-cx-Woy"/>
+                        <outlet property="loadingView" destination="LFf-zm-yff" id="hGU-of-b7d"/>
                         <outlet property="saveButton" destination="YVx-X7-TvQ" id="pFe-dl-MYQ"/>
                         <outlet property="webView" destination="loc-6x-4yZ" id="Tud-Gy-qRY"/>
+                        <segue destination="6Nb-tj-3k2" kind="show" identifier="createShopMemoSegue" id="y8n-Bd-Co0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMN-rP-hOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-544.67766116941539"/>
+            <point key="canvasLocation" x="1844" y="-545.57721139430294"/>
+        </scene>
+        <!--Create Shop Memo View Controller-->
+        <scene sceneID="jxx-zH-tQz">
+            <objects>
+                <viewController id="6Nb-tj-3k2" customClass="CreateShopMemoViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vza-XC-8wf"/>
+                        <viewControllerLayoutGuide type="bottom" id="QN1-Fs-8xE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="agu-SP-zEV">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERh-MO-cwb" customClass="HCSStarRatingView">
+                                <rect key="frame" x="16" y="16" width="343" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="57F-wB-qVU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="value">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="spacing">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="starBorderColor">
+                                        <color key="value" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cp7-Xr-bas" customClass="UIPlaceHolderTextView" customModule="FoodLogger" customModuleProvider="target">
+                                <rect key="frame" x="16" y="242" width="343" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="Ph3-fv-XoO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uz8-5f-oc0">
+                                <rect key="frame" x="16" y="90" width="343" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="6zP-kw-xsV"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nyw-bu-5hS">
+                                    <size key="itemSize" width="120" height="120"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="NzR-1H-pfM">
+                                        <rect key="frame" x="0.0" y="4" width="120" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-SB-4I0">
+                                <rect key="frame" x="0.0" y="554" width="375" height="49"/>
+                                <color key="backgroundColor" red="0.5450980392" green="0.76078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="7Nt-TG-g3e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="保存する">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveShop:" destination="6Nb-tj-3k2" eventType="touchUpInside" id="Ytt-q9-UuR"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evb-GM-UEW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMe-1m-QO3" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="155" y="269" width="64" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="POC-lj-XWa"/>
+                                            <constraint firstAttribute="height" constant="64" id="mzb-QK-VUU"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallRotateChase"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="PMe-1m-QO3" firstAttribute="centerY" secondItem="evb-GM-UEW" secondAttribute="centerY" id="6fD-LK-dNO"/>
+                                    <constraint firstItem="PMe-1m-QO3" firstAttribute="centerX" secondItem="evb-GM-UEW" secondAttribute="centerX" id="mwe-Lk-yEE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="evb-GM-UEW" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leading" id="0EW-B9-h78"/>
+                            <constraint firstAttribute="trailing" secondItem="evb-GM-UEW" secondAttribute="trailing" id="28x-B6-FGe"/>
+                            <constraint firstItem="Cp7-Xr-bas" firstAttribute="top" secondItem="uz8-5f-oc0" secondAttribute="bottom" constant="24" id="DnZ-zQ-H0E"/>
+                            <constraint firstAttribute="trailing" secondItem="cNb-SB-4I0" secondAttribute="trailing" id="EWB-sO-8za"/>
+                            <constraint firstItem="uz8-5f-oc0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="FcH-gL-E0c"/>
+                            <constraint firstItem="QN1-Fs-8xE" firstAttribute="top" secondItem="cNb-SB-4I0" secondAttribute="bottom" id="I1q-qj-KJN"/>
+                            <constraint firstItem="cNb-SB-4I0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leading" id="Lga-xH-o8C"/>
+                            <constraint firstItem="uz8-5f-oc0" firstAttribute="top" secondItem="ERh-MO-cwb" secondAttribute="bottom" constant="24" id="Lzz-vV-l4D"/>
+                            <constraint firstItem="Cp7-Xr-bas" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="R6N-aS-dD9"/>
+                            <constraint firstItem="uz8-5f-oc0" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="Y4e-GT-jXe"/>
+                            <constraint firstItem="ERh-MO-cwb" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="ZQb-hX-g26"/>
+                            <constraint firstItem="ERh-MO-cwb" firstAttribute="top" secondItem="Vza-XC-8wf" secondAttribute="bottom" constant="16" id="bil-Bp-Ftj"/>
+                            <constraint firstItem="QN1-Fs-8xE" firstAttribute="top" secondItem="evb-GM-UEW" secondAttribute="bottom" id="ooI-ry-vFW"/>
+                            <constraint firstItem="evb-GM-UEW" firstAttribute="top" secondItem="Vza-XC-8wf" secondAttribute="bottom" id="uY0-Ct-WPl"/>
+                            <constraint firstItem="ERh-MO-cwb" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="x2K-cf-t7f"/>
+                            <constraint firstItem="Cp7-Xr-bas" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="xNJ-Kp-9Bf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UQn-hl-IYa">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="tFH-Zg-lUd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Kl6-32-s2f">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="店舗情報">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showShopInfo:" destination="6Nb-tj-3k2" eventType="touchUpInside" id="TQ5-Hd-c8l"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="uz8-5f-oc0" id="4gL-2a-IGk"/>
+                        <outlet property="indicatorView" destination="PMe-1m-QO3" id="v2K-Mc-J7N"/>
+                        <outlet property="loadingView" destination="evb-GM-UEW" id="zAo-E3-kTv"/>
+                        <outlet property="navRightButton" destination="Kl6-32-s2f" id="1fw-8m-a1M"/>
+                        <outlet property="placeTextArea" destination="Cp7-Xr-bas" id="Yb1-aF-vxT"/>
+                        <outlet property="ratingBar" destination="ERh-MO-cwb" id="MWP-Kx-3Ay"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vLk-Rh-Kzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1844" y="214.54272863568218"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hmz-xv-7ZU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -1591,6 +1843,6 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
         <image name="savedIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aYZ-vF-fGh"/>
+        <segue reference="y8n-Bd-Co0"/>
     </inferredMetricsTieBreakers>
 </document>

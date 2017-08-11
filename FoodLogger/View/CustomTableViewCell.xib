@@ -32,10 +32,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2a-h5-Sqr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2a-h5-Sqr">
                         <rect key="frame" x="88" y="37" width="200" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HCK-Y2-noC">
@@ -60,10 +60,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="categoryLabel" destination="c2a-h5-Sqr" id="mty-nr-wuQ"/>
                 <outlet property="datetimeLabel" destination="HCK-Y2-noC" id="V9O-yv-Hgx"/>
                 <outlet property="imgView" destination="3sM-XR-2bp" id="vVL-1W-0Y9"/>
                 <outlet property="nameLabel" destination="M8t-Qf-TVg" id="p9B-GB-8Ox"/>
+                <outlet property="ratingLabel" destination="c2a-h5-Sqr" id="IUv-XG-ubD"/>
             </connections>
         </tableViewCell>
     </objects>

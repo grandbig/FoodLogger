@@ -22,14 +22,19 @@ class RealmShopManager {
      ショップ情報をRealmに保存する処理
      
      - parameter shop: ショップデータ
+     - parameter rating: 評価
+     - parameter images: 画像データリスト
+     - parameter memo: メモ
      */
-    func createShop(shop: HotpepperShop) {
+    func createShop(shop: HotpepperShop, rating: Int?, images: [Data]?, memo: String?) {
         do {
             // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
             
             let realm = try Realm()
             let realmShop = RealmShop()
+            
+            // 保存必須項目
             realmShop.id = shop.id!
             realmShop.name = shop.name!
             realmShop.category = shop.category!
@@ -38,12 +43,72 @@ class RealmShopManager {
             realmShop.longitude = shop.longitude!
             realmShop.shopURL = shop.shopURL!
             
+            // 評価が指定されている場合
+            if let shopRating = rating {
+                realmShop.rating = shopRating
+            }
+            // メモが指定されている場合
+            if let shopMemo = memo {
+                realmShop.memo = shopMemo
+            }
+            // 画像が指定されている場合
+            if let foodImages = images {
+                let foods = List<RealmFood>()
+                for image in foodImages {
+                    let realmFood = RealmFood()
+                    realmFood.imageData = image
+                    foods.append(realmFood)
+                }
+                realmShop.foods.append(objectsIn: foods)
+            }
+            
             // Realmへのオブジェクトの書き込み
             try realm.write {
                 realm.create(RealmShop.self, value: realmShop, update: false)
             }
         } catch ShopValidateError.empty {
             print("Error: Shop Data is not right")
+        } catch let error as NSError {
+            print("Error: code - \(error.code), description - \(error.description)")
+        }
+    }
+    
+    /**
+     Realmに保存したショップ情報を更新する処理
+     
+     - parameter id: ショップID
+     - parameter rating: 評価
+     - parameter memo: メモ
+     - parameter images: 画像データリスト
+     */
+    func updateShop(id: String, rating: Int?, memo: String?, images: [Data]?) {
+        do {
+            let realm = try Realm()
+            let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")
+            try realm.write {
+                // 評価が指定されている場合
+                if let shopRating = rating {
+                    shop.setValue(shopRating, forKey: "rating")
+                }
+                // メモが指定されている場合
+                if let shopMemo = memo {
+                    shop.setValue(shopMemo, forKey: "memo")
+                }
+                // 画像が指定されている場合
+                if let foodImages = images {
+                    // 画像の入れ替え処理
+                    realm.delete(shop[0].foods)
+                    let foods = List<RealmFood>()
+                    for image in foodImages {
+                        let realmFood = RealmFood()
+                        realmFood.imageData = image
+                        foods.append(realmFood)
+                    }
+                    shop.setValue(foods, forKey: "foods")
+                }
+                // 更新日時の更新
+                shop.setValue(Date().timeIntervalSince1970, forKey: "updated")
+            }
         } catch let error as NSError {
             print("Error: code - \(error.code), description - \(error.description)")
         }
@@ -117,6 +182,20 @@ class RealmShopManager {
     }
     
     /**
+     保存した食品全てを取得する処理
+     
+     - returns: 全ての食品
+     */
+    func selectAllFoods() -> Results<RealmFood>? {
+        do {
+            let realmFoods = try Realm().objects(RealmFood.self)
+            return realmFoods
+        } catch _ as NSError {
+            return nil
+        }
+    }
+    
+    /**
      指定したIDのショップを削除する処理
      
      - parameter text: 足跡のタイトル
@@ -144,6 +223,25 @@ class RealmShopManager {
             let realm = try Realm()
             try realm.write {
                 realm.deleteAll()
+            }
+        } catch let error as NSError {
+            print("Error: code - \(error.code), description - \(error.description)")
+        }
+    }
+    
+    /**
+     指定したIDの食品オブジェクトを削除する処理
+     
+     - parameter id: ショップID
+     */
+    func deleteImage(id: String) {
+        guard let shop = self.selectById(id) else {
+            return
+        }
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.delete(shop[0].foods)
             }
         } catch let error as NSError {
             print("Error: code - \(error.code), description - \(error.description)")

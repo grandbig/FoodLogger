@@ -9,19 +9,20 @@
 import Foundation
 import UIKit
 import CoreLocation
+import NVActivityIndicatorView
 
 class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     
     /// WebView
     @IBOutlet weak var webView: UIWebView!
-    /// IndicatorView
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     /// ショップ保存ボタン
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    /// 現在地からショップまでの許容できる最大距離
-    private var maxDistance: Double = 300
+    /// ローディングビュー
+    @IBOutlet weak var loadingView: UIView!
+    /// ローディングアイコン
+    @IBOutlet weak var indicatorView: NVActivityIndicatorView!
     /// Realm管理マネージャ
-    private var realmShopManager: RealmShopManager = RealmShopManager()
+    private var realmShopManager = RealmShopManager.sharedInstance
     /// 現在地
     internal var myLocation: CLLocation?
     /// ショップ
@@ -38,21 +39,21 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
             let urlRequest = URLRequest(url: url)
             self.webView.loadRequest(urlRequest)
         }
-        if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 0 {
-            self.maxDistance = accuracy
-        }
+        self.indicatorView.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.isSaved = false
         if let id = shop.id {
             if self.realmShopManager.exsitsById(id) {
+                // TODO: 既に保存済みの場合は編集ボタンに変える
                 // 既に保存済みの場合はボタンをDisabledに変更
                 self.saveButton.isEnabled = false
+                self.isSaved = true
             }
         }
-        self.isSaved = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,46 +63,32 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     
     // MARK: UIWebViewDelegate
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        self.indicatorView.isHidden = true
+        self.indicatorView.stopAnimating()
+        
+        UIView.animate(withDuration: 2.0) { 
+            self.loadingView.isHidden = true
+        }
     }
     
     // MARK: Button Action
     @IBAction func touchSaveButton(_ sender: Any) {
-        // 確認アラートを表示
-        self.showConfirm(title: "確認", message: "このショップに訪れましたか？", okCompletion: {
-            guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
-                self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
-                return
-            }
-            guard let coordinate = self.myLocation?.coordinate else {
-                self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
-                return
-            }
-            let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
-            if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
-                // ショップから離れすぎている場合
-                self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
-                return
-            }
-            // データを保存
-            self.realmShopManager.createShop(shop: self.shop)
-            self.saveButton.isEnabled = false
-            self.isSaved = true
-        }) {
-        }
+        self.performSegue(withIdentifier: "createShopMemoSegue", sender: nil)
     }
     
-    // MARK: Other
-    /**
-     2点間の距離を取得
-     
-     - parameter from: 1つ目の位置情報
-     - parameter to: 2つ目のいち1つ目の位置情報
-     - returns: 2点間の距離 (単位は [m] )
-     */
-    private func getDistance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
-        let fromLocation = CLLocation(latitude: from.latitude, longitude: to.longitude)
-        let toLocation = CLLocation(latitude: to.latitude, longitude: to.longitude)
-        return toLocation.distance(from: fromLocation)
+    // MARK: Storyboard Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backButton = UIBarButtonItem.init()
+        backButton.title = "戻る"
+        backButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem = backButton
+        
+        if segue.identifier == "createShopMemoSegue" {
+            guard let createShopMemoViewController = segue.destination as? CreateShopMemoViewController else {
+                return
+            }
+            createShopMemoViewController.shop = self.shop
+            createShopMemoViewController.myLocation = self.myLocation
+        }
     }
 }

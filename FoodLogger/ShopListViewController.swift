@@ -13,11 +13,11 @@ import RealmSwift
 import SwiftyJSON
 import AlamofireImage
 
-class ShopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     /// UITableView
     @IBOutlet weak var tableView: UITableView!
     /// Realm管理マネージャ
-    internal var realmShopManager: RealmShopManager = RealmShopManager()
+    internal var realmShopManager = RealmShopManager.sharedInstance
     /// 検索ショップ
     internal var shops: Results<RealmShop>!
     /// UITableViewCellの高さ
@@ -26,6 +26,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -51,7 +52,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         let selectedShop = self.shops[indexPath.row]
         let shop = HotpepperShop(id: selectedShop.id, name: selectedShop.name, category: selectedShop.category, imageURL: selectedShop.imageURL, latitude: selectedShop.latitude, longitude: selectedShop.longitude, shopURL: selectedShop.shopURL)
         // 画面遷移
-        performSegue(withIdentifier: "shopDetailSegueFromList", sender: shop)
+        performSegue(withIdentifier: "editShopMemoSegue", sender: shop)
     }
     
     // MARK: UITableViewDataSource
@@ -62,7 +63,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ShopInfoCell", for: indexPath) as? CustomTableViewCell
         cell?.nameLabel.text = self.shops[indexPath.row].name
-        cell?.categoryLabel.text = self.shops[indexPath.row].category
+        cell?.ratingLabel.text = self.changeRatingValue(rating: self.shops[indexPath.row].rating)
         cell?.datetimeLabel.text = self.formatTimestamp(timestamp: self.shops[indexPath.row].created)
         if let imageURL = URL(string: self.shops[indexPath.row].imageURL) {
             cell?.imgView?.af_setImage(withURL: imageURL, placeholderImage: UIImage(named: "NoImageIcon"))
@@ -70,6 +71,18 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell!
+    }
+    
+    // MARK: UINavigationControllerDelegate
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? ShopListViewController != nil {
+            // createShopMemoViewControllerから戻ってきた場合
+            if createShopMemoViewController.isSaved {
+                // ショップを新たに保存した場合
+                self.tableView.reloadData()
+            }
+        }
+        return nil
     }
     
     // MARK: Storyboard Segue
@@ -80,18 +93,41 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.backBarButtonItem = backButton
         
-        if segue.identifier == "shopDetailSegueFromList" {
-            guard let shopDetailViewController = segue.destination as? ShopDetailViewController else {
+        if segue.identifier == "editShopMemoSegue" {
+            guard let createShopMemoViewController = segue.destination as? CreateShopMemoViewController else {
                 return
             }
             guard let shop = sender as? HotpepperShop else {
                 return
             }
-            shopDetailViewController.shop = shop
+            createShopMemoViewController.shop = shop
+            createShopMemoViewController.isRightButton = true
         }
     }
     
     // MARK: Other
+    /**
+     評価数値を★の数に変換する処理
+     
+     - parameter rating: 評価数値
+     - returns: ★数
+     */
+    private func changeRatingValue(rating: Int) -> String {
+        switch rating {
+        case 1:
+            return "★"
+        case 2:
+            return "★★"
+        case 3:
+            return "★★★"
+        case 4:
+            return "★★★★"
+        case 5:
+            return "★★★★★"
+        default:
+            return ""
+        }
+    }
     /**
      タイムスタンプを指定フォーマットの文字列に日時を変換する処理
      
