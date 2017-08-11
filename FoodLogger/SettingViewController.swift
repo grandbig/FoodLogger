@@ -20,7 +20,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.rowTitles = ["ショップの履歴", "ライセンス"]
+        self.rowTitles = ["ショップの来店履歴", "ライセンス"]
     }
     
     override func didReceiveMemoryWarning() {

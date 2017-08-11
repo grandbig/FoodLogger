@@ -45,6 +45,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.mapView.mapType = GMSMapViewType.normal
         self.mapView.settings.compassButton = true
         self.mapView.settings.myLocationButton = true
+        self.mapView.settings.compassButton = true
         self.mapView.delegate = self
         
         // 位置情報関連の初期化
@@ -91,6 +92,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }) { _ in
             self.showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
         }
+    }
+    
+    @IBAction func showHotpepperCreditPage(_ sender: Any) {
+        let url = URL(string: "http://webservice.recruit.co.jp/")
+        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
     }
     
     // MARK: Storyboard Segue
