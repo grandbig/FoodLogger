@@ -32,7 +32,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     /// 選択中マーカ
     internal var selectedMarker: CustomGMSMarker?
     /// Realm管理マネージャ
-    internal var realmShopManager: RealmShopManager = RealmShopManager()
+    internal var realmShopManager = RealmShopManager.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,13 +115,13 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let shopDetailViewController = fromVC as? ShopDetailViewController, toVC as? ViewController != nil {
-            // ShopDetailViewControllerから戻ってきた場合
-            if shopDetailViewController.isSaved {
+        if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? ViewController != nil {
+            // createShopMemoViewControllerから戻ってきた場合
+            if createShopMemoViewController.isSaved {
                 // ショップを新たに保存した場合
                 // マーカを再設置
                 self.selectedMarker?.map = nil
-                self.putMarker(shop: shopDetailViewController.shop, type: MarkerType.saved)
+                self.putMarker(shop: createShopMemoViewController.shop, type: MarkerType.saved)
             }
         }
         return nil
