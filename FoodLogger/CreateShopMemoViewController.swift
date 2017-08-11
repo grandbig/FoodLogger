@@ -49,6 +49,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "メモ"
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         

@@ -107,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="1048.8" y="-544.67766116941539"/>
         </scene>
-        <!--View Controller-->
+        <!--License View Controller-->
         <scene sceneID="fzN-Ql-NPB">
             <objects>
-                <viewController id="0WX-Hn-Bdo" sceneMemberID="viewController">
+                <viewController id="0WX-Hn-Bdo" customClass="LicenseViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sPH-P2-6cz"/>
                         <viewControllerLayoutGuide type="bottom" id="M5p-e8-qDI"/>
@@ -1847,7 +1847,11 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.90980392160000001" green="0.59607843140000005" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

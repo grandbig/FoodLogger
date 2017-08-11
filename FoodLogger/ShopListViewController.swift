@@ -26,6 +26,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "レストランの来店履歴"
         self.navigationController?.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -115,7 +116,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     private func formatTimestamp(timestamp: Double) -> String {
         let date = Date.init(timeIntervalSince1970: timestamp)
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd' 'HH:mm"
         return formatter.string(from: date)
     }
 }

@@ -17,10 +17,11 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "設定"
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.rowTitles = ["ショップの来店履歴", "ライセンス"]
+        self.rowTitles = ["レストランの来店履歴", "ライセンス"]
     }
     
     override func didReceiveMemoryWarning() {
