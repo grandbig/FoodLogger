@@ -1754,7 +1754,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-SB-4I0">
                                 <rect key="frame" x="0.0" y="554" width="375" height="49"/>
-                                <color key="backgroundColor" red="0.5450980392" green="0.76078431369999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.59607843140000005" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="7Nt-TG-g3e"/>
                                 </constraints>
@@ -1844,10 +1844,10 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.90980392160000001" green="0.59607843140000005" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1861,7 +1861,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
     </scenes>
     <resources>
         <image name="HotpepperCredit" width="88" height="35"/>
-        <image name="SearchIcon" width="48" height="48"/>
+        <image name="SearchIcon" width="36" height="36"/>
         <image name="SettingIcon" width="24" height="24"/>
         <image name="savedIcon" width="24" height="24"/>
     </resources>
