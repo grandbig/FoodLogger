@@ -55,13 +55,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.locationManager?.startUpdatingLocation()
         self.locationManager?.delegate = self
         
-        if let savedShops = self.realmShopManager.selectAll() {
-            self.savedShops = savedShops
-            for savedShop in savedShops {
-                let shop = HotpepperShop(id: savedShop.id, name: savedShop.name, category: savedShop.category, imageURL: savedShop.imageURL, latitude: savedShop.latitude, longitude: savedShop.longitude, shopURL: savedShop.shopURL)
-                self.putMarker(shop: shop, type: MarkerType.saved)
-            }
-        }
+        // 保存済みショップマーカをプロット
+        self.putSavedMarkers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,10 +66,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
     // MARK: Button Action
     @IBAction func search(_ sender: Any) {
-        // TODO: 連続タップ時の処理
         guard let myCurrentLocation = self.currentLocation else {
             return
         }
+        
+        if self.searchShops != nil {
+            // 既にマップ上に検索結果が表示されている場合
+            // 全てのマーカを削除
+            self.mapView.clear()
+            // 保存済みショップマーカをプロット
+            self.putSavedMarkers()
+        }
+        
         // 現在地周辺のレストランを取得
         self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation, success: { (result) in
             if let searchShops = result.array {
@@ -148,6 +151,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         } else {
             marker.icon = UIImage(named: "searchedShopIcon")
         }
+        marker.appearAnimation = GMSMarkerAnimation.pop
         marker.map = self.mapView
     }
     
@@ -162,6 +166,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             return true
         }
         return false
+    }
+    
+    /**
+     マップに保存済みマーカをプロットする処理
+     */
+    private func putSavedMarkers() {
+        if let savedShops = self.realmShopManager.selectAll() {
+            self.savedShops = savedShops
+            for savedShop in savedShops {
+                let shop = HotpepperShop(id: savedShop.id, name: savedShop.name, category: savedShop.category, imageURL: savedShop.imageURL, latitude: savedShop.latitude, longitude: savedShop.longitude, shopURL: savedShop.shopURL)
+                self.putMarker(shop: shop, type: MarkerType.saved)
+            }
+        }
     }
 }
 
