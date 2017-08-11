@@ -14,6 +14,7 @@ class MarkerInfoContentsView: UIView {
     
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var categoryName: UILabel!
+    @IBOutlet weak var rating: UILabel!
     @IBOutlet weak var shopImage: UIImageView!
     
     override init(frame: CGRect) {
@@ -38,22 +39,30 @@ class MarkerInfoContentsView: UIView {
      
      - parameter shopName: ショップ名
      - parameter categoryName: カテゴリ名
+     - parameter rating: 評価数
      - parameter shopImageURLString: 画像URL
      */
-    func setData(shopName: String?, categoryName: String?, shopImageURLString: String?) {
+    func setData(shopName: String?, categoryName: String?, rating: Int?, shopImageURLString: String?) {
         // ショップ名の設定
         if let shopNameTextCount = shopName?.characters.count, shopNameTextCount > 0 {
             self.shopName.text = shopName
         } else {
-            self.shopName.text = "ショップ名不明"
+            self.shopName.text = "---"
             self.shopName.textColor = UIColor.gray
         }
-        // 詳細説明の設定
+        // カテゴリ名の設定
         if let categoryNameTextCount = categoryName?.characters.count, categoryNameTextCount > 0 {
             self.categoryName.text = categoryName
         } else {
-            self.categoryName.text = "カテゴリ不明"
+            self.categoryName.text = "---"
             self.categoryName.textColor = UIColor.gray
+        }
+        // 評価数の設定
+        if let rating = rating {
+            self.rating.text = Rating().changeRatingValue(rating: rating)
+        } else {
+            self.rating.text = "---"
+            self.rating.textColor = UIColor.gray
         }
         // 画像の設定
         if let shopImageURLStringTextCount = shopImageURLString?.characters.count, shopImageURLStringTextCount > 0 {

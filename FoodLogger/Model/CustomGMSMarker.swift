@@ -20,6 +20,8 @@ class CustomGMSMarker: GMSMarker {
     public var shopName: String?
     /// カテゴリ名
     public var categoryName: String?
+    /// 評価数
+    public var rating: Int?
     /// 画像URL
     public var imageURL: String?
     /// ショップURL

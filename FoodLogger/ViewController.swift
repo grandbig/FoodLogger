@@ -84,7 +84,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 self.searchShops = searchShops
                 for searchShop in searchShops {
                     if !self.checkSavedShop(searchShop) {
-                        self.putMarker(shop: HotpepperShop(data: searchShop), type: MarkerType.searched)
+                        self.putMarker(shop: HotpepperShop(data: searchShop), rating: nil, type: MarkerType.searched)
                     }
                 }
             }
@@ -124,7 +124,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                 // ショップを新たに保存した場合
                 // マーカを再設置
                 self.selectedMarker?.map = nil
-                self.putMarker(shop: createShopMemoViewController.shop, type: MarkerType.saved)
+                self.putMarker(shop: createShopMemoViewController.shop, rating: Int(createShopMemoViewController.ratingBar.value), type: MarkerType.saved)
             }
         }
         return nil
@@ -135,9 +135,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
      マップにマーカをプロットする処理
      
      - parameter shop: ショップデータ
+     - parameter rating: 評価
      - parameter type: マーカタイプ
      */
-    private func putMarker(shop: HotpepperShop, type: MarkerType) {
+    private func putMarker(shop: HotpepperShop, rating: Int?, type: MarkerType) {
         let marker = CustomGMSMarker()
         marker.id = shop.id
         marker.shopName = shop.name
@@ -145,6 +146,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         marker.imageURL = shop.imageURL
         marker.shopURL = shop.shopURL
         marker.position = CLLocationCoordinate2D(latitude: shop.latitude ?? 0, longitude: shop.longitude ?? 0)
+        marker.rating = rating
         marker.type = type
         if type == MarkerType.saved {
             marker.icon = UIImage(named: "savedShopIcon")
@@ -176,7 +178,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             self.savedShops = savedShops
             for savedShop in savedShops {
                 let shop = HotpepperShop(id: savedShop.id, name: savedShop.name, category: savedShop.category, imageURL: savedShop.imageURL, latitude: savedShop.latitude, longitude: savedShop.longitude, shopURL: savedShop.shopURL)
-                self.putMarker(shop: shop, type: MarkerType.saved)
+                self.putMarker(shop: shop, rating: savedShop.rating, type: MarkerType.saved)
             }
         }
     }
@@ -213,7 +215,7 @@ extension ViewController: GMSMapViewDelegate {
         }
         cMarker.tracksInfoWindowChanges = true
         let view = MarkerInfoContentsView(frame: CGRect(x: 0, y: 0, width: 250, height: 265))
-        view.setData(shopName: cMarker.shopName, categoryName: cMarker.categoryName, shopImageURLString: cMarker.imageURL)
+        view.setData(shopName: cMarker.shopName, categoryName: cMarker.categoryName, rating: cMarker.rating, shopImageURLString: cMarker.imageURL)
         return view
     }
     

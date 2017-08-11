@@ -11,7 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarkerInfoContentsView" customModule="FoodLogger" customModuleProvider="target">
             <connections>
-                <outlet property="categoryName" destination="UJG-Kx-o7y" id="54y-kf-lMi"/>
+                <outlet property="categoryName" destination="UJG-Kx-o7y" id="lCZ-hZ-pPZ"/>
+                <outlet property="rating" destination="IkW-oY-uo0" id="nEk-28-BZr"/>
                 <outlet property="shopImage" destination="stQ-wj-Efz" id="gU0-wL-yU3"/>
                 <outlet property="shopName" destination="pp3-qL-0fE" id="fQv-od-Shz"/>
             </connections>
@@ -24,14 +25,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BalloonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dfs-F4-odN">
                     <rect key="frame" x="0.0" y="0.0" width="250" height="265"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="stQ-wj-Efz">
-                    <rect key="frame" x="65" y="93" width="120" height="120"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="120" id="a2A-Aa-J3c"/>
-                        <constraint firstAttribute="height" constant="120" id="xFs-pX-bg8"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショップ名" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-qL-0fE">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ショップ名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp3-qL-0fE">
                     <rect key="frame" x="16" y="20" width="186" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
@@ -58,21 +52,37 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★★★★★" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-oY-uo0">
+                    <rect key="frame" x="16" y="71" width="186" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.99607843139999996" green="0.75294117650000003" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="stQ-wj-Efz">
+                    <rect key="frame" x="70" y="104" width="110" height="110"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="110" id="a2A-Aa-J3c"/>
+                        <constraint firstAttribute="height" constant="110" id="xFs-pX-bg8"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dfs-F4-odN" secondAttribute="bottom" id="B3e-Tc-bgd"/>
                 <constraint firstAttribute="trailing" secondItem="UJG-Kx-o7y" secondAttribute="trailing" constant="48" id="CsC-Qf-R0h"/>
-                <constraint firstItem="stQ-wj-Efz" firstAttribute="top" secondItem="UJG-Kx-o7y" secondAttribute="bottom" constant="30" id="JBI-vp-OKB"/>
+                <constraint firstItem="IkW-oY-uo0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Gtx-GD-8Hn"/>
                 <constraint firstItem="5YB-Nz-0LV" firstAttribute="leading" secondItem="pp3-qL-0fE" secondAttribute="trailing" constant="8" id="Pn6-MH-lfr"/>
+                <constraint firstAttribute="trailing" secondItem="IkW-oY-uo0" secondAttribute="trailing" constant="48" id="RsW-HZ-GRY"/>
                 <constraint firstItem="5YB-Nz-0LV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Uqh-1m-9MG"/>
                 <constraint firstItem="stQ-wj-Efz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XdR-nM-jvc"/>
                 <constraint firstItem="UJG-Kx-o7y" firstAttribute="top" secondItem="pp3-qL-0fE" secondAttribute="bottom" constant="8" id="b0G-eI-FYb"/>
                 <constraint firstItem="pp3-qL-0fE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ckJ-CZ-eB7"/>
+                <constraint firstItem="stQ-wj-Efz" firstAttribute="top" secondItem="IkW-oY-uo0" secondAttribute="bottom" constant="16" id="dFz-NT-cJv"/>
                 <constraint firstAttribute="trailing" secondItem="5YB-Nz-0LV" secondAttribute="trailing" constant="16" id="fCi-w4-cmP"/>
                 <constraint firstItem="pp3-qL-0fE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="h50-iw-ehe"/>
                 <constraint firstItem="UJG-Kx-o7y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="qW9-xd-PVz"/>
                 <constraint firstItem="dfs-F4-odN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tjK-l1-HrG"/>
+                <constraint firstItem="IkW-oY-uo0" firstAttribute="top" secondItem="UJG-Kx-o7y" secondAttribute="bottom" constant="8" id="wsV-4s-uHg"/>
                 <constraint firstItem="dfs-F4-odN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="xne-Wo-kSy"/>
                 <constraint firstAttribute="trailing" secondItem="dfs-F4-odN" secondAttribute="trailing" id="yYL-Z6-WSm"/>
             </constraints>

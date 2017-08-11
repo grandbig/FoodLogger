@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E1DDBAC1F3DB2D500DFA9C6 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E66423C1F23C6DD003AB65A /* SafariServices.framework */; };
+		2E1DDBB01F3E086C00DFA9C6 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */; };
 		2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */; };
 		2E23DD871F2E10200088BE5F /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */; };
 		2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */; };
@@ -64,6 +65,7 @@
 /* Begin PBXFileReference section */
 		0333A23A4B1F71ABB566364B /* Pods-FoodLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger.debug.xcconfig"; sourceTree = "<group>"; };
 		2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Model/Rating.swift; sourceTree = "<group>"; };
 		2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushFadeSegue.swift; path = Model/PushFadeSegue.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */,
 				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
 				2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */,
+				2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */,
 				2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */,
 				2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */,
+				2E1DDBB01F3E086C00DFA9C6 /* Rating.swift in Sources */,
 				2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */,
 				2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
