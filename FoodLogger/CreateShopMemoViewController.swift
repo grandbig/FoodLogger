@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 import HCSStarRatingView
+import NVActivityIndicatorView
 import RealmSwift
 
 class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -20,6 +21,8 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var collectionView: UICollectionView!
     /// テキストエリア
     @IBOutlet weak var placeTextArea: UIPlaceHolderTextView!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var indicatorView: NVActivityIndicatorView!
     /// 現在地
     internal var myLocation: CLLocation?
     /// ショップ
@@ -142,68 +145,10 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     @IBAction func saveShop(_ sender: Any) {
         if !self.isSaved {
             // 新規保存の場合
-            // 確認アラートを表示
-            self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
-                guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
-                    // ショップの位置が不明な場合
-                    self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
-                    return
-                }
-                guard let coordinate = self.myLocation?.coordinate else {
-                    // 現在地が不明な場合
-                    self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
-                    return
-                }
-                let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
-                if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
-                    // ショップが現在地から遠い場合
-                    self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
-                    return
-                }
-                // 画像データの変換
-                var imageDatas: [Data]? = nil
-                if let images = self.images, images.count > 0 {
-                    imageDatas = [Data]()
-                    for image in images {
-                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
-                        imageDatas?.append(imageData)
-                    }
-                }
-                // データを保存
-                self.realmShopManager.createShop(shop: self.shop, rating: Int(self.ratingBar.value), images: imageDatas, memo: self.placeTextArea.text)
-                // 保存完了アラートを表示
-                self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
-                    self.isSaved = true
-                    self.navigationController?.popToRootViewController(animated: true)
-                })
-            }) {
-            }
+            self.saveShop()
         } else {
             // 既存の更新の場合
-            // 確認アラートを表示
-            self.showConfirm(title: "確認", message: "このショップへの記録を更新しますか？", okCompletion: {
-                // 画像データの変換
-                var imageDatas: [Data]? = nil
-                if let images = self.images, images.count > 0 {
-                    imageDatas = [Data]()
-                    for image in images {
-                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
-                        imageDatas?.append(imageData)
-                    }
-                }
-                // データを更新
-                guard let shopId = self.shop.id else {
-                    self.showAlert(title: "確認", message: "ショップ情報が正しく取得できません。", completion: {})
-                    return
-                }
-                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: imageDatas)
-                // 保存完了アラートを表示
-                self.showAlert(title: "確認", message: "ショップの記録を更新しました", completion: {
-                    self.isSaved = true
-                    self.navigationController?.popViewController(animated: true)
-                })
-            }) {
-            }
+            self.updateShop()
         }
     }
     
@@ -236,6 +181,22 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
     }
     
     /**
+     ローディングビューの表示
+     */
+    private func showLoadingView() {
+        self.loadingView.isHidden = false
+        self.indicatorView.startAnimating()
+    }
+    
+    /**
+     ローディングビューの非表示
+     */
+    private func hiddenLoadingView() {
+        self.loadingView.isHidden = true
+        self.indicatorView.stopAnimating()
+    }
+    
+    /**
      2点間の距離を取得
      
      - parameter from: 1つ目の位置情報
@@ -246,5 +207,112 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
         let fromLocation = CLLocation(latitude: from.latitude, longitude: to.longitude)
         let toLocation = CLLocation(latitude: to.latitude, longitude: to.longitude)
         return toLocation.distance(from: fromLocation)
+    }
+    
+    /**
+     ショップの新規保存処理
+     */
+    private func saveShop() {
+        let globalQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
+        let mainQueue = DispatchQueue.main
+        
+        // 確認アラートを表示
+        self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
+            // ローディングビューの表示
+            self.showLoadingView()
+            
+            globalQueue.async {
+                guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
+                    // ショップの位置が不明な場合
+                    mainQueue.async {
+                        self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
+                    }
+                    return
+                }
+                guard let coordinate = self.myLocation?.coordinate else {
+                    // 現在地が不明な場合
+                    mainQueue.async {
+                        self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
+                    }
+                    return
+                }
+                let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
+                if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
+                    // ショップが現在地から遠い場合
+                    mainQueue.async {
+                        self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
+                    }
+                    return
+                }
+                // 画像データの変換
+                var imageDatas: [Data]? = nil
+                if let images = self.images, images.count > 0 {
+                    imageDatas = [Data]()
+                    for image in images {
+                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
+                        imageDatas?.append(imageData)
+                    }
+                }
+                // データを保存
+                self.realmShopManager.createShop(shop: self.shop, rating: Int(self.ratingBar.value), images: imageDatas, memo: self.placeTextArea.text)
+                
+                mainQueue.async {
+                    // ローディングビューの非表示
+                    self.hiddenLoadingView()
+                    
+                    // 保存完了アラートを表示
+                    self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
+                        self.isSaved = true
+                        self.navigationController?.popToRootViewController(animated: true)
+                    })
+                }
+            }
+        }) {
+        }
+    }
+    
+    /**
+     ショップの更新処理
+     */
+    private func updateShop() {
+        let globalQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
+        let mainQueue = DispatchQueue.main
+        
+        // 確認アラートを表示
+        self.showConfirm(title: "確認", message: "このショップへの記録を更新しますか？", okCompletion: {
+            // ローディングビューの表示
+            self.showLoadingView()
+            
+            globalQueue.async {
+                // 画像データの変換
+                var imageDatas: [Data]? = nil
+                if let images = self.images, images.count > 0 {
+                    imageDatas = [Data]()
+                    for image in images {
+                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
+                        imageDatas?.append(imageData)
+                    }
+                }
+                // データを更新
+                guard let shopId = self.shop.id else {
+                    mainQueue.async {
+                        self.showAlert(title: "確認", message: "ショップ情報が正しく取得できません。", completion: {})
+                    }
+                    return
+                }
+                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: imageDatas)
+                
+                mainQueue.async {
+                    // ローディングビューの非表示
+                    self.hiddenLoadingView()
+                    // 保存完了アラートを表示
+                    self.showAlert(title: "確認", message: "ショップの記録を更新しました", completion: {
+                        self.isSaved = true
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                }
+            }
+        }) {
+        }
     }
 }

@@ -1527,15 +1527,38 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2iL-Fv-5JJ">
-                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFf-zm-yff">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37Z-AB-xd9" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="155" y="269" width="64" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="64" id="Nyq-rS-Idc"/>
+                                            <constraint firstAttribute="width" constant="64" id="b3v-mz-2Wh"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallRotateChase"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="37Z-AB-xd9" firstAttribute="centerX" secondItem="LFf-zm-yff" secondAttribute="centerX" id="3Us-A1-DTY"/>
+                                    <constraint firstItem="37Z-AB-xd9" firstAttribute="centerY" secondItem="LFf-zm-yff" secondAttribute="centerY" id="yzf-gW-ZQt"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerX" secondItem="VkS-cw-1pU" secondAttribute="centerX" id="Hy7-05-ZA7"/>
                             <constraint firstAttribute="trailing" secondItem="loc-6x-4yZ" secondAttribute="trailing" id="JWw-dk-f7e"/>
-                            <constraint firstItem="2iL-Fv-5JJ" firstAttribute="centerY" secondItem="VkS-cw-1pU" secondAttribute="centerY" id="h3R-Mx-qAl"/>
+                            <constraint firstItem="LFf-zm-yff" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="Mbx-Wq-ViN"/>
+                            <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="LFf-zm-yff" secondAttribute="bottom" id="Tfy-SI-BEH"/>
+                            <constraint firstAttribute="trailing" secondItem="LFf-zm-yff" secondAttribute="trailing" id="ZvZ-bD-gKd"/>
+                            <constraint firstItem="LFf-zm-yff" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="exD-MD-NhK"/>
                             <constraint firstItem="Vmz-7X-vSD" firstAttribute="top" secondItem="loc-6x-4yZ" secondAttribute="bottom" id="is3-Uf-dCB"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="leading" secondItem="VkS-cw-1pU" secondAttribute="leading" id="jIk-NM-Qa2"/>
                             <constraint firstItem="loc-6x-4yZ" firstAttribute="top" secondItem="oy6-TJ-enS" secondAttribute="bottom" id="zhH-1f-zNY"/>
@@ -1557,7 +1580,8 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="indicatorView" destination="2iL-Fv-5JJ" id="I4v-V6-ywb"/>
+                        <outlet property="indicatorView" destination="37Z-AB-xd9" id="a8s-cx-Woy"/>
+                        <outlet property="loadingView" destination="LFf-zm-yff" id="hGU-of-b7d"/>
                         <outlet property="saveButton" destination="YVx-X7-TvQ" id="pFe-dl-MYQ"/>
                         <outlet property="webView" destination="loc-6x-4yZ" id="Tud-Gy-qRY"/>
                         <segue destination="6Nb-tj-3k2" kind="show" identifier="createShopMemoSegue" id="y8n-Bd-Co0"/>
@@ -1656,9 +1680,35 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                     <action selector="saveShop:" destination="6Nb-tj-3k2" eventType="touchUpInside" id="Ytt-q9-UuR"/>
                                 </connections>
                             </button>
+                            <view hidden="YES" alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evb-GM-UEW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMe-1m-QO3" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                        <rect key="frame" x="155" y="269" width="64" height="64"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="64" id="POC-lj-XWa"/>
+                                            <constraint firstAttribute="height" constant="64" id="mzb-QK-VUU"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallRotateChase"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="PMe-1m-QO3" firstAttribute="centerY" secondItem="evb-GM-UEW" secondAttribute="centerY" id="6fD-LK-dNO"/>
+                                    <constraint firstItem="PMe-1m-QO3" firstAttribute="centerX" secondItem="evb-GM-UEW" secondAttribute="centerX" id="mwe-Lk-yEE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="evb-GM-UEW" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leading" id="0EW-B9-h78"/>
+                            <constraint firstAttribute="trailing" secondItem="evb-GM-UEW" secondAttribute="trailing" id="28x-B6-FGe"/>
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="top" secondItem="uz8-5f-oc0" secondAttribute="bottom" constant="24" id="DnZ-zQ-H0E"/>
                             <constraint firstAttribute="trailing" secondItem="cNb-SB-4I0" secondAttribute="trailing" id="EWB-sO-8za"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="FcH-gL-E0c"/>
@@ -1669,26 +1719,30 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="Y4e-GT-jXe"/>
                             <constraint firstItem="ERh-MO-cwb" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="ZQb-hX-g26"/>
                             <constraint firstItem="ERh-MO-cwb" firstAttribute="top" secondItem="Vza-XC-8wf" secondAttribute="bottom" constant="16" id="bil-Bp-Ftj"/>
+                            <constraint firstItem="QN1-Fs-8xE" firstAttribute="top" secondItem="evb-GM-UEW" secondAttribute="bottom" id="ooI-ry-vFW"/>
+                            <constraint firstItem="evb-GM-UEW" firstAttribute="top" secondItem="Vza-XC-8wf" secondAttribute="bottom" id="uY0-Ct-WPl"/>
                             <constraint firstItem="ERh-MO-cwb" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="x2K-cf-t7f"/>
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="xNJ-Kp-9Bf"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="uz8-5f-oc0" id="4gL-2a-IGk"/>
+                        <outlet property="indicatorView" destination="PMe-1m-QO3" id="v2K-Mc-J7N"/>
+                        <outlet property="loadingView" destination="evb-GM-UEW" id="zAo-E3-kTv"/>
                         <outlet property="placeTextArea" destination="Cp7-Xr-bas" id="Yb1-aF-vxT"/>
                         <outlet property="ratingBar" destination="ERh-MO-cwb" id="MWP-Kx-3Ay"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLk-Rh-Kzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="215"/>
+            <point key="canvasLocation" x="1844" y="214.54272863568218"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hmz-xv-7ZU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.54509803921568623" green="0.76078431372549016" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
@@ -1709,6 +1763,6 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
         <image name="savedIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xnM-7s-S7X"/>
+        <segue reference="y8n-Bd-Co0"/>
     </inferredMetricsTieBreakers>
 </document>

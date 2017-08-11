@@ -9,15 +9,16 @@
 import Foundation
 import UIKit
 import CoreLocation
+import NVActivityIndicatorView
 
 class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     
     /// WebView
     @IBOutlet weak var webView: UIWebView!
-    /// IndicatorView
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     /// ショップ保存ボタン
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var indicatorView: NVActivityIndicatorView!
     /// Realm管理マネージャ
     private var realmShopManager = RealmShopManager.sharedInstance
     /// 現在地
@@ -36,6 +37,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
             let urlRequest = URLRequest(url: url)
             self.webView.loadRequest(urlRequest)
         }
+        self.indicatorView.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +61,11 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     
     // MARK: UIWebViewDelegate
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        self.indicatorView.isHidden = true
+        self.indicatorView.stopAnimating()
+        
+        UIView.animate(withDuration: 2.0) { 
+            self.loadingView.isHidden = true
+        }
     }
     
     // MARK: Button Action

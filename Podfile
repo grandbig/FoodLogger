@@ -11,6 +11,7 @@ target "FoodLogger" do
   pod 'SwiftyJSON'
   pod 'AlamofireImage', '~> 3.1'
   pod 'HCSStarRatingView', '~> 1.5'
+  pod 'NVActivityIndicatorView'
 
   abstract_target 'Tests' do
     inherit! :search_paths

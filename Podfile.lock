@@ -11,6 +11,9 @@ PODS:
     - GoogleMaps/Base (= 2.4.0)
   - HCSStarRatingView (1.5)
   - Nimble (7.0.1)
+  - NVActivityIndicatorView (3.7.0):
+    - NVActivityIndicatorView/Presenter (= 3.7.0)
+  - NVActivityIndicatorView/Presenter (3.7.0)
   - Quick (1.1.0)
   - Realm (2.9.1):
     - Realm/Headers (= 2.9.1)
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - GooglePlaces
   - HCSStarRatingView (~> 1.5)
   - Nimble
+  - NVActivityIndicatorView
   - Quick
   - RealmSwift
   - SwiftyJSON
@@ -37,11 +41,12 @@ SPEC CHECKSUMS:
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   Nimble: 657d000e11df8aebe27cdaf9d244de7f30ed87f7
+  NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   Quick: dafc587e21eed9f4cab3249b9f9015b0b7a7f71d
   Realm: f91fb43bd474c4f731a116ebf7392c75dd015920
   RealmSwift: 207f12a4a36b696c5183c60a1c06d70234a23e56
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: c254b91a233858f4dac44546b7c637bc3951c911
+PODFILE CHECKSUM: d2490e20157cceff816e3a7669c2795edb2dc159
 
 COCOAPODS: 1.1.1
