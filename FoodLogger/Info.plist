@@ -21,7 +21,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
@@ -30,6 +30,8 @@
 	<string>現在地をマップに表示するために使います</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>現在地をマップに表示するために使います</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>アルバムから写真をアップロードするのに利用します</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
