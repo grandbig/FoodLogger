@@ -14,7 +14,7 @@ import RealmSwift
  */
 class RealmFood: Object {
     /// ID
-    dynamic var id: Int = 0
+    dynamic var id: String = NSUUID().uuidString
     /// 画像データ
     dynamic var imageData: Data = Data()
     /// 保存日時(タイムスタンプ)

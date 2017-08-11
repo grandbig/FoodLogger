@@ -13,7 +13,7 @@ import RealmSwift
 import SwiftyJSON
 import AlamofireImage
 
-class ShopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShopListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate {
     /// UITableView
     @IBOutlet weak var tableView: UITableView!
     /// Realm管理マネージャ
@@ -26,6 +26,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -70,6 +71,18 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         cell?.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell!
+    }
+    
+    // MARK: UINavigationControllerDelegate
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? ShopListViewController != nil {
+            // createShopMemoViewControllerから戻ってきた場合
+            if createShopMemoViewController.isSaved {
+                // ショップを新たに保存した場合
+                self.tableView.reloadData()
+            }
+        }
+        return nil
     }
     
     // MARK: Storyboard Segue

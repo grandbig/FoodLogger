@@ -56,7 +56,6 @@ class RealmShopManager {
                 let foods = List<RealmFood>()
                 for image in foodImages {
                     let realmFood = RealmFood()
-                    realmFood.id = (selectAllFoods()?.last != nil) ? ((selectAllFoods()?.last?.id)! + 1) : 0
                     realmFood.imageData = image
                     foods.append(realmFood)
                 }
@@ -97,14 +96,15 @@ class RealmShopManager {
                 }
                 // 画像が指定されている場合
                 if let foodImages = images {
+                    // 画像の入れ替え処理
+                    realm.delete(shop[0].foods)
                     let foods = List<RealmFood>()
                     for image in foodImages {
                         let realmFood = RealmFood()
-                        realmFood.id = (selectAllFoods()?.last != nil) ? ((selectAllFoods()?.last?.id)! + 1) : 0
                         realmFood.imageData = image
                         foods.append(realmFood)
                     }
-                    shop.setValue(foods, forKey: "foodImages")
+                    shop.setValue(foods, forKey: "foods")
                 }
                 // 更新日時の更新
                 shop.setValue(Date().timeIntervalSince1970, forKey: "updated")
@@ -223,6 +223,25 @@ class RealmShopManager {
             let realm = try Realm()
             try realm.write {
                 realm.deleteAll()
+            }
+        } catch let error as NSError {
+            print("Error: code - \(error.code), description - \(error.description)")
+        }
+    }
+    
+    /**
+     指定したIDの食品オブジェクトを削除する処理
+     
+     - parameter id: ショップID
+     */
+    func deleteImage(id: String) {
+        guard let shop = self.selectById(id) else {
+            return
+        }
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.delete(shop[0].foods)
             }
         } catch let error as NSError {
             print("Error: code - \(error.code), description - \(error.description)")

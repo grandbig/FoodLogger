@@ -192,11 +192,15 @@ class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource
                     }
                 }
                 // データを更新
-                self.realmShopManager.updateShop(id: self.shop.id, rating: self.shop.rating, memo: self.shop.memo, images: imageDatas)
+                guard let shopId = self.shop.id else {
+                    self.showAlert(title: "確認", message: "ショップ情報が正しく取得できません。", completion: {})
+                    return
+                }
+                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: imageDatas)
                 // 保存完了アラートを表示
                 self.showAlert(title: "確認", message: "ショップの記録を更新しました", completion: {
                     self.isSaved = true
-                    // TODO: 1つ前に戻る処理
+                    self.navigationController?.popViewController(animated: true)
                 })
             }) {
             }
