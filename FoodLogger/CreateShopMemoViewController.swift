@@ -21,6 +21,8 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
     @IBOutlet weak var ratingBar: HCSStarRatingView!
     /// UICollectionView
     @IBOutlet weak var collectionView: UICollectionView!
+    /// 食事種別のUISegmentedControl
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     /// テキストエリア
     @IBOutlet weak var placeTextArea: UIPlaceHolderTextView!
     /// ローディングビュー
@@ -57,6 +59,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
         self.placeTextArea.placeHolder = "メモを入力"
         self.placeTextArea.placeHolderColor = UIColor(red: 0.75, green: 0.75, blue: 0.77, alpha: 1.0)
         self.createToolBar()
+        self.determineMealTime()
         
         if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 10 {
             self.maxDistance = accuracy
@@ -75,6 +78,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 let image = UIImage(data: food.imageData)
                 self.images.append(image!)
             }
+            self.segmentedControl.selectedSegmentIndex = shop.mealTime
             self.isSaved = true
         }
         
@@ -282,7 +286,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                     }
                 }
                 // データを保存
-                self.realmShopManager.createShop(shop: self.shop, rating: Int(self.ratingBar.value), images: imageDatas, memo: self.placeTextArea.text)
+                self.realmShopManager.createShop(shop: self.shop, rating: Int(self.ratingBar.value), images: imageDatas, mealTime: self.segmentedControl.selectedSegmentIndex, memo: self.placeTextArea.text)
                 
                 mainQueue.async {
                     // ローディングビューの非表示
@@ -330,7 +334,7 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                     }
                     return
                 }
-                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: imageDatas)
+                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), images: imageDatas, mealTime: self.segmentedControl.selectedSegmentIndex, memo: self.placeTextArea.text)
                 
                 mainQueue.async {
                     // ローディングビューの非表示
@@ -343,6 +347,28 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 }
             }
         }) {
+        }
+    }
+    
+    /**
+     現在時刻から自動で食事種別を判別する処理
+     */
+    private func determineMealTime() {
+        let now = Date()
+        let cal = Calendar.current
+        var dataComps = cal.dateComponents([.year, .month, .day, .hour, .minute], from: now)
+        let hour = dataComps.hour
+        
+        if let hour = hour {
+            if hour >= 5 && hour < 11 {
+                self.segmentedControl.selectedSegmentIndex = 0
+            } else if hour >= 11 && hour < 15 {
+                self.segmentedControl.selectedSegmentIndex = 1
+            } else if hour >= 17 && hour <= 24 {
+                self.segmentedControl.selectedSegmentIndex = 2
+            } else {
+                self.segmentedControl.selectedSegmentIndex = 3
+            }
         }
     }
 }

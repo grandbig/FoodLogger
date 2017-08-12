@@ -1711,24 +1711,6 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cp7-Xr-bas" customClass="UIPlaceHolderTextView" customModule="FoodLogger" customModuleProvider="target">
-                                <rect key="frame" x="16" y="242" width="343" height="220"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="Ph3-fv-XoO"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uz8-5f-oc0">
                                 <rect key="frame" x="16" y="90" width="343" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1752,6 +1734,33 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hNI-g8-p39">
+                                <rect key="frame" x="16" y="242" width="343" height="29"/>
+                                <segments>
+                                    <segment title="朝食"/>
+                                    <segment title="昼食"/>
+                                    <segment title="夕食"/>
+                                    <segment title="その他"/>
+                                </segments>
+                            </segmentedControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Cp7-Xr-bas" customClass="UIPlaceHolderTextView" customModule="FoodLogger" customModuleProvider="target">
+                                <rect key="frame" x="16" y="294" width="343" height="220"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="Ph3-fv-XoO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-SB-4I0">
                                 <rect key="frame" x="0.0" y="554" width="375" height="49"/>
                                 <color key="backgroundColor" red="0.90980392160000001" green="0.59607843140000005" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1795,20 +1804,23 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         <constraints>
                             <constraint firstItem="evb-GM-UEW" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leading" id="0EW-B9-h78"/>
                             <constraint firstAttribute="trailing" secondItem="evb-GM-UEW" secondAttribute="trailing" id="28x-B6-FGe"/>
-                            <constraint firstItem="Cp7-Xr-bas" firstAttribute="top" secondItem="uz8-5f-oc0" secondAttribute="bottom" constant="24" id="DnZ-zQ-H0E"/>
                             <constraint firstAttribute="trailing" secondItem="cNb-SB-4I0" secondAttribute="trailing" id="EWB-sO-8za"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="FcH-gL-E0c"/>
                             <constraint firstItem="QN1-Fs-8xE" firstAttribute="top" secondItem="cNb-SB-4I0" secondAttribute="bottom" id="I1q-qj-KJN"/>
+                            <constraint firstItem="hNI-g8-p39" firstAttribute="top" secondItem="uz8-5f-oc0" secondAttribute="bottom" constant="24" id="IxX-L8-31y"/>
                             <constraint firstItem="cNb-SB-4I0" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leading" id="Lga-xH-o8C"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="top" secondItem="ERh-MO-cwb" secondAttribute="bottom" constant="24" id="Lzz-vV-l4D"/>
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="R6N-aS-dD9"/>
                             <constraint firstItem="uz8-5f-oc0" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="Y4e-GT-jXe"/>
                             <constraint firstItem="ERh-MO-cwb" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="ZQb-hX-g26"/>
                             <constraint firstItem="ERh-MO-cwb" firstAttribute="top" secondItem="Vza-XC-8wf" secondAttribute="bottom" constant="16" id="bil-Bp-Ftj"/>
+                            <constraint firstItem="Cp7-Xr-bas" firstAttribute="top" secondItem="hNI-g8-p39" secondAttribute="bottom" constant="24" id="lf6-2h-cbN"/>
                             <constraint firstItem="QN1-Fs-8xE" firstAttribute="top" secondItem="evb-GM-UEW" secondAttribute="bottom" id="ooI-ry-vFW"/>
                             <constraint firstItem="evb-GM-UEW" firstAttribute="top" secondItem="Vza-XC-8wf" secondAttribute="bottom" id="uY0-Ct-WPl"/>
                             <constraint firstItem="ERh-MO-cwb" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="x2K-cf-t7f"/>
                             <constraint firstItem="Cp7-Xr-bas" firstAttribute="trailing" secondItem="agu-SP-zEV" secondAttribute="trailingMargin" id="xNJ-Kp-9Bf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hNI-g8-p39" secondAttribute="trailing" id="xVZ-wT-Emv"/>
+                            <constraint firstItem="hNI-g8-p39" firstAttribute="leading" secondItem="agu-SP-zEV" secondAttribute="leadingMargin" id="xn6-hX-6as"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UQn-hl-IYa">
@@ -1833,6 +1845,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         <outlet property="navRightButton" destination="Kl6-32-s2f" id="1fw-8m-a1M"/>
                         <outlet property="placeTextArea" destination="Cp7-Xr-bas" id="Yb1-aF-vxT"/>
                         <outlet property="ratingBar" destination="ERh-MO-cwb" id="MWP-Kx-3Ay"/>
+                        <outlet property="segmentedControl" destination="hNI-g8-p39" id="FOs-0t-mhh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vLk-Rh-Kzy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1844,7 +1857,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

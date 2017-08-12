@@ -39,7 +39,7 @@ class HotpepperAPI {
      - parameter failure: エラー情報を返却するcallback
      */
     func searchRestaurant(coordinate: CLLocationCoordinate2D, success: @escaping ((JSON) -> Void), failure: @escaping ((Error) -> Void)) {
-        let parameters = ["key": self.apiKey, "format": "json", "lat": coordinate.latitude, "lng": coordinate.longitude, "range": 2] as [String : Any]
+        let parameters = ["key": self.apiKey, "format": "json", "lat": coordinate.latitude, "lng": coordinate.longitude, "range": 3] as [String : Any]
         Alamofire.request(baseURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
             if response.result.isFailure {
                 failure(response.result.error!)

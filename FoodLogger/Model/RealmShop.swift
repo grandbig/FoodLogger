@@ -33,6 +33,8 @@ class RealmShop: Object {
     dynamic var memo: String = ""
     /// 食品データリスト
     let foods = List<RealmFood>()
+    /// 食事種別
+    dynamic var mealTime: Int = 0
     /// 保存日時(タイムスタンプ)
     dynamic var created: Double = Date().timeIntervalSince1970
     /// 更新日時(タイムスタンプ)

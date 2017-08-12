@@ -52,7 +52,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         self.locationManager = CLLocationManager()
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager?.requestAlwaysAuthorization()
-        self.locationManager?.distanceFilter = 50
         self.locationManager?.startUpdatingLocation()
         self.locationManager?.delegate = self
         

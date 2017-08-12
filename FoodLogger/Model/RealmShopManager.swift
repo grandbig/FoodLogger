@@ -24,9 +24,10 @@ class RealmShopManager {
      - parameter shop: ショップデータ
      - parameter rating: 評価
      - parameter images: 画像データリスト
+     - parameter mealTIme: 食事種別
      - parameter memo: メモ
      */
-    func createShop(shop: HotpepperShop, rating: Int?, images: [Data]?, memo: String?) {
+    func createShop(shop: HotpepperShop, rating: Int?, images: [Data]?, mealTime: Int, memo: String?) {
         do {
             // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
@@ -42,6 +43,7 @@ class RealmShopManager {
             realmShop.latitude = shop.latitude!
             realmShop.longitude = shop.longitude!
             realmShop.shopURL = shop.shopURL!
+            realmShop.mealTime = mealTime
             
             // 評価が指定されている場合
             if let shopRating = rating {
@@ -78,10 +80,11 @@ class RealmShopManager {
      
      - parameter id: ショップID
      - parameter rating: 評価
-     - parameter memo: メモ
      - parameter images: 画像データリスト
+     - parameter mealTIme: 食事種別
+     - parameter memo: メモ
      */
-    func updateShop(id: String, rating: Int?, memo: String?, images: [Data]?) {
+    func updateShop(id: String, rating: Int?, images: [Data]?, mealTime: Int, memo: String?) {
         do {
             let realm = try Realm()
             let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")
@@ -106,6 +109,8 @@ class RealmShopManager {
                     }
                     shop.setValue(foods, forKey: "foods")
                 }
+                // 食事種別の更新
+                shop.setValue(mealTime, forKey: "mealTime")
                 // 更新日時の更新
                 shop.setValue(Date().timeIntervalSince1970, forKey: "updated")
             }
