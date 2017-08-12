@@ -97,6 +97,16 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="FTu-BH-uPm">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qa7-PP-zqh">
+                                <rect key="frame" x="335" y="10" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="StoreIcon"/>
+                                <connections>
+                                    <segue destination="K9I-A9-oWB" kind="show" identifier="shopHistorySegue" id="gKt-fm-Zc5"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="sA3-T9-IRR" id="XBN-7U-O4e"/>
@@ -1542,7 +1552,6 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <connections>
                         <outlet property="tableView" destination="h7c-6N-kdr" id="6f1-fW-gyO"/>
                         <segue destination="0WX-Hn-Bdo" kind="show" identifier="licenseSegue" id="dZC-1B-nOg"/>
-                        <segue destination="K9I-A9-oWB" kind="show" identifier="shopHistorySegue" id="w6w-fJ-pWl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrX-BF-oH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1857,7 +1866,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fXU-gq-Q61" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fI8-qc-Csr">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="fI8-qc-Csr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1880,6 +1889,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
         <image name="HotpepperCredit" width="88" height="35"/>
         <image name="SearchIcon" width="36" height="36"/>
         <image name="SettingIcon" width="24" height="24"/>
+        <image name="StoreIcon" width="24" height="24"/>
         <image name="savedIcon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>

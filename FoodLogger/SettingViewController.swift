@@ -21,7 +21,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.rowTitles = ["レストランの来店履歴", "ライセンス"]
+        self.rowTitles = ["ライセンス"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,8 +36,6 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         switch indexPath.row {
         case 0:
-            performSegue(withIdentifier: "shopHistorySegue", sender: nil)
-        case 1:
             performSegue(withIdentifier: "licenseSegue", sender: nil)
         default:
             break
