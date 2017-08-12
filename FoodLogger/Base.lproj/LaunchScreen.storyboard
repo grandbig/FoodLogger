@@ -38,10 +38,19 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version: 1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eW6-Uh-evM">
+                                <rect key="frame" x="16" y="637" width="343" height="22"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90980392156862744" green="0.59607843137254901" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="eW6-Uh-evM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="8dZ-7L-tpv"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="eW6-Uh-evM" secondAttribute="bottom" constant="8" id="8h8-ia-4op"/>
                             <constraint firstItem="w4o-aI-QOE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CGe-82-dF7"/>
+                            <constraint firstItem="eW6-Uh-evM" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="F3T-YR-mtb"/>
                             <constraint firstItem="rlj-ZK-NPc" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="Mb2-zN-ED1"/>
                             <constraint firstItem="rlj-ZK-NPc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="NTr-Ot-6PH"/>
                             <constraint firstItem="w4o-aI-QOE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="SiF-Av-Qx3"/>

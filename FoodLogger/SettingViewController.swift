@@ -21,7 +21,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.rowTitles = ["ライセンス"]
+        self.rowTitles = ["オープンソースライセンス", "アプリバージョン"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,6 +50,17 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
         cell.textLabel?.text = self.rowTitles[indexPath.row]
+        
+        switch indexPath.row {
+        case 0:
+            cell.detailTextLabel?.text = ""
+        case 1:
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.detailTextLabel?.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
+            cell.detailTextLabel?.textColor = UIColor.gray
+        default:
+            break
+        }
         
         return cell
     }
