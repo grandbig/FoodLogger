@@ -352,15 +352,13 @@ extension CreateShopMemoViewController: UICollectionViewDataSource, UICollection
         let message = "カメラまたはアルバムからアップロードしますか？"
         let firstActionTitle = "カメラからアップロード"
         let secondActionTitle = "アルバムからアップロード"
-        self.showActionSheet(
-            message: message, firstActionTitle: firstActionTitle, secondActionTitle: secondActionTitle,
-            firstCompletion: {
-                // カメラビューを起動
-                self.pickImageFromCamera()
-        }, secondCompletion: {
+        self.showActionSheet(message: message, firstActionTitle: firstActionTitle, secondActionTitle: secondActionTitle, firstCompletion: { 
+            // カメラビューを起動
+            self.pickImageFromCamera()
+        }) {
             // アルバムビューを起動
             self.pickImageFromAlbum()
-        }) {}
+        }
     }
 }
 
@@ -375,12 +373,17 @@ extension CreateShopMemoViewController: UIImagePickerControllerDelegate {
             return
         }
         if let selectedCell = self.collectionView.cellForItem(at: self.selectedIndexPath) {
+            let row = self.selectedIndexPath.row
             selectedCell.backgroundView = UIImageView(image: image)
             
-            if self.images.count < self.selectedIndexPath.row + 1 {
+            if self.images.count < row + 1 {
+                // 新規画像のアップロード
                 self.images.append(image)
                 // UICollectionViewのリロード
                 self.collectionView.reloadData()
+            } else if row < self.images.count {
+                // 既存画像の差し替え
+                self.images[row] = image
             }
         }
         picker.dismiss(animated: true, completion: nil)

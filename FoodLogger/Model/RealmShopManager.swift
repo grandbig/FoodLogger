@@ -88,6 +88,7 @@ class RealmShopManager {
         do {
             let realm = try Realm()
             let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")
+            
             try realm.write {
                 // 評価が指定されている場合
                 if let shopRating = rating {
@@ -98,16 +99,16 @@ class RealmShopManager {
                     shop.setValue(shopMemo, forKey: "memo")
                 }
                 // 画像が指定されている場合
-                if let foodImages = images {
+                if let images = images {
                     // 画像の入れ替え処理
                     realm.delete(shop[0].foods)
-                    let foods = List<RealmFood>()
-                    for image in foodImages {
-                        let realmFood = RealmFood()
-                        realmFood.imageData = image
-                        foods.append(realmFood)
+                    
+                    let foods = images.map { (image) -> RealmFood in
+                        let food = RealmFood()
+                        food.imageData = image
+                        return realm.create(RealmFood.self, value: food, update: true)
                     }
-                    shop.setValue(foods, forKey: "foods")
+                    shop[0].foods.append(objectsIn: foods)
                 }
                 // 食事種別の更新
                 shop.setValue(mealTime, forKey: "mealTime")

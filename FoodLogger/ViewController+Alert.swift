@@ -56,15 +56,13 @@ extension UIViewController {
      - parameter secondActionTitle: 2つ目のアクション名
      - parameter firstCompletion: 1つ目のアクションタップ時のCallback
      - parameter secondCompletion: 2つ目のアクションタップ時のCallback
-     - parameter cancelCompletion: Cancelタップ時のCallback
      */
     internal func showActionSheet(
         message: String,
         firstActionTitle: String,
         secondActionTitle: String,
         firstCompletion: @escaping(() -> Void),
-        secondCompletion: @escaping (() -> Void),
-        cancelCompletion: @escaping (() -> Void)) {
+        secondCompletion: @escaping (() -> Void)) {
         let alert = UIAlertController.init(title: "確認", message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
         let firstAction = UIAlertAction.init(title: firstActionTitle, style: UIAlertActionStyle.default) { _ in
             firstCompletion()
@@ -73,7 +71,6 @@ extension UIViewController {
             secondCompletion()
         }
         let cancelAction = UIAlertAction.init(title: "キャンセル", style: UIAlertActionStyle.cancel) { _ in
-            cancelCompletion()
         }
         alert.addAction(firstAction)
         alert.addAction(secondAction)
