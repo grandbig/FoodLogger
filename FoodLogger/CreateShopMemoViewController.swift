@@ -14,8 +14,7 @@ import HCSStarRatingView
 import NVActivityIndicatorView
 import RealmSwift
 
-class CreateShopMemoViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,
-UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewControllerDelegate {
+class CreateShopMemoViewController: UIViewController, UINavigationControllerDelegate {
     
     /// 評価用のレーティングビュー
     @IBOutlet weak var ratingBar: HCSStarRatingView!
@@ -39,14 +38,14 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
     internal var isSaved: Bool = false
     /// 店舗情報ボタンの表示/非表示フラグ
     internal var isRightButton: Bool = false
+    /// 食品画像リスト
+    internal var images: [UIImage]! = [UIImage]()
+    /// 選択したIndexPath
+    internal var selectedIndexPath: IndexPath!
     /// Realm管理マネージャ
     private var realmShopManager = RealmShopManager.sharedInstance
     /// 現在地からショップまでの許容できる最大距離
     private var maxDistance: Double = 300
-    /// 食品画像リスト
-    private var images: [UIImage]! = [UIImage]()
-    /// 選択したIndexPath
-    private var selectedIndexPath: IndexPath!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,78 +86,12 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        
-        if self.images.count > 0 {
-            // 保存した写真がある場合
-            if (self.images.count - 1) >= indexPath.row {
-                // 保存した写真の場合
-                cell.backgroundView = UIImageView(image: self.images[indexPath.row])
-            } else {
-                // 写真追加枠
-                cell.backgroundView = UIImageView(image: UIImage(named: "NoImageIcon"))
-            }
-        } else {
-            // 保存した写真がない場合
-            cell.backgroundView = UIImageView(image: UIImage(named: "NoImageIcon"))
-        }
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.images.count > 0 {
-            return self.images.count + 1
-        }
-        return 1
-    }
-    
-    // MARK: UICollectionViewDelegate
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
-        self.pickImageFromCamera()
-    }
-    
-    // MARK: UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // キーボードを閉じる
-        textField.resignFirstResponder()
-        
-        return true
-    }
-    
-    // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let info = info[UIImagePickerControllerOriginalImage] else {
-            return
-        }
-        guard let image = info as? UIImage else {
-            return
-        }
-        if let selectedCell = self.collectionView.cellForItem(at: self.selectedIndexPath) {
-            selectedCell.backgroundView = UIImageView(image: image)
-            
-            if self.images.count < self.selectedIndexPath.row + 1 {
-                self.images.append(image)
-                // UICollectionViewのリロード
-                self.collectionView.reloadData()
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    // Button Action
+    // MARK: Button Action
     @IBAction func saveShop(_ sender: Any) {
         if !self.isSaved {
             // 新規保存の場合
@@ -202,6 +135,16 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
             let controller = UIImagePickerController()
             controller.delegate = self
             controller.sourceType = UIImagePickerControllerSourceType.camera
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    /// アルバムビューの表示処理
+    func pickImageFromAlbum() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
             present(controller, animated: true, completion: nil)
         }
     }
@@ -370,5 +313,86 @@ UIImagePickerControllerDelegate, UINavigationControllerDelegate, SFSafariViewCon
                 self.segmentedControl.selectedSegmentIndex = 3
             }
         }
+    }
+}
+
+extension CreateShopMemoViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    // MARK: UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        
+        if self.images.count > 0 {
+            // 保存した写真がある場合
+            if (self.images.count - 1) >= indexPath.row {
+                // 保存した写真の場合
+                cell.backgroundView = UIImageView(image: self.images[indexPath.row])
+            } else {
+                // 写真追加枠
+                cell.backgroundView = UIImageView(image: UIImage(named: "NoImageIcon"))
+            }
+        } else {
+            // 保存した写真がない場合
+            cell.backgroundView = UIImageView(image: UIImage(named: "NoImageIcon"))
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.images.count > 0 {
+            return self.images.count + 1
+        }
+        return 1
+    }
+    
+    // MARK: UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
+        let message = "カメラまたはアルバムからアップロードしますか？"
+        let firstActionTitle = "カメラからアップロード"
+        let secondActionTitle = "アルバムからアップロード"
+        self.showActionSheet(
+            message: message, firstActionTitle: firstActionTitle, secondActionTitle: secondActionTitle,
+            firstCompletion: {
+                // カメラビューを起動
+                self.pickImageFromCamera()
+        }, secondCompletion: {
+            // アルバムビューを起動
+            self.pickImageFromAlbum()
+        }) {}
+    }
+}
+
+extension CreateShopMemoViewController: UIImagePickerControllerDelegate {
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let info = info[UIImagePickerControllerOriginalImage] else {
+            return
+        }
+        guard let image = info as? UIImage else {
+            return
+        }
+        if let selectedCell = self.collectionView.cellForItem(at: self.selectedIndexPath) {
+            selectedCell.backgroundView = UIImageView(image: image)
+            
+            if self.images.count < self.selectedIndexPath.row + 1 {
+                self.images.append(image)
+                // UICollectionViewのリロード
+                self.collectionView.reloadData()
+            }
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension CreateShopMemoViewController: UITextFieldDelegate {
+    // MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // キーボードを閉じる
+        textField.resignFirstResponder()
+        
+        return true
     }
 }

@@ -47,4 +47,37 @@ extension UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    /**
+     確認アクションシートの表示処理
+     
+     - parameter message: アクションシートのメッセージ
+     - parameter firstActionTitle: 1つ目のアクション名
+     - parameter secondActionTitle: 2つ目のアクション名
+     - parameter firstCompletion: 1つ目のアクションタップ時のCallback
+     - parameter secondCompletion: 2つ目のアクションタップ時のCallback
+     - parameter cancelCompletion: Cancelタップ時のCallback
+     */
+    internal func showActionSheet(
+        message: String,
+        firstActionTitle: String,
+        secondActionTitle: String,
+        firstCompletion: @escaping(() -> Void),
+        secondCompletion: @escaping (() -> Void),
+        cancelCompletion: @escaping (() -> Void)) {
+        let alert = UIAlertController.init(title: "確認", message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let firstAction = UIAlertAction.init(title: firstActionTitle, style: UIAlertActionStyle.default) { _ in
+            firstCompletion()
+        }
+        let secondAction = UIAlertAction.init(title: secondActionTitle, style: UIAlertActionStyle.default) { _ in
+            secondCompletion()
+        }
+        let cancelAction = UIAlertAction.init(title: "キャンセル", style: UIAlertActionStyle.cancel) { _ in
+            cancelCompletion()
+        }
+        alert.addAction(firstAction)
+        alert.addAction(secondAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
