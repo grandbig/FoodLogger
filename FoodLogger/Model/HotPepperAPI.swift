@@ -40,7 +40,7 @@ class HotpepperAPI {
      */
     func searchRestaurant(coordinate: CLLocationCoordinate2D, success: @escaping ((JSON) -> Void), failure: @escaping ((Error) -> Void)) {
         let parameters = ["key": self.apiKey, "format": "json", "lat": coordinate.latitude, "lng": coordinate.longitude, "range": 3] as [String : Any]
-        Alamofire.request(baseURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+        Alamofire.SessionManager.default.requestWithoutCache(baseURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
             if response.result.isFailure {
                 failure(response.result.error!)
                 return
@@ -49,6 +49,27 @@ class HotpepperAPI {
             let result = json["results"]["shop"]
             
             success(result)
+        }
+    }
+}
+
+extension Alamofire.SessionManager {
+    @discardableResult
+    open func requestWithoutCache(
+        _ url: URLConvertible,
+        method: HTTPMethod = .get,
+        parameters: Parameters? = nil,
+        encoding: ParameterEncoding = URLEncoding.default,
+        headers: HTTPHeaders? = nil)
+        -> DataRequest {
+        do {
+            var urlRequest = try URLRequest(url: url, method: method, headers: headers)
+            urlRequest.cachePolicy = .reloadIgnoringCacheData // <<== Cache disabled
+            let encodedURLRequest = try encoding.encode(urlRequest, with: parameters)
+            return request(encodedURLRequest)
+        } catch {
+            print(error)
+            return request(URLRequest(url: URL(string: "http://example.com/wrong_request")!))
         }
     }
 }

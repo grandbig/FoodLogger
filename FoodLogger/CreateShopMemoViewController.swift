@@ -242,8 +242,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
                     })
                 }
             }
-        }) {
-        }
+        }) {}
     }
     
     /**
@@ -289,8 +288,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
                     })
                 }
             }
-        }) {
-        }
+        }) {}
     }
     
     /**
