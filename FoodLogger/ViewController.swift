@@ -51,7 +51,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         // 位置情報関連の初期化
         self.locationManager = CLLocationManager()
         self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager?.requestAlwaysAuthorization()
+        self.locationManager?.requestWhenInUseAuthorization()
         self.locationManager?.startUpdatingLocation()
         self.locationManager?.delegate = self
         
@@ -67,6 +67,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: Button Action
     @IBAction func search(_ sender: Any) {
         guard let myCurrentLocation = self.currentLocation else {
+            self.showAlert(title: "確認", message: "位置情報が取得できません。端末の設定を確認してください。", completion: {})
             return
         }
         
@@ -191,6 +192,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
 
 extension ViewController: CLLocationManagerDelegate {
     
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            break
+        case .restricted, .denied:
+            break
+        case .authorizedWhenInUse:
+            break
+        default:
+            break
+        }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         // 現在地の更新
         self.currentLocation = locations.last?.coordinate
@@ -200,6 +214,22 @@ extension ViewController: CLLocationManagerDelegate {
             let camera = GMSCameraPosition.camera(withTarget: self.currentLocation!, zoom: self.zoomLevel)
             self.mapView.camera = camera
             self.initView = true
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if !CLLocationManager.locationServicesEnabled() {
+            // 端末の位置情報がOFFになっている場合
+            // アラートはデフォルトで表示されるので内部で用意はしない
+            self.currentLocation = nil
+            return
+        }
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse {
+            // アプリの位置情報許可をOFFにしている場合
+            self.showAlert(title: "確認", message: "FoodLoggerで位置情報を取得することができません。設定から位置情報を許可してください。", completion: {
+                self.currentLocation = nil
+            })
+            return
         }
     }
 }
