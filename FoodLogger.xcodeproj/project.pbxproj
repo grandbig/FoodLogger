@@ -221,11 +221,6 @@
 			children = (
 				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
 				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
-				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
-				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
-				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
-				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
-				2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +241,7 @@
 		2E6E5EA31F7621B00098B452 /* CreateShopMemo */ = {
 			isa = PBXGroup;
 			children = (
+				2E6E5EAE1F762C1E0098B452 /* View */,
 				2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */,
 			);
 			path = CreateShopMemo;
@@ -270,6 +266,7 @@
 		2E6E5EA71F76220F0098B452 /* ShopList */ = {
 			isa = PBXGroup;
 			children = (
+				2E6E5EAD1F762BEC0098B452 /* View */,
 				2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */,
 			);
 			path = ShopList;
@@ -278,6 +275,7 @@
 		2E6E5EA81F7622920098B452 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				2E6E5EAC1F762B7D0098B452 /* View */,
 				2E6641F41F1CFB14003AB65A /* MapViewController.swift */,
 				2E66422A1F1E617C003AB65A /* MapViewModels.swift */,
 			);
@@ -290,6 +288,32 @@
 				2E1DDBB11F3E30D700DFA9C6 /* LicenseViewController.swift */,
 			);
 			path = Licence;
+			sourceTree = "<group>";
+		};
+		2E6E5EAC1F762B7D0098B452 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
+				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6E5EAD1F762BEC0098B452 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
+				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E6E5EAE1F762C1E0098B452 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		2EA98CCC1F361358004F285F /* Realm */ = {
