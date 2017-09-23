@@ -18,25 +18,21 @@
 		2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */; };
 		2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */; };
 		2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F21F1CFB14003AB65A /* AppDelegate.swift */; };
-		2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F41F1CFB14003AB65A /* ViewController.swift */; };
+		2E6641F51F1CFB14003AB65A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F41F1CFB14003AB65A /* MapViewController.swift */; };
 		2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6641F61F1CFB14003AB65A /* Main.storyboard */; };
 		2E6641FA1F1CFB14003AB65A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E6641F91F1CFB14003AB65A /* Assets.xcassets */; };
 		2E6641FD1F1CFB14003AB65A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6641FB1F1CFB14003AB65A /* LaunchScreen.storyboard */; };
 		2E6642081F1CFB14003AB65A /* FoodLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642071F1CFB14003AB65A /* FoodLoggerTests.swift */; };
 		2E6642131F1CFB14003AB65A /* FoodLoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642121F1CFB14003AB65A /* FoodLoggerUITests.swift */; };
 		2E6642211F1D002B003AB65A /* key.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E6642201F1D002B003AB65A /* key.plist */; };
-		2E6642241F1D09D0003AB65A /* GurunaviAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642231F1D09D0003AB65A /* GurunaviAPI.swift */; };
 		2E6642271F1E555B003AB65A /* MarkerInfoContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */; };
 		2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */; };
-		2E66422B1F1E617C003AB65A /* CustomGMSMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */; };
-		2E66422E1F2380E3003AB65A /* HotPepperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */; };
+		2E66422B1F1E617C003AB65A /* MapViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422A1F1E617C003AB65A /* MapViewModels.swift */; };
 		2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66422F1F238279003AB65A /* HotpepperShop.swift */; };
 		2E6642321F238464003AB65A /* GurunaviShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642311F238464003AB65A /* GurunaviShop.swift */; };
 		2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642331F238D6D003AB65A /* RealmShop.swift */; };
 		2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642351F238DF4003AB65A /* RealmShopManager.swift */; };
-		2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642381F23904C003AB65A /* ShopValidateError.swift */; };
-		2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423A1F23BBCE003AB65A /* MarkerType.swift */; };
-		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
+		2E6E5EAB1F7623190098B452 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EAA1F7623190098B452 /* ShopDetailViewController.swift */; };
 		2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */; };
 		2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCD1F361375004F285F /* RealmFood.swift */; };
 		2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */; };
@@ -66,18 +62,18 @@
 /* Begin PBXFileReference section */
 		0333A23A4B1F71ABB566364B /* Pods-FoodLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger.debug.xcconfig"; sourceTree = "<group>"; };
 		2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Rating.swift; path = Model/Rating.swift; sourceTree = "<group>"; };
+		2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		2E1DDBB11F3E30D700DFA9C6 /* LicenseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseViewController.swift; sourceTree = "<group>"; };
 		2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
-		2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PushFadeSegue.swift; path = Model/PushFadeSegue.swift; sourceTree = "<group>"; };
-		2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UnwindFadeSegue.swift; path = Model/UnwindFadeSegue.swift; sourceTree = "<group>"; };
+		2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushFadeSegue.swift; sourceTree = "<group>"; };
+		2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnwindFadeSegue.swift; sourceTree = "<group>"; };
 		2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
 		2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
 		2E6641EF1F1CFB14003AB65A /* FoodLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6641F21F1CFB14003AB65A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2E6641F41F1CFB14003AB65A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2E6641F41F1CFB14003AB65A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2E6641F71F1CFB14003AB65A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E6641F91F1CFB14003AB65A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E6641FC1F1CFB14003AB65A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,23 +85,19 @@
 		2E6642121F1CFB14003AB65A /* FoodLoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLoggerUITests.swift; sourceTree = "<group>"; };
 		2E6642141F1CFB14003AB65A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E6642201F1D002B003AB65A /* key.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = key.plist; sourceTree = "<group>"; };
-		2E6642231F1D09D0003AB65A /* GurunaviAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GurunaviAPI.swift; path = Model/GurunaviAPI.swift; sourceTree = "<group>"; };
 		2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MarkerInfoContentsView.xib; sourceTree = "<group>"; };
 		2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerInfoContentsView.swift; sourceTree = "<group>"; };
-		2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomGMSMarker.swift; path = Model/CustomGMSMarker.swift; sourceTree = "<group>"; };
-		2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotPepperAPI.swift; path = Model/HotPepperAPI.swift; sourceTree = "<group>"; };
-		2E66422F1F238279003AB65A /* HotpepperShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotpepperShop.swift; path = Model/HotpepperShop.swift; sourceTree = "<group>"; };
-		2E6642311F238464003AB65A /* GurunaviShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GurunaviShop.swift; path = Model/GurunaviShop.swift; sourceTree = "<group>"; };
-		2E6642331F238D6D003AB65A /* RealmShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmShop.swift; path = Model/RealmShop.swift; sourceTree = "<group>"; };
-		2E6642351F238DF4003AB65A /* RealmShopManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmShopManager.swift; path = Model/RealmShopManager.swift; sourceTree = "<group>"; };
-		2E6642381F23904C003AB65A /* ShopValidateError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopValidateError.swift; path = Enum/ShopValidateError.swift; sourceTree = "<group>"; };
-		2E66423A1F23BBCE003AB65A /* MarkerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkerType.swift; path = Enum/MarkerType.swift; sourceTree = "<group>"; };
+		2E66422A1F1E617C003AB65A /* MapViewModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModels.swift; sourceTree = "<group>"; };
+		2E66422F1F238279003AB65A /* HotpepperShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotpepperShop.swift; sourceTree = "<group>"; };
+		2E6642311F238464003AB65A /* GurunaviShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GurunaviShop.swift; sourceTree = "<group>"; };
+		2E6642331F238D6D003AB65A /* RealmShop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmShop.swift; sourceTree = "<group>"; };
+		2E6642351F238DF4003AB65A /* RealmShopManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmShopManager.swift; sourceTree = "<group>"; };
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		2E6E5EAA1F7623190098B452 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoViewController.swift; sourceTree = "<group>"; };
-		2EA98CCD1F361375004F285F /* RealmFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmFood.swift; path = Model/RealmFood.swift; sourceTree = "<group>"; };
+		2EA98CCD1F361375004F285F /* RealmFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmFood.swift; sourceTree = "<group>"; };
 		2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
-		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "Model/UIImage+Extension.swift"; sourceTree = "<group>"; };
+		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,10 +172,9 @@
 		2E6641F11F1CFB14003AB65A /* FoodLogger */ = {
 			isa = PBXGroup;
 			children = (
-				2E66423E1F23C7FF003AB65A /* ViewController */,
-				2E6642371F23902B003AB65A /* Enum */,
-				2E6642251F1E553A003AB65A /* View */,
-				2E6642221F1D09B3003AB65A /* Model */,
+				2E66423E1F23C7FF003AB65A /* Scenes */,
+				2E6642251F1E553A003AB65A /* Views */,
+				2E6642221F1D09B3003AB65A /* Models */,
 				2E6641F21F1CFB14003AB65A /* AppDelegate.swift */,
 				2E6641F61F1CFB14003AB65A /* Main.storyboard */,
 				2E6641F91F1CFB14003AB65A /* Assets.xcassets */,
@@ -212,56 +203,93 @@
 			path = FoodLoggerUITests;
 			sourceTree = "<group>";
 		};
-		2E6642221F1D09B3003AB65A /* Model */ = {
+		2E6642221F1D09B3003AB65A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2EA98CCC1F361358004F285F /* Realm */,
-				2E66422A1F1E617C003AB65A /* CustomGMSMarker.swift */,
-				2E6642231F1D09D0003AB65A /* GurunaviAPI.swift */,
 				2E6642311F238464003AB65A /* GurunaviShop.swift */,
-				2E66422D1F2380E3003AB65A /* HotPepperAPI.swift */,
 				2E66422F1F238279003AB65A /* HotpepperShop.swift */,
 				2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */,
-				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
 				2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */,
 				2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */,
 			);
-			name = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		2E6642251F1E553A003AB65A /* View */ = {
+		2E6642251F1E553A003AB65A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
+				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
 				2E6642261F1E555B003AB65A /* MarkerInfoContentsView.xib */,
 				2E6642281F1E57C7003AB65A /* MarkerInfoContentsView.swift */,
 				2E23DD851F2E10200088BE5F /* CustomTableViewCell.xib */,
 				2E23DD841F2E10200088BE5F /* CustomTableViewCell.swift */,
 				2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		2E6642371F23902B003AB65A /* Enum */ = {
+		2E66423E1F23C7FF003AB65A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2E6642381F23904C003AB65A /* ShopValidateError.swift */,
-				2E66423A1F23BBCE003AB65A /* MarkerType.swift */,
+				2E6E5EA91F76229C0098B452 /* Licence */,
+				2E6E5EA81F7622920098B452 /* MapView */,
+				2E6E5EA71F76220F0098B452 /* ShopList */,
+				2E6E5EA61F7622050098B452 /* ShopDetail */,
+				2E6E5EA51F7621FB0098B452 /* Setting */,
+				2E6E5EA31F7621B00098B452 /* CreateShopMemo */,
 			);
-			name = Enum;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
-		2E66423E1F23C7FF003AB65A /* ViewController */ = {
+		2E6E5EA31F7621B00098B452 /* CreateShopMemo */ = {
 			isa = PBXGroup;
 			children = (
 				2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */,
+			);
+			path = CreateShopMemo;
+			sourceTree = "<group>";
+		};
+		2E6E5EA51F7621FB0098B452 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
 				2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */,
-				2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		2E6E5EA61F7622050098B452 /* ShopDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E5EAA1F7623190098B452 /* ShopDetailViewController.swift */,
+			);
+			path = ShopDetail;
+			sourceTree = "<group>";
+		};
+		2E6E5EA71F76220F0098B452 /* ShopList */ = {
+			isa = PBXGroup;
+			children = (
 				2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */,
-				2E6641F41F1CFB14003AB65A /* ViewController.swift */,
-				2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */,
+			);
+			path = ShopList;
+			sourceTree = "<group>";
+		};
+		2E6E5EA81F7622920098B452 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				2E6641F41F1CFB14003AB65A /* MapViewController.swift */,
+				2E66422A1F1E617C003AB65A /* MapViewModels.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		2E6E5EA91F76229C0098B452 /* Licence */ = {
+			isa = PBXGroup;
+			children = (
 				2E1DDBB11F3E30D700DFA9C6 /* LicenseViewController.swift */,
 			);
-			name = ViewController;
+			path = Licence;
 			sourceTree = "<group>";
 		};
 		2EA98CCC1F361358004F285F /* Realm */ = {
@@ -589,30 +617,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6642321F238464003AB65A /* GurunaviShop.swift in Sources */,
-				2E6642241F1D09D0003AB65A /* GurunaviAPI.swift in Sources */,
 				2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */,
-				2E66422B1F1E617C003AB65A /* CustomGMSMarker.swift in Sources */,
+				2E66422B1F1E617C003AB65A /* MapViewModels.swift in Sources */,
 				2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */,
-				2E6641F51F1CFB14003AB65A /* ViewController.swift in Sources */,
-				2E66422E1F2380E3003AB65A /* HotPepperAPI.swift in Sources */,
+				2E6641F51F1CFB14003AB65A /* MapViewController.swift in Sources */,
 				2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */,
 				2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */,
 				2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */,
 				2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */,
 				2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */,
 				2E1DDBB01F3E086C00DFA9C6 /* Rating.swift in Sources */,
+				2E6E5EAB1F7623190098B452 /* ShopDetailViewController.swift in Sources */,
 				2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */,
 				2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
-				2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */,
 				2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */,
-				2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */,
 				2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E1DDBB21F3E30D700DFA9C6 /* LicenseViewController.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
-				2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

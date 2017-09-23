@@ -11,7 +11,7 @@ import GoogleMaps
 import SwiftyJSON
 import RealmSwift
 
-class ViewController: UIViewController, UINavigationControllerDelegate {
+class MapViewController: UIViewController, UINavigationControllerDelegate {
 
     /// マップビュー
     @IBOutlet weak var mapView: GMSMapView!
@@ -124,7 +124,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     
     // MARK: UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? ViewController != nil {
+        if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? MapViewController != nil {
             // createShopMemoViewControllerから戻ってきた場合
             if createShopMemoViewController.isSaved {
                 // ショップを新たに保存した場合
@@ -190,7 +190,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     }
 }
 
-extension ViewController: CLLocationManagerDelegate {
+extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -234,7 +234,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
-extension ViewController: GMSMapViewDelegate {
+extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         guard let cMarker = marker as? CustomGMSMarker else {

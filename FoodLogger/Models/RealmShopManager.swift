@@ -281,3 +281,11 @@ class RealmShopManager {
         }
     }
 }
+
+/**
+ ショップデータのバリデーションエラー
+ */
+enum ShopValidateError: Error {
+    case empty
+    case unknown(String)
+}
