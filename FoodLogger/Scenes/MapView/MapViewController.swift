@@ -16,6 +16,7 @@ import SwiftyJSON
 import RealmSwift
 
 protocol MapViewDisplayLogic: class {
+    func displayInitMap(viewModel: MapView.InitMapView.ViewModel)
     func displayMyShop(viewModel: MapView.FetchMyShop.ViewModel)
     func displaySearchedShop(viewModel: MapView.FetchAroundShop.ViewModel)
     func displayFailedToSearchShop(viewModel: MapView.FetchAroundShop.ViewModel)
@@ -56,6 +57,13 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 戻るボタンの設定
+        let backButton = UIBarButtonItem.init()
+        backButton.title = "戻る"
+        backButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem = backButton
+        
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
@@ -78,17 +86,16 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
         fetchMyShopOnLoad()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     // MARK: Map View Method
     /// マップビュー
     @IBOutlet weak var mapView: GMSMapView!
     /// 位置情報マネージャ
     internal var locationManager: CLLocationManager?
-    /// 検索フラグ
-    internal var searched: Bool = false
-    /// マップのズームレベル
-    internal let zoomLevel: Float = 16.0
-    /// 初期描画の判断に利用
-    internal var initView: Bool = false
     /// 選択中マーカ
     internal var selectedMarker: CustomGMSMarker?
     
@@ -111,6 +118,13 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
         self.locationManager?.delegate = self
     }
     
+    func displayInitMap(viewModel: MapView.InitMapView.ViewModel) {
+        // 初期描画時のマップ中心位置の移動
+        let coordinate = CLLocationCoordinate2D(latitude: viewModel.latitude, longitude: viewModel.longitude)
+        let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: viewModel.zoomLevel)
+        mapView.camera = camera
+    }
+    
     func fetchMyShopOnLoad() {
         let request = MapView.FetchMyShop.Request()
         interactor?.fetchMyShop(request: request)
@@ -130,14 +144,6 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
             return
         }
         
-        if searched {
-            // 既にマップ上に検索結果が表示されている場合
-            // 全てのマーカを削除
-            mapView.clear()
-            // 保存済みショップマーカをプロット
-            fetchMyShopOnLoad()
-        }
-        
         fetchAroundShopOnLoad(coordinate: myCurrentLocation.coordinate)
     }
     
@@ -147,6 +153,13 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     }
     
     func displaySearchedShop(viewModel: MapView.FetchAroundShop.ViewModel) {
+        if !viewModel.isFirstSearch {
+            // 既にマップ上に検索結果が表示されている場合
+            // 全てのマーカを削除
+            mapView.clear()
+            // 保存済みショップマーカをプロット
+            fetchMyShopOnLoad()
+        }
         if let searchedMarkers = viewModel.searchedMarkers {
             for searchedMarker in searchedMarkers {
                 putMarker(shop: searchedMarker.shop, rating: nil, type: searchedMarker.type)
@@ -209,34 +222,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
 
 /*
 class MapViewController: UIViewController, UINavigationControllerDelegate {
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: Storyboard Segue
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backButton = UIBarButtonItem.init()
-        backButton.title = "戻る"
-        backButton.tintColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationItem.backBarButtonItem = backButton
-        
-        if segue.identifier == "shopDetailSegueFromMap" {
-            guard let shopDetailViewController = segue.destination as? ShopDetailViewController else {
-                return
-            }
-            guard let shop = sender as? HotpepperShop else {
-                return
-            }
-            shopDetailViewController.shop = shop
-            shopDetailViewController.myLocation = self.mapView.myLocation
-        }
-    }
-    
  
-    
     // MARK: UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? MapViewController != nil {
@@ -268,12 +254,9 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        if !self.initView {
-            // 初期描画時のマップ中心位置の移動
-            let camera = GMSCameraPosition.camera(withTarget: (locations.last?.coordinate)!, zoom: self.zoomLevel)
-            self.mapView.camera = camera
-            self.initView = true
+        if let coordinate = locations.last?.coordinate {
+            let request = MapView.InitMapView.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            interactor?.initMapView(request: request)
         }
     }
     
@@ -320,7 +303,6 @@ extension MapViewController: GMSMapViewDelegate {
             return
         }
         let shop = HotpepperShop(id: id, name: name, category: category, imageURL: imageURL, latitude: cMarker.position.latitude, longitude: cMarker.position.longitude, shopURL: shopURL)
-        
-        
+        selectShop(shop: shop)
     }
 }

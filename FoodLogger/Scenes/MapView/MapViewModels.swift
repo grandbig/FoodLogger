@@ -14,6 +14,23 @@ import UIKit
 
 enum MapView {
     
+    // MARK: Init map view
+    enum InitMapView {
+        struct Request {
+            var latitude: Double
+            var longitude: Double
+        }
+        struct Response {
+            var latitude: Double
+            var longitude: Double
+        }
+        struct ViewModel {
+            var latitude: Double
+            var longitude: Double
+            var zoomLevel: Float
+        }
+    }
+    
     // MARK: Fetch my shop
     enum FetchMyShop {
         struct Request {
@@ -40,6 +57,7 @@ enum MapView {
         struct Response {
             var shops: [HotpepperShop]?
             var isError: Bool
+            var isFirstSearch: Bool
         }
         struct ViewModel {
             struct SearchedMarker {
@@ -47,6 +65,7 @@ enum MapView {
                 var type: MarkerType
             }
             var searchedMarkers: [SearchedMarker]?
+            var isFirstSearch: Bool
         }
     }
     

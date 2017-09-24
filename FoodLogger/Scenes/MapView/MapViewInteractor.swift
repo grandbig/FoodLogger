@@ -14,6 +14,7 @@ import UIKit
 import CoreLocation
 
 protocol MapViewBusinessLogic {
+    func initMapView(request: MapView.InitMapView.Request)
     func fetchMyShop(request: MapView.FetchMyShop.Request)
     func fetchAroundShop(request: MapView.FetchAroundShop.Request)
     func selectShop(request: MapView.SelectShop.Request)
@@ -34,7 +35,17 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     
     var myShops: [MyShop]?
     var searchedShops: [HotpepperShop]?
+    var initView: Bool = false
   
+    // MARK: Init map view
+    func initMapView(request: MapView.InitMapView.Request) {
+        if !initView {
+            let response = MapView.InitMapView.Response(latitude: request.latitude, longitude: request.longitude)
+            presenter?.presentInitMapView(response: response)
+            initView = true
+        }
+    }
+    
     // MARK: Fetch my shop
     func fetchMyShop(request: MapView.FetchMyShop.Request) {
         worker.fetchShops { (shops) in
@@ -48,6 +59,11 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     
     // MARK: Fetch around shop
     func fetchAroundShop(request: MapView.FetchAroundShop.Request) {
+        var isFirstSearch: Bool = true
+        if self.searchedShops != nil {
+            isFirstSearch = false
+        }
+        
         mapViewWorker = MapViewWorker()
         mapViewWorker?.searchShop(latitude: request.latitude, longitude: request.longitude, success: { (shops) in
             if let myShops = self.myShops {
@@ -61,10 +77,10 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
                 self.searchedShops = shops
             }
             
-            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops, isError: false)
+            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops, isError: false, isFirstSearch: isFirstSearch)
             self.presenter?.presentFetchedAroundShops(response: response)
-        }, failure: { (error) in
-            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops, isError: true)
+        }, failure: { _ in
+            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops, isError: true, isFirstSearch: isFirstSearch)
             self.presenter?.presentFetchedAroundShops(response: response)
         })
     }

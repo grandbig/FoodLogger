@@ -13,6 +13,7 @@
 import UIKit
 
 protocol MapViewPresentationLogic {
+    func presentInitMapView(response: MapView.InitMapView.Response)
     func presentFetchedMyShops(response: MapView.FetchMyShop.Response)
     func presentFetchedAroundShops(response: MapView.FetchAroundShop.Response)
     func presentSelectedShop(response: MapView.SelectShop.Response)
@@ -21,6 +22,12 @@ protocol MapViewPresentationLogic {
 class MapViewPresenter: MapViewPresentationLogic {
     weak var viewController: MapViewDisplayLogic?
 
+    // MARK: Init map view
+    func presentInitMapView(response: MapView.InitMapView.Response) {
+        let viewModel = MapView.InitMapView.ViewModel(latitude: response.latitude, longitude: response.longitude, zoomLevel: 16.0)
+        viewController?.displayInitMap(viewModel: viewModel)
+    }
+    
     // MARK: Present my shop
     func presentFetchedMyShops(response: MapView.FetchMyShop.Response) {
         var displayedShops: [MapView.FetchMyShop.ViewModel.SavedMarker] = []
@@ -45,10 +52,10 @@ class MapViewPresenter: MapViewPresentationLogic {
                     displayedShops.append(searchedMarker)
                 }
             }
-            let viewModel = MapView.FetchAroundShop.ViewModel(searchedMarkers: displayedShops)
+            let viewModel = MapView.FetchAroundShop.ViewModel(searchedMarkers: displayedShops, isFirstSearch: response.isFirstSearch)
             viewController?.displaySearchedShop(viewModel: viewModel)
         } else {
-            let viewModel = MapView.FetchAroundShop.ViewModel()
+            let viewModel = MapView.FetchAroundShop.ViewModel(searchedMarkers: nil, isFirstSearch: response.isFirstSearch)
             viewController?.displayFailedToSearchShop(viewModel: viewModel)
         }
     }
