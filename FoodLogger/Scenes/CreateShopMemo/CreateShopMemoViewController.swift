@@ -98,13 +98,10 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
     
     func configureContainerView() {
         self.title = "メモ"
-        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
         self.placeTextArea.placeHolder = "メモを入力"
         self.placeTextArea.placeHolderColor = UIColor(red: 0.75, green: 0.75, blue: 0.77, alpha: 1.0)
-        
         createToolBar()
         determineMealTime()
         
@@ -140,7 +137,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
         self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
             // ローディングビューの表示
             self.showLoadingView()
-            
+            // 保存リクエストの発行
             let request = CreateShopMemo.CreateMyShop.Request(rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: self.images, mealTime: self.segmentedControl.selectedSegmentIndex)
             self.interactor?.createMyShop(request: request)
         }) {}
@@ -153,7 +150,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
         // 保存完了アラートを表示
         self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
             //self.isSaved = true
-            self.navigationController?.popToRootViewController(animated: true)
+            self.router?.routeToMapView(segue: nil)
         })
     }
     
@@ -441,4 +438,3 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
     }
 }
  */
- 

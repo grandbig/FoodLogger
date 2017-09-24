@@ -13,45 +13,42 @@
 import UIKit
 
 @objc protocol CreateShopMemoRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToMapView(segue: UIStoryboardSegue?)
 }
 
 protocol CreateShopMemoDataPassing {
     var dataStore: CreateShopMemoDataStore? { get }
 }
 
-class CreateShopMemoRouter: NSObject, CreateShopMemoRoutingLogic, CreateShopMemoDataPassing{
+class CreateShopMemoRouter: NSObject, CreateShopMemoRoutingLogic, CreateShopMemoDataPassing {
     weak var viewController: CreateShopMemoViewController?
     var dataStore: CreateShopMemoDataStore?
     
     // MARK: Routing
     
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
-    
+    func routeToMapView(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! MapViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToMapView(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToMapView(source: dataStore!, destination: &destinationDS)
+            navigateToMapView(source: viewController!, destination: destinationVC)
+        }
+    }
+
     // MARK: Navigation
     
-    //func navigateToSomewhere(source: ___VARIABLE_sceneName___ViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
+    func navigateToMapView(source: CreateShopMemoViewController, destination: MapViewController) {
+        source.show(destination, sender: nil)
+    }
+
     // MARK: Passing data
     
-    //func passDataToSomewhere(source: ___VARIABLE_sceneName___DataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
+    func passDataToMapView(source: CreateShopMemoDataStore, destination: inout MapViewDataStore) {
+        destination.savedView = true
+    }
 }

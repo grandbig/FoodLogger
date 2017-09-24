@@ -54,6 +54,13 @@ class ShopDetailViewController: UIViewController, ShopDetailDisplayLogic {
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 戻るボタンの設定
+        let backButton = UIBarButtonItem.init()
+        backButton.title = "戻る"
+        backButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem = backButton
+        
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
@@ -119,7 +126,6 @@ class ShopDetailViewController: UIViewController, ShopDetailDisplayLogic {
     
     // MARK: Button Action
     @IBAction func touchSaveButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "routeToCreateShopMemoSegue", sender: nil)
         router?.routeToCreateShopMemo(segue: nil)
     }
 }
@@ -149,11 +155,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     
     // MARK: Storyboard Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backButton = UIBarButtonItem.init()
-        backButton.title = "戻る"
-        backButton.tintColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationItem.backBarButtonItem = backButton
+ 
         
         if segue.identifier == "createShopMemoSegue" {
             guard let createShopMemoViewController = segue.destination as? CreateShopMemoViewController else {

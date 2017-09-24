@@ -13,7 +13,7 @@
         <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -1705,7 +1705,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
         <!--Create Shop Memo View Controller-->
         <scene sceneID="jxx-zH-tQz">
             <objects>
-                <viewController id="6Nb-tj-3k2" customClass="CreateShopMemoViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateShopMemoViewController" id="6Nb-tj-3k2" customClass="CreateShopMemoViewController" customModule="FoodLogger" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vza-XC-8wf"/>
                         <viewControllerLayoutGuide type="bottom" id="QN1-Fs-8xE"/>

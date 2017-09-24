@@ -14,6 +14,7 @@ import UIKit
 
 protocol MapViewPresentationLogic {
     func presentInitMapView(response: MapView.InitMapView.Response)
+    func presentSavedMapView(response: MapView.SavedMapView.Response)
     func presentFetchedMyShops(response: MapView.FetchMyShop.Response)
     func presentFetchedAroundShops(response: MapView.FetchAroundShop.Response)
     func presentSelectedShop(response: MapView.SelectShop.Response)
@@ -26,6 +27,12 @@ class MapViewPresenter: MapViewPresentationLogic {
     func presentInitMapView(response: MapView.InitMapView.Response) {
         let viewModel = MapView.InitMapView.ViewModel(latitude: response.latitude, longitude: response.longitude, zoomLevel: 16.0)
         viewController?.displayInitMap(viewModel: viewModel)
+    }
+    
+    // MARK: Saved map view
+    func presentSavedMapView(response: MapView.SavedMapView.Response) {
+        let viewModel = MapView.SavedMapView.ViewModel(marker: response.marker, shop: response.shop as HotpepperShop, rating: response.shop.rating)
+        viewController?.displaySavedMap(viewModel: viewModel)
     }
     
     // MARK: Present my shop

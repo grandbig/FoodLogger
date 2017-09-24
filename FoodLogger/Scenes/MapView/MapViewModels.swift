@@ -31,6 +31,21 @@ enum MapView {
         }
     }
     
+    // MARK: Saved map view
+    enum SavedMapView {
+        struct Request {
+        }
+        struct Response {
+            var marker: CustomGMSMarker
+            var shop: MyShop
+        }
+        struct ViewModel {
+            var marker: CustomGMSMarker
+            var shop: HotpepperShop
+            var rating: Int
+        }
+    }
+    
     // MARK: Fetch my shop
     enum FetchMyShop {
         struct Request {
@@ -72,15 +87,14 @@ enum MapView {
     // MARK: Select one shop
     enum SelectShop {
         struct Request {
+            var marker: CustomGMSMarker
             var shop: HotpepperShop
             var latitude: Double
             var longitude: Double
         }
         struct Response {
-            
         }
         struct ViewModel {
-            
         }
     }
 }

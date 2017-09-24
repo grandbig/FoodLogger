@@ -51,13 +51,18 @@ enum CreateShopMemo {
     // MARK: Update my shop
     enum UpdateMyShop {
         struct Request {
-            
+            var rating: Int
+            var memo: String
+            var images: [UIImage]
+            var mealTime: Int
         }
         struct Response {
-            
+            var isSaved: Bool
+            var message: String?
         }
         struct ViewModel {
-            
+            var isSaved: Bool
+            var message: String?
         }
     }
     

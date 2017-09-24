@@ -17,6 +17,7 @@ import RealmSwift
 
 protocol MapViewDisplayLogic: class {
     func displayInitMap(viewModel: MapView.InitMapView.ViewModel)
+    func displaySavedMap(viewModel: MapView.SavedMapView.ViewModel)
     func displayMyShop(viewModel: MapView.FetchMyShop.ViewModel)
     func displaySearchedShop(viewModel: MapView.FetchAroundShop.ViewModel)
     func displayFailedToSearchShop(viewModel: MapView.FetchAroundShop.ViewModel)
@@ -84,6 +85,13 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
         configureLocationManager()
         
         fetchMyShopOnLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let request = MapView.SavedMapView.Request()
+        interactor?.savedMapView(request: request)
     }
     
     override func didReceiveMemoryWarning() {
@@ -172,16 +180,23 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     }
     
     // MARK: Transition to shop detail
-    func selectShop(shop: HotpepperShop) {
+    func selectShop(marker: CustomGMSMarker,shop: HotpepperShop) {
         let latitude = mapView.myLocation?.coordinate.latitude ?? 0
         let longitude = mapView.myLocation?.coordinate.longitude ?? 0
-        let request = MapView.SelectShop.Request(shop: shop, latitude: latitude, longitude: longitude)
+        let request = MapView.SelectShop.Request(marker: marker, shop: shop, latitude: latitude, longitude: longitude)
         interactor?.selectShop(request: request)
     }
     
     func transitionToShopDetail(viewModel: MapView.SelectShop.ViewModel) {
         // 画面遷移
         router?.routeToShopDetail(segue: nil)
+    }
+    
+    // MARK: Saved map view
+    func displaySavedMap(viewModel: MapView.SavedMapView.ViewModel) {
+        let marker = viewModel.marker
+        marker.map = nil
+        putMarker(shop: viewModel.shop, rating: viewModel.rating, type: MarkerType.saved)
     }
     
     // MARK: Other
@@ -220,24 +235,6 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     }
 }
 
-/*
-class MapViewController: UIViewController, UINavigationControllerDelegate {
- 
-    // MARK: UINavigationControllerDelegate
-    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let createShopMemoViewController = fromVC as? CreateShopMemoViewController, toVC as? MapViewController != nil {
-            // createShopMemoViewControllerから戻ってきた場合
-            if createShopMemoViewController.isSaved {
-                // ショップを新たに保存した場合
-                // マーカを再設置
-                self.selectedMarker?.map = nil
-                self.putMarker(shop: createShopMemoViewController.shop, rating: Int(createShopMemoViewController.ratingBar.value), type: MarkerType.saved)
-            }
-        }
-        return nil
-    }
-}
-*/
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -303,6 +300,6 @@ extension MapViewController: GMSMapViewDelegate {
             return
         }
         let shop = HotpepperShop(id: id, name: name, category: category, imageURL: imageURL, latitude: cMarker.position.latitude, longitude: cMarker.position.longitude, shopURL: shopURL)
-        selectShop(shop: shop)
+        selectShop(marker: cMarker, shop: shop)
     }
 }

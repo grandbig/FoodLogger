@@ -15,6 +15,7 @@ import CoreLocation
 
 protocol MapViewBusinessLogic {
     func initMapView(request: MapView.InitMapView.Request)
+    func savedMapView(request: MapView.SavedMapView.Request)
     func fetchMyShop(request: MapView.FetchMyShop.Request)
     func fetchAroundShop(request: MapView.FetchAroundShop.Request)
     func selectShop(request: MapView.SelectShop.Request)
@@ -23,6 +24,7 @@ protocol MapViewBusinessLogic {
 protocol MapViewDataStore {
     var selectedShop: HotpepperShop { get set }
     var myLocation: CLLocation { get set }
+    var savedView: Bool { get set }
 }
 
 class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
@@ -32,10 +34,12 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     var mapViewWorker: MapViewWorker?
     var selectedShop = HotpepperShop()
     var myLocation = CLLocation()
+    var savedView = Bool()
     
     var myShops: [MyShop]?
     var searchedShops: [HotpepperShop]?
     var initView: Bool = false
+    var selectedMarker: CustomGMSMarker?
   
     // MARK: Init map view
     func initMapView(request: MapView.InitMapView.Request) {
@@ -43,6 +47,20 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
             let response = MapView.InitMapView.Response(latitude: request.latitude, longitude: request.longitude)
             presenter?.presentInitMapView(response: response)
             initView = true
+        }
+    }
+    
+    // MARK: Saved map view
+    func savedMapView(request: MapView.SavedMapView.Request) {
+        if savedView, let shopId = selectedShop.id {
+            // MyShop保存後の場合
+            worker.fetchShop(id: shopId, completionHandler: { (shop) in
+                if let myShop = shop, let selectedMarker = self.selectedMarker {
+                    let response = MapView.SavedMapView.Response(marker: selectedMarker, shop: myShop)
+                    self.presenter?.presentSavedMapView(response: response)
+                }
+            })
+            // marker, ratingを渡す
         }
     }
     
@@ -87,6 +105,7 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     
     // MARK: Select one shop
     func selectShop(request: MapView.SelectShop.Request) {
+        self.selectedMarker = request.marker
         self.selectedShop = request.shop
         self.myLocation = CLLocation(latitude: request.latitude, longitude: request.longitude)
         let response = MapView.SelectShop.Response()
