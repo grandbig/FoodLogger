@@ -36,17 +36,17 @@ enum MapView {
         struct Request {
             var latitude: Double
             var longitude: Double
-            var myShops: [MyShop]
         }
         struct Response {
             var shops: [HotpepperShop]?
+            var isError: Bool
         }
         struct ViewModel {
             struct SearchedMarker {
                 var shop: HotpepperShop
                 var type: MarkerType
             }
-            var searchedMarkers: [SearchedMarker]
+            var searchedMarkers: [SearchedMarker]?
         }
     }
     

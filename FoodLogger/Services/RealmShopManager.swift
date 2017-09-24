@@ -182,7 +182,6 @@ class RealmShopManager: ShopsProtocol {
         }
     }
     
-    
     func selectById(_ id: String) -> Results<RealmShop>? {
         do {
             let realm = try Realm()

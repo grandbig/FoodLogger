@@ -50,9 +50,10 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     func fetchAroundShop(request: MapView.FetchAroundShop.Request) {
         mapViewWorker = MapViewWorker()
         mapViewWorker?.searchShop(latitude: request.latitude, longitude: request.longitude, success: { (shops) in
-            if self.myShops != nil {
+            if let myShops = self.myShops {
+                // 登録済みショップとの差分計算
                 for shop in shops {
-                    for myShop in request.myShops where shop.id != myShop.id {
+                    for myShop in myShops where shop.id != myShop.id {
                         self.searchedShops?.append(shop)
                     }
                 }
@@ -60,10 +61,11 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
                 self.searchedShops = shops
             }
             
-            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops)
+            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops, isError: false)
             self.presenter?.presentFetchedAroundShops(response: response)
         }, failure: { (error) in
-            // TODO: どうする？
+            let response = MapView.FetchAroundShop.Response(shops: self.searchedShops, isError: true)
+            self.presenter?.presentFetchedAroundShops(response: response)
         })
     }
     

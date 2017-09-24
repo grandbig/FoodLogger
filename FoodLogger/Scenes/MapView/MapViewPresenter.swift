@@ -37,15 +37,20 @@ class MapViewPresenter: MapViewPresentationLogic {
     
     // MARK: Present around shop
     func presentFetchedAroundShops(response: MapView.FetchAroundShop.Response) {
-        var displayedShops: [MapView.FetchAroundShop.ViewModel.SearchedMarker] = []
-        if let shops = response.shops {
-            for shop in shops {
-                let searchedMarker = MapView.FetchAroundShop.ViewModel.SearchedMarker(shop: shop, type: MarkerType.searched)
-                displayedShops.append(searchedMarker)
+        if !response.isError {
+            var displayedShops: [MapView.FetchAroundShop.ViewModel.SearchedMarker] = []
+            if let shops = response.shops {
+                for shop in shops {
+                    let searchedMarker = MapView.FetchAroundShop.ViewModel.SearchedMarker(shop: shop, type: MarkerType.searched)
+                    displayedShops.append(searchedMarker)
+                }
             }
+            let viewModel = MapView.FetchAroundShop.ViewModel(searchedMarkers: displayedShops)
+            viewController?.displaySearchedShop(viewModel: viewModel)
+        } else {
+            let viewModel = MapView.FetchAroundShop.ViewModel()
+            viewController?.displayFailedToSearchShop(viewModel: viewModel)
         }
-        let viewModel = MapView.FetchAroundShop.ViewModel(searchedMarkers: displayedShops)
-        viewController?.displaySearchedShop(viewModel: viewModel)
     }
     
     // MARK: Select one shop

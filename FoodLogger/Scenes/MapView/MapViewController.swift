@@ -18,6 +18,7 @@ import RealmSwift
 protocol MapViewDisplayLogic: class {
     func displayMyShop(viewModel: MapView.FetchMyShop.ViewModel)
     func displaySearchedShop(viewModel: MapView.FetchAroundShop.ViewModel)
+    func displayFailedToSearchShop(viewModel: MapView.FetchAroundShop.ViewModel)
     func transitionToShopDetail(viewModel: MapView.SelectShop.ViewModel)
 }
 
@@ -82,8 +83,6 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     @IBOutlet weak var mapView: GMSMapView!
     /// 位置情報マネージャ
     internal var locationManager: CLLocationManager?
-    /// 保存済みショップ
-    internal var myShops: [MyShop] = []
     /// 検索フラグ
     internal var searched: Bool = false
     /// マップのズームレベル
@@ -118,12 +117,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     }
     
     func displayMyShop(viewModel: MapView.FetchMyShop.ViewModel) {
-        myShops = [MyShop]()
         for savedMarker in viewModel.savedMarkers {
-            if let myShop = savedMarker.shop as? MyShop {
-                myShop.rating = savedMarker.rating
-                myShops.append(myShop)
-            }
             putMarker(shop: savedMarker.shop, rating: savedMarker.rating, type: savedMarker.type)
         }
     }
@@ -148,16 +142,20 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     }
     
     func fetchAroundShopOnLoad(coordinate: CLLocationCoordinate2D) {
-        let request = MapView.FetchAroundShop.Request(latitude: coordinate.latitude, longitude: coordinate.longitude, myShops: myShops)
+        let request = MapView.FetchAroundShop.Request(latitude: coordinate.latitude, longitude: coordinate.longitude)
         interactor?.fetchAroundShop(request: request)
     }
     
     func displaySearchedShop(viewModel: MapView.FetchAroundShop.ViewModel) {
-        for searchedMarker in viewModel.searchedMarkers {
-            putMarker(shop: searchedMarker.shop, rating: nil, type: searchedMarker.type)
+        if let searchedMarkers = viewModel.searchedMarkers {
+            for searchedMarker in searchedMarkers {
+                putMarker(shop: searchedMarker.shop, rating: nil, type: searchedMarker.type)
+            }
         }
-        // TODO: 取得失敗した場合のアラート表示処理
-        // showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
+    }
+    
+    func displayFailedToSearchShop(viewModel: MapView.FetchAroundShop.ViewModel) {
+        showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
     }
     
     // MARK: Transition to shop detail
