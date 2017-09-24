@@ -17,6 +17,11 @@
 		2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */; };
 		2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */; };
 		2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */; };
+		2E585DFC1F77610C003AA8DA /* CreateShopMemoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E585DF71F77610A003AA8DA /* CreateShopMemoPresenter.swift */; };
+		2E585DFD1F77610C003AA8DA /* CreateShopMemoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E585DF81F77610A003AA8DA /* CreateShopMemoModels.swift */; };
+		2E585DFE1F77610C003AA8DA /* CreateShopMemoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E585DF91F77610B003AA8DA /* CreateShopMemoInteractor.swift */; };
+		2E585DFF1F77610C003AA8DA /* CreateShopMemoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E585DFA1F77610B003AA8DA /* CreateShopMemoRouter.swift */; };
+		2E585E001F77610C003AA8DA /* CreateShopMemoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E585DFB1F77610C003AA8DA /* CreateShopMemoWorker.swift */; };
 		2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F21F1CFB14003AB65A /* AppDelegate.swift */; };
 		2E6641F51F1CFB14003AB65A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6641F41F1CFB14003AB65A /* MapViewController.swift */; };
 		2E6641F81F1CFB14003AB65A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E6641F61F1CFB14003AB65A /* Main.storyboard */; };
@@ -33,10 +38,30 @@
 		2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642331F238D6D003AB65A /* RealmShop.swift */; };
 		2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642351F238DF4003AB65A /* RealmShopManager.swift */; };
 		2E6E5EAB1F7623190098B452 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EAA1F7623190098B452 /* ShopDetailViewController.swift */; };
+		2E6E5EB31F762D6D0098B452 /* MapViewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EAF1F762D6C0098B452 /* MapViewWorker.swift */; };
+		2E6E5EB41F762D6D0098B452 /* MapViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EB01F762D6C0098B452 /* MapViewPresenter.swift */; };
+		2E6E5EB51F762D6D0098B452 /* MapViewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EB11F762D6D0098B452 /* MapViewInteractor.swift */; };
+		2E6E5EB61F762D6D0098B452 /* MapViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EB21F762D6D0098B452 /* MapViewRouter.swift */; };
+		2E6E5EB81F762F220098B452 /* GurunaviAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EB71F762F220098B452 /* GurunaviAPI.swift */; };
+		2E6E5EBA1F762F7C0098B452 /* CustomGMSMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EB91F762F7C0098B452 /* CustomGMSMarker.swift */; };
+		2E6E5EBC1F762FC20098B452 /* HotpepperAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EBB1F762FC20098B452 /* HotpepperAPI.swift */; };
+		2E6E5EBE1F762FFA0098B452 /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EBD1F762FFA0098B452 /* MarkerType.swift */; };
+		2E6E5EC11F764DE30098B452 /* ShopsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC01F764DE30098B452 /* ShopsWorker.swift */; };
+		2E6E5EC41F765EB90098B452 /* MyShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC31F765EB90098B452 /* MyShop.swift */; };
+		2E6E5ECA1F76CDA30098B452 /* ShopListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC51F76CD950098B452 /* ShopListInteractor.swift */; };
+		2E6E5ECB1F76CDA30098B452 /* ShopListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC61F76CD970098B452 /* ShopListPresenter.swift */; };
+		2E6E5ECC1F76CDA30098B452 /* ShopListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC71F76CD990098B452 /* ShopListRouter.swift */; };
+		2E6E5ECD1F76CDA30098B452 /* ShopListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC81F76CD9D0098B452 /* ShopListModels.swift */; };
+		2E6E5ECE1F76CDA30098B452 /* ShopListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E5EC91F76CDA00098B452 /* ShopListWorker.swift */; };
 		2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */; };
 		2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCD1F361375004F285F /* RealmFood.swift */; };
 		2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */; };
 		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
+		2ED5C9E11F76DCD800A7170D /* ShopDetaiInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED5C9DC1F76DCD700A7170D /* ShopDetaiInteractor.swift */; };
+		2ED5C9E21F76DCD800A7170D /* ShopDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED5C9DD1F76DCD700A7170D /* ShopDetailRouter.swift */; };
+		2ED5C9E31F76DCD800A7170D /* ShopDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED5C9DE1F76DCD700A7170D /* ShopDetailModels.swift */; };
+		2ED5C9E41F76DCD800A7170D /* ShopDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED5C9DF1F76DCD800A7170D /* ShopDetailPresenter.swift */; };
+		2ED5C9E51F76DCD800A7170D /* ShopDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED5C9E01F76DCD800A7170D /* ShopDetailWorker.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
 		694DA7D05A0993B8BCFF68E6 /* Pods_Tests_FoodLoggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */; };
@@ -71,6 +96,11 @@
 		2E23DD8C1F2E2AC80088BE5F /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2E2A3CBE1F278DB4004977B5 /* ViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+Alert.swift"; sourceTree = "<group>"; };
 		2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListViewController.swift; sourceTree = "<group>"; };
+		2E585DF71F77610A003AA8DA /* CreateShopMemoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoPresenter.swift; sourceTree = "<group>"; };
+		2E585DF81F77610A003AA8DA /* CreateShopMemoModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoModels.swift; sourceTree = "<group>"; };
+		2E585DF91F77610B003AA8DA /* CreateShopMemoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoInteractor.swift; sourceTree = "<group>"; };
+		2E585DFA1F77610B003AA8DA /* CreateShopMemoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoRouter.swift; sourceTree = "<group>"; };
+		2E585DFB1F77610C003AA8DA /* CreateShopMemoWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoWorker.swift; sourceTree = "<group>"; };
 		2E6641EF1F1CFB14003AB65A /* FoodLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E6641F21F1CFB14003AB65A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E6641F41F1CFB14003AB65A /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -94,10 +124,30 @@
 		2E6642351F238DF4003AB65A /* RealmShopManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmShopManager.swift; sourceTree = "<group>"; };
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2E6E5EAA1F7623190098B452 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		2E6E5EAF1F762D6C0098B452 /* MapViewWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewWorker.swift; sourceTree = "<group>"; };
+		2E6E5EB01F762D6C0098B452 /* MapViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewPresenter.swift; sourceTree = "<group>"; };
+		2E6E5EB11F762D6D0098B452 /* MapViewInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewInteractor.swift; sourceTree = "<group>"; };
+		2E6E5EB21F762D6D0098B452 /* MapViewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewRouter.swift; sourceTree = "<group>"; };
+		2E6E5EB71F762F220098B452 /* GurunaviAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GurunaviAPI.swift; sourceTree = "<group>"; };
+		2E6E5EB91F762F7C0098B452 /* CustomGMSMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGMSMarker.swift; sourceTree = "<group>"; };
+		2E6E5EBB1F762FC20098B452 /* HotpepperAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotpepperAPI.swift; sourceTree = "<group>"; };
+		2E6E5EBD1F762FFA0098B452 /* MarkerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerType.swift; sourceTree = "<group>"; };
+		2E6E5EC01F764DE30098B452 /* ShopsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsWorker.swift; sourceTree = "<group>"; };
+		2E6E5EC31F765EB90098B452 /* MyShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyShop.swift; sourceTree = "<group>"; };
+		2E6E5EC51F76CD950098B452 /* ShopListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListInteractor.swift; sourceTree = "<group>"; };
+		2E6E5EC61F76CD970098B452 /* ShopListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListPresenter.swift; sourceTree = "<group>"; };
+		2E6E5EC71F76CD990098B452 /* ShopListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListRouter.swift; sourceTree = "<group>"; };
+		2E6E5EC81F76CD9D0098B452 /* ShopListModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListModels.swift; sourceTree = "<group>"; };
+		2E6E5EC91F76CDA00098B452 /* ShopListWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListWorker.swift; sourceTree = "<group>"; };
 		2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoViewController.swift; sourceTree = "<group>"; };
 		2EA98CCD1F361375004F285F /* RealmFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmFood.swift; sourceTree = "<group>"; };
 		2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
 		2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		2ED5C9DC1F76DCD700A7170D /* ShopDetaiInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetaiInteractor.swift; sourceTree = "<group>"; };
+		2ED5C9DD1F76DCD700A7170D /* ShopDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailRouter.swift; sourceTree = "<group>"; };
+		2ED5C9DE1F76DCD700A7170D /* ShopDetailModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailModels.swift; sourceTree = "<group>"; };
+		2ED5C9DF1F76DCD800A7170D /* ShopDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailPresenter.swift; sourceTree = "<group>"; };
+		2ED5C9E01F76DCD800A7170D /* ShopDetailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailWorker.swift; sourceTree = "<group>"; };
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +222,8 @@
 		2E6641F11F1CFB14003AB65A /* FoodLogger */ = {
 			isa = PBXGroup;
 			children = (
+				2E6E5EC21F7650C60098B452 /* Services */,
+				2E6E5EBF1F764D930098B452 /* Workers */,
 				2E66423E1F23C7FF003AB65A /* Scenes */,
 				2E6642251F1E553A003AB65A /* Views */,
 				2E6642221F1D09B3003AB65A /* Models */,
@@ -207,11 +259,16 @@
 			isa = PBXGroup;
 			children = (
 				2EA98CCC1F361358004F285F /* Realm */,
+				2E6E5EB71F762F220098B452 /* GurunaviAPI.swift */,
 				2E6642311F238464003AB65A /* GurunaviShop.swift */,
 				2E66422F1F238279003AB65A /* HotpepperShop.swift */,
 				2E23DD881F2E1DC40088BE5F /* PushFadeSegue.swift */,
 				2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */,
 				2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */,
+				2E6E5EB91F762F7C0098B452 /* CustomGMSMarker.swift */,
+				2E6E5EBB1F762FC20098B452 /* HotpepperAPI.swift */,
+				2E6E5EBD1F762FFA0098B452 /* MarkerType.swift */,
+				2E6E5EC31F765EB90098B452 /* MyShop.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,8 +298,13 @@
 		2E6E5EA31F7621B00098B452 /* CreateShopMemo */ = {
 			isa = PBXGroup;
 			children = (
-				2E6E5EAE1F762C1E0098B452 /* View */,
+				2E585DF91F77610B003AA8DA /* CreateShopMemoInteractor.swift */,
+				2E585DF81F77610A003AA8DA /* CreateShopMemoModels.swift */,
+				2E585DF71F77610A003AA8DA /* CreateShopMemoPresenter.swift */,
+				2E585DFA1F77610B003AA8DA /* CreateShopMemoRouter.swift */,
 				2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */,
+				2E585DFB1F77610C003AA8DA /* CreateShopMemoWorker.swift */,
+				2E6E5EAE1F762C1E0098B452 /* View */,
 			);
 			path = CreateShopMemo;
 			sourceTree = "<group>";
@@ -258,7 +320,12 @@
 		2E6E5EA61F7622050098B452 /* ShopDetail */ = {
 			isa = PBXGroup;
 			children = (
+				2ED5C9DC1F76DCD700A7170D /* ShopDetaiInteractor.swift */,
+				2ED5C9DE1F76DCD700A7170D /* ShopDetailModels.swift */,
+				2ED5C9DF1F76DCD800A7170D /* ShopDetailPresenter.swift */,
+				2ED5C9DD1F76DCD700A7170D /* ShopDetailRouter.swift */,
 				2E6E5EAA1F7623190098B452 /* ShopDetailViewController.swift */,
+				2ED5C9E01F76DCD800A7170D /* ShopDetailWorker.swift */,
 			);
 			path = ShopDetail;
 			sourceTree = "<group>";
@@ -266,8 +333,13 @@
 		2E6E5EA71F76220F0098B452 /* ShopList */ = {
 			isa = PBXGroup;
 			children = (
-				2E6E5EAD1F762BEC0098B452 /* View */,
+				2E6E5EC51F76CD950098B452 /* ShopListInteractor.swift */,
+				2E6E5EC81F76CD9D0098B452 /* ShopListModels.swift */,
+				2E6E5EC61F76CD970098B452 /* ShopListPresenter.swift */,
+				2E6E5EC71F76CD990098B452 /* ShopListRouter.swift */,
 				2E2A3CC01F2A3E90004977B5 /* ShopListViewController.swift */,
+				2E6E5EC91F76CDA00098B452 /* ShopListWorker.swift */,
+				2E6E5EAD1F762BEC0098B452 /* View */,
 			);
 			path = ShopList;
 			sourceTree = "<group>";
@@ -275,9 +347,13 @@
 		2E6E5EA81F7622920098B452 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
-				2E6E5EAC1F762B7D0098B452 /* View */,
-				2E6641F41F1CFB14003AB65A /* MapViewController.swift */,
+				2E6E5EB11F762D6D0098B452 /* MapViewInteractor.swift */,
 				2E66422A1F1E617C003AB65A /* MapViewModels.swift */,
+				2E6E5EB01F762D6C0098B452 /* MapViewPresenter.swift */,
+				2E6E5EB21F762D6D0098B452 /* MapViewRouter.swift */,
+				2E6641F41F1CFB14003AB65A /* MapViewController.swift */,
+				2E6E5EAF1F762D6C0098B452 /* MapViewWorker.swift */,
+				2E6E5EAC1F762B7D0098B452 /* View */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -316,12 +392,27 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2E6E5EBF1F764D930098B452 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E5EC01F764DE30098B452 /* ShopsWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		2E6E5EC21F7650C60098B452 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2E6642351F238DF4003AB65A /* RealmShopManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		2EA98CCC1F361358004F285F /* Realm */ = {
 			isa = PBXGroup;
 			children = (
 				2EA98CCD1F361375004F285F /* RealmFood.swift */,
 				2E6642331F238D6D003AB65A /* RealmShop.swift */,
-				2E6642351F238DF4003AB65A /* RealmShopManager.swift */,
 			);
 			name = Realm;
 			sourceTree = "<group>";
@@ -641,25 +732,50 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6642321F238464003AB65A /* GurunaviShop.swift in Sources */,
+				2E6E5EB31F762D6D0098B452 /* MapViewWorker.swift in Sources */,
 				2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */,
 				2E66422B1F1E617C003AB65A /* MapViewModels.swift in Sources */,
+				2E585DFE1F77610C003AA8DA /* CreateShopMemoInteractor.swift in Sources */,
+				2E6E5ECA1F76CDA30098B452 /* ShopListInteractor.swift in Sources */,
 				2E6642341F238D6D003AB65A /* RealmShop.swift in Sources */,
+				2E6E5EB81F762F220098B452 /* GurunaviAPI.swift in Sources */,
+				2E6E5EC41F765EB90098B452 /* MyShop.swift in Sources */,
+				2E6E5EB61F762D6D0098B452 /* MapViewRouter.swift in Sources */,
 				2E6641F51F1CFB14003AB65A /* MapViewController.swift in Sources */,
 				2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */,
+				2E6E5ECE1F76CDA30098B452 /* ShopListWorker.swift in Sources */,
+				2E585DFC1F77610C003AA8DA /* CreateShopMemoPresenter.swift in Sources */,
 				2E6642291F1E57C7003AB65A /* MarkerInfoContentsView.swift in Sources */,
+				2E6E5ECB1F76CDA30098B452 /* ShopListPresenter.swift in Sources */,
 				2E6642301F238279003AB65A /* HotpepperShop.swift in Sources */,
 				2E2A3CC11F2A3E90004977B5 /* ShopListViewController.swift in Sources */,
 				2E23DD8B1F2E24530088BE5F /* UnwindFadeSegue.swift in Sources */,
 				2E1DDBB01F3E086C00DFA9C6 /* Rating.swift in Sources */,
+				2ED5C9E51F76DCD800A7170D /* ShopDetailWorker.swift in Sources */,
 				2E6E5EAB1F7623190098B452 /* ShopDetailViewController.swift in Sources */,
+				2E6E5ECC1F76CDA30098B452 /* ShopListRouter.swift in Sources */,
+				2ED5C9E21F76DCD800A7170D /* ShopDetailRouter.swift in Sources */,
 				2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */,
+				2E6E5EBE1F762FFA0098B452 /* MarkerType.swift in Sources */,
+				2E6E5ECD1F76CDA30098B452 /* ShopListModels.swift in Sources */,
+				2E6E5EC11F764DE30098B452 /* ShopsWorker.swift in Sources */,
 				2E23DD861F2E10200088BE5F /* CustomTableViewCell.swift in Sources */,
+				2E6E5EB41F762D6D0098B452 /* MapViewPresenter.swift in Sources */,
+				2ED5C9E11F76DCD800A7170D /* ShopDetaiInteractor.swift in Sources */,
+				2E585DFF1F77610C003AA8DA /* CreateShopMemoRouter.swift in Sources */,
+				2E6E5EBC1F762FC20098B452 /* HotpepperAPI.swift in Sources */,
 				2E6641F31F1CFB14003AB65A /* AppDelegate.swift in Sources */,
 				2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */,
 				2E23DD8D1F2E2AC80088BE5F /* SettingViewController.swift in Sources */,
+				2ED5C9E31F76DCD800A7170D /* ShopDetailModels.swift in Sources */,
+				2E585E001F77610C003AA8DA /* CreateShopMemoWorker.swift in Sources */,
+				2E585DFD1F77610C003AA8DA /* CreateShopMemoModels.swift in Sources */,
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
+				2E6E5EBA1F762F7C0098B452 /* CustomGMSMarker.swift in Sources */,
 				2E1DDBB21F3E30D700DFA9C6 /* LicenseViewController.swift in Sources */,
+				2ED5C9E41F76DCD800A7170D /* ShopDetailPresenter.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,
+				2E6E5EB51F762D6D0098B452 /* MapViewInteractor.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

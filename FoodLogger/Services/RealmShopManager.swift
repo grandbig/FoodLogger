@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import CoreLocation
 import RealmSwift
+import SwiftyJSON
 
-class RealmShopManager {
+class RealmShopManager: ShopsProtocol {
     
     /// シングルトン
     static let sharedInstance = RealmShopManager()
@@ -18,16 +20,40 @@ class RealmShopManager {
     init() {
     }
     
-    /**
-     ショップ情報をRealmに保存する処理
-     
-     - parameter shop: ショップデータ
-     - parameter rating: 評価
-     - parameter images: 画像データリスト
-     - parameter mealTIme: 食事種別
-     - parameter memo: メモ
-     */
-    func createShop(shop: HotpepperShop, rating: Int?, images: [Data]?, mealTime: Int, memo: String?) {
+    // MARK: CRUD operations
+    func fetchShops(completionHandler: @escaping ([MyShop]?) -> Void) {
+        var shops: [MyShop]?
+        do {
+            let realmShops = try Realm().objects(RealmShop.self)
+            if realmShops.count > 0 {
+                for realmShop in realmShops {
+                    let coordinate = CLLocationCoordinate2D.init(latitude: realmShop.latitude, longitude: realmShop.longitude)
+                    let shop = MyShop(id: realmShop.id, name: realmShop.name, category: realmShop.category, imageURL: realmShop.imageURL, coordinate: coordinate, shopURL: realmShop.shopURL, rating: realmShop.rating)
+                    shops?.append(shop)
+                }
+            }
+            completionHandler(shops)
+        } catch _ as NSError {
+            completionHandler(shops)
+        }
+    }
+    
+    func fetchShop(id: String, completionHandler: @escaping (MyShop?) -> Void) {
+        var shop: MyShop?
+        do {
+            let realm = try Realm()
+            let realmShops = realm.objects(RealmShop.self).filter("id == '\(id)'")
+            if realmShops.count > 0, let realmShop = realmShops.first {
+                let coordinate = CLLocationCoordinate2D.init(latitude: realmShop.latitude, longitude: realmShop.longitude)
+                shop = MyShop(id: realmShop.id, name: realmShop.name, category: realmShop.category, imageURL: realmShop.imageURL, coordinate: coordinate, shopURL: realmShop.shopURL, rating: realmShop.rating)
+            }
+            completionHandler(shop)
+        } catch _ as NSError {
+            completionHandler(shop)
+        }
+    }
+    
+    func createShop(shop: MyShop, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
         do {
             // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
@@ -40,13 +66,13 @@ class RealmShopManager {
             realmShop.name = shop.name!
             realmShop.category = shop.category!
             realmShop.imageURL = shop.imageURL!
-            realmShop.latitude = shop.latitude!
-            realmShop.longitude = shop.longitude!
+            realmShop.latitude = shop.coordinate!.latitude
+            realmShop.longitude = shop.coordinate!.longitude
             realmShop.shopURL = shop.shopURL!
             realmShop.mealTime = mealTime
             
             // 評価が指定されている場合
-            if let shopRating = rating {
+            if let shopRating = shop.rating {
                 realmShop.rating = shopRating
             }
             // メモが指定されている場合
@@ -67,24 +93,18 @@ class RealmShopManager {
             // Realmへのオブジェクトの書き込み
             try realm.write {
                 realm.create(RealmShop.self, value: realmShop, update: false)
+                completionHandler()
             }
         } catch ShopValidateError.empty {
             print("Error: Shop Data is not right")
+            completionHandler()
         } catch let error as NSError {
             print("Error: code - \(error.code), description - \(error.description)")
+            completionHandler()
         }
     }
     
-    /**
-     Realmに保存したショップ情報を更新する処理
-     
-     - parameter id: ショップID
-     - parameter rating: 評価
-     - parameter images: 画像データリスト
-     - parameter mealTIme: 食事種別
-     - parameter memo: メモ
-     */
-    func updateShop(id: String, rating: Int?, images: [Data]?, mealTime: Int, memo: String?) {
+    func updateShop(id: String, rating: Int?, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
         do {
             let realm = try Realm()
             let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")
@@ -114,31 +134,45 @@ class RealmShopManager {
                 shop.setValue(mealTime, forKey: "mealTime")
                 // 更新日時の更新
                 shop.setValue(Date().timeIntervalSince1970, forKey: "updated")
+                completionHandler()
             }
         } catch let error as NSError {
             print("Error: code - \(error.code), description - \(error.description)")
+            completionHandler()
         }
     }
     
-    /**
-     保存したショップ数の取得処理
-     
-     - returns: 保存したショップの数
-     */
-    func countShop() -> Int {
+    func deleteShops(completionHandler: @escaping () -> Void) {
         do {
             let realm = try Realm()
-            return realm.objects(RealmShop.self).count
-        } catch _ as NSError {
-            return 0
+            try realm.write {
+                realm.deleteAll()
+                completionHandler()
+            }
+        } catch let error as NSError {
+            print("Error: code - \(error.code), description - \(error.description)")
+            completionHandler()
         }
     }
     
-    /**
-     保存したショップ全てを取得する処理
-     
-     - returns: 全てのショップ
-     */
+    func deleteShop(id: String, completionHandler: @escaping () -> Void) {
+        do {
+            let realm = try Realm()
+            let realmShops = realm.objects(RealmShop.self).filter("id == '\(id)'")
+            try realm.write {
+                for realmShop in realmShops {
+                    realm.delete(realmShop)
+                }
+                completionHandler()
+            }
+        } catch let error as NSError {
+            print("Error: code - \(error.code), description - \(error.description)")
+            completionHandler()
+        }
+    }
+    
+    // MARK: Other operations
+    // TODO: 削除予定
     func selectAll() -> Results<RealmShop>? {
         do {
             let realmShops = try Realm().objects(RealmShop.self)
@@ -148,12 +182,7 @@ class RealmShopManager {
         }
     }
     
-    /**
-     指定したIDのショップを取得する処理
-     
-     - parameter id: ショップID
-     - returns: 指定したIDに紐づくショップ
-     */
+    
     func selectById(_ id: String) -> Results<RealmShop>? {
         do {
             let realm = try Realm()
@@ -188,79 +217,12 @@ class RealmShopManager {
     }
     
     /**
-     保存した食品全てを取得する処理
-     
-     - returns: 全ての食品
-     */
-    func selectAllFoods() -> Results<RealmFood>? {
-        do {
-            let realmFoods = try Realm().objects(RealmFood.self)
-            return realmFoods
-        } catch _ as NSError {
-            return nil
-        }
-    }
-    
-    /**
-     指定したIDのショップを削除する処理
-     
-     - parameter text: 足跡のタイトル
-     */
-    func delete(_ id: String) {
-        if let realmShops = selectById(id) {
-            do {
-                let realm = try Realm()
-                try realm.write {
-                    for realmShop in realmShops {
-                        realm.delete(realmShop)
-                    }
-                }
-            } catch let error as NSError {
-                print("Error: code - \(error.code), description - \(error.description)")
-            }
-        }
-    }
-    
-    /**
-     保存した全てのショップを削除する処理
-     */
-    func deleteAll() {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.deleteAll()
-            }
-        } catch let error as NSError {
-            print("Error: code - \(error.code), description - \(error.description)")
-        }
-    }
-    
-    /**
-     指定したIDの食品オブジェクトを削除する処理
-     
-     - parameter id: ショップID
-     */
-    func deleteImage(id: String) {
-        guard let shop = self.selectById(id) else {
-            return
-        }
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.delete(shop[0].foods)
-            }
-        } catch let error as NSError {
-            print("Error: code - \(error.code), description - \(error.description)")
-        }
-    }
-    
-    /**
      ショップデータのバリデーションチェック
      
      - parameter shop: ショップデータ
      - throws: 不足ショップデータがある場合にエラー
      */
-    func validateShop(shop: HotpepperShop) throws {
+    func validateShop(shop: MyShop) throws {
         guard shop.id != nil else {
             throw ShopValidateError.empty
         }
@@ -273,10 +235,10 @@ class RealmShopManager {
         guard shop.imageURL != nil else {
             throw ShopValidateError.empty
         }
-        guard shop.latitude != nil else {
+        guard shop.coordinate?.latitude != nil else {
             throw ShopValidateError.empty
         }
-        guard shop.longitude != nil else {
+        guard shop.coordinate?.longitude != nil else {
             throw ShopValidateError.empty
         }
     }

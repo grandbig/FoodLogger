@@ -93,7 +93,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="SettingIcon"/>
                                 <connections>
-                                    <segue destination="z1N-gF-Qr4" kind="show" id="Rgf-B9-gf5"/>
+                                    <segue destination="z1N-gF-Qr4" kind="show" identifier="Setting" id="Rgf-B9-gf5"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -103,14 +103,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="StoreIcon"/>
                                 <connections>
-                                    <segue destination="K9I-A9-oWB" kind="show" identifier="shopHistorySegue" id="gKt-fm-Zc5"/>
+                                    <segue destination="K9I-A9-oWB" kind="show" identifier="ShopList" id="gKt-fm-Zc5"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="sA3-T9-IRR" id="XBN-7U-O4e"/>
-                        <segue destination="ssc-hI-PSv" kind="show" identifier="shopDetailSegueFromMap" id="mSu-f4-zzX"/>
+                        <segue destination="ssc-hI-PSv" kind="show" identifier="ShopDetail" id="mSu-f4-zzX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1615,7 +1615,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                     <navigationItem key="navigationItem" id="p5W-0S-pgM"/>
                     <connections>
                         <outlet property="tableView" destination="rZ9-sF-NTt" id="1bj-ib-h1I"/>
-                        <segue destination="6Nb-tj-3k2" kind="show" identifier="editShopMemoSegue" id="xnM-7s-S7X"/>
+                        <segue destination="6Nb-tj-3k2" kind="show" identifier="CreateShopMemo" id="xnM-7s-S7X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cco-hE-UrX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1695,7 +1695,7 @@ All icons are based on 'Material Design Icons' by Google. Licensed under CC BY.<
                         <outlet property="loadingView" destination="LFf-zm-yff" id="hGU-of-b7d"/>
                         <outlet property="saveButton" destination="YVx-X7-TvQ" id="pFe-dl-MYQ"/>
                         <outlet property="webView" destination="loc-6x-4yZ" id="Tud-Gy-qRY"/>
-                        <segue destination="6Nb-tj-3k2" kind="show" identifier="createShopMemoSegue" id="y8n-Bd-Co0"/>
+                        <segue destination="6Nb-tj-3k2" kind="show" identifier="CreateShopMemo" id="y8n-Bd-Co0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pMN-rP-hOi" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -29,6 +29,10 @@ class HotpepperShop {
     /// ショップURL
     var shopURL: String?
 
+    init() {
+        
+    }
+    
     /**
      初期化処理
      
