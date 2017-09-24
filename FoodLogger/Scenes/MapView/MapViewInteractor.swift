@@ -38,7 +38,9 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     // MARK: Fetch my shop
     func fetchMyShop(request: MapView.FetchMyShop.Request) {
         worker.fetchShops { (shops) in
-            self.myShops = shops
+            if shops != nil {
+                self.myShops = shops
+            }
             let response = MapView.FetchMyShop.Response(shops: shops)
             self.presenter?.presentFetchedMyShops(response: response)
         }
@@ -48,11 +50,16 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
     func fetchAroundShop(request: MapView.FetchAroundShop.Request) {
         mapViewWorker = MapViewWorker()
         mapViewWorker?.searchShop(latitude: request.latitude, longitude: request.longitude, success: { (shops) in
-            for shop in shops {
-                for myShop in request.myShops where shop.id != myShop.id {
-                    self.searchedShops?.append(shop)
+            if self.myShops != nil {
+                for shop in shops {
+                    for myShop in request.myShops where shop.id != myShop.id {
+                        self.searchedShops?.append(shop)
+                    }
                 }
+            } else {
+                self.searchedShops = shops
             }
+            
             let response = MapView.FetchAroundShop.Response(shops: self.searchedShops)
             self.presenter?.presentFetchedAroundShops(response: response)
         }, failure: { (error) in
