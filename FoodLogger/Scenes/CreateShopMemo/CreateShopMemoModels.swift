@@ -19,14 +19,58 @@ enum CreateShopMemo {
         struct Request {
         }
         struct Response {
-            var shop: HotpepperShop?
+            var shop: MyShop?
         }
         struct ViewModel {
             struct SavedShop {
-                var shop: HotpepperShop?
+                var shop: MyShop?
                 var isSaved: Bool
             }
             var savedShop: SavedShop
+        }
+    }
+    
+    // MARK: Create my shop
+    enum CreateMyShop {
+        struct Request {
+            var rating: Int
+            var memo: String
+            var images: [UIImage]
+            var mealTime: Int
+        }
+        struct Response {
+            var isSaved: Bool
+            var message: String?
+        }
+        struct ViewModel {
+            var isSaved: Bool
+            var message: String?
+        }
+    }
+    
+    // MARK: Update my shop
+    enum UpdateMyShop {
+        struct Request {
+            
+        }
+        struct Response {
+            
+        }
+        struct ViewModel {
+            
+        }
+    }
+    
+    // MARK: Upload image
+    enum UploadImage {
+        struct Request {
+            
+        }
+        struct Response {
+            
+        }
+        struct ViewModel {
+            
         }
     }
 }

@@ -15,6 +15,12 @@ class MyShop: HotpepperShop {
     var coordinate: CLLocationCoordinate2D?
     /// 評価
     var rating: Int = 1
+    /// 食品画像
+    var foodImages: [UIImage] = []
+    /// メモ
+    var memo: String = ""
+    /// 食事種別
+    var mealTime: Int = 0
     /// 作成日
     var created: Double = Date().timeIntervalSince1970
     

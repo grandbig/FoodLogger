@@ -20,11 +20,17 @@ import RealmSwift
 
 protocol CreateShopMemoDisplayLogic: class {
     func displayShopStatus(viewModel: CreateShopMemo.FetchShopStatus.ViewModel)
+    func displayCreatedMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel)
+    func displayUpdatedMyShop(viewModel: CreateShopMemo.UpdateMyShop.ViewModel)
+    func displayFailureToCreateMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel)
 }
 
-class CreateShopMemoViewController: UIViewController, CreateShopMemoDisplayLogic {
+class CreateShopMemoViewController: UIViewController, UINavigationControllerDelegate, CreateShopMemoDisplayLogic {
     var interactor: CreateShopMemoBusinessLogic?
     var router: (NSObjectProtocol & CreateShopMemoRoutingLogic & CreateShopMemoDataPassing)?
+    /// TODO: 食品画像リスト
+    var images: [UIImage]! = [UIImage]()
+    var selectedIndexPath: IndexPath!
     
     // MARK: Object lifecycle
     
@@ -101,6 +107,11 @@ class CreateShopMemoViewController: UIViewController, CreateShopMemoDisplayLogic
         
         createToolBar()
         determineMealTime()
+        
+        // TODO: 別導線から遷移してきた場合の対応
+//        if !self.isRightButton {
+//            self.navRightButton.isHidden = true
+//        }
     }
     
     func fetchShopStatus() {
@@ -110,8 +121,81 @@ class CreateShopMemoViewController: UIViewController, CreateShopMemoDisplayLogic
     
     func displayShopStatus(viewModel: CreateShopMemo.FetchShopStatus.ViewModel) {
         if let shop = viewModel.savedShop.shop {
-            
+            // 保存済みショップの場合
+            ratingBar.value = CGFloat(shop.rating)
+            placeTextArea.text = shop.memo
+            images = shop.foodImages
+            segmentedControl.selectedSegmentIndex = shop.mealTime
         }
+    }
+    
+    // MARK: Save my shop
+    @IBAction func saveShop(_ sender: Any) {
+        createMyShop()
+    }
+    
+    func createMyShop() {
+        // 完全な固定文言なのでViewControllerに書く
+        // 確認アラートを表示
+        self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
+            // ローディングビューの表示
+            self.showLoadingView()
+            
+            let request = CreateShopMemo.CreateMyShop.Request(rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: self.images, mealTime: self.segmentedControl.selectedSegmentIndex)
+            self.interactor?.createMyShop(request: request)
+        }) {}
+    }
+    
+    func displayCreatedMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel) {
+        // ローディングビューの非表示
+        self.hiddenLoadingView()
+        
+        // 保存完了アラートを表示
+        self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
+            //self.isSaved = true
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+    }
+    
+    func displayFailureToCreateMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel) {
+        // ローディングビューの非表示
+        self.hiddenLoadingView()
+        let defaultMessage = "ショップへの来店履歴の保存に失敗しました。"
+        self.showAlert(title: "確認", message: viewModel.message ?? defaultMessage, completion: {})
+    }
+    
+    // MARK: Update My Shop
+    func updateMyShop() {
+        // 完全な固定文言なのでViewControllerに書く
+        // 確認アラートを表示
+        self.showConfirm(title: "確認", message: "このショップへの記録を更新しますか？", okCompletion: {
+            // ローディングビューの表示
+            self.showLoadingView()
+        }) {}
+    }
+    
+    func displayUpdatedMyShop(viewModel: CreateShopMemo.UpdateMyShop.ViewModel) {
+        
+    }
+    
+    // MARK: Upload Image
+    func uploadImage() {
+        
+    }
+    
+    func displayUploadedImage() {
+        
+    }
+    
+    // MARK: Show Shop Info
+    @IBAction func showShopInfo(_ sender: Any) {
+        // TODO: 処理の実装が必要
+//        let shopURL = NSURL(string: self.shop.shopURL!)
+//
+//        if let shopURL = shopURL {
+//            let safariViewController = SFSafariViewController(url: shopURL as URL)
+//            present(safariViewController, animated: true, completion: nil)
+//        }
     }
     
     // MARK: Other
@@ -152,6 +236,42 @@ class CreateShopMemoViewController: UIViewController, CreateShopMemoDisplayLogic
                 self.segmentedControl.selectedSegmentIndex = 3
             }
         }
+    }
+    
+    /// カメラビューの表示処理
+    func pickImageFromCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = UIImagePickerControllerSourceType.camera
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    /// アルバムビューの表示処理
+    func pickImageFromAlbum() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let controller = UIImagePickerController()
+            controller.delegate = self
+            controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    /**
+     ローディングビューの表示
+     */
+    private func showLoadingView() {
+        self.loadingView.isHidden = false
+        self.indicatorView.startAnimating()
+    }
+    
+    /**
+     ローディングビューの非表示
+     */
+    private func hiddenLoadingView() {
+        self.loadingView.isHidden = true
+        self.indicatorView.stopAnimating()
     }
 }
 
@@ -243,18 +363,12 @@ extension CreateShopMemoViewController: UITextFieldDelegate {
 class CreateShopMemoViewController: UIViewController, UINavigationControllerDelegate {
     /// 現在地
     internal var myLocation: CLLocation?
-    /// ショップ
-    internal var shop: HotpepperShop!
     /// ショップの保存済/未保存フラグ
     internal var isSaved: Bool = false
     /// 店舗情報ボタンの表示/非表示フラグ
     internal var isRightButton: Bool = false
-    /// 食品画像リスト
-    internal var images: [UIImage]! = [UIImage]()
     /// 選択したIndexPath
     internal var selectedIndexPath: IndexPath!
-    /// Realm管理マネージャ
-    private var realmShopManager = RealmShopManager.sharedInstance
     /// 現在地からショップまでの許容できる最大距離
     private var maxDistance: Double = 300
     
@@ -271,163 +385,13 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
         
         if let shop = self.realmShopManager.selectById(shopId)?[0] {
             // 保存済みショップの場合
-            self.ratingBar.value = CGFloat(shop.rating)
-            self.placeTextArea.text = shop.memo
-            let foods = shop.foods
-            for food in foods {
-                let image = UIImage(data: food.imageData)
-                self.images.append(image!)
-            }
-            self.segmentedControl.selectedSegmentIndex = shop.mealTime
             self.isSaved = true
-        }
-        
-        if !self.isRightButton {
-            self.navRightButton.isHidden = true
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: Button Action
-    @IBAction func saveShop(_ sender: Any) {
-        if !self.isSaved {
-            // 新規保存の場合
-            self.saveShop()
-        } else {
-            // 既存の更新の場合
-            self.updateShop()
-        }
-    }
-    
-    @IBAction func showShopInfo(_ sender: Any) {
-        let shopURL = NSURL(string: self.shop.shopURL!)
-        
-        if let shopURL = shopURL {
-            let safariViewController = SFSafariViewController(url: shopURL as URL)
-            present(safariViewController, animated: true, completion: nil)
-        }
-    }
-    
-    // MARK: Other
-    
-    /// カメラビューの表示処理
-    func pickImageFromCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
-            let controller = UIImagePickerController()
-            controller.delegate = self
-            controller.sourceType = UIImagePickerControllerSourceType.camera
-            present(controller, animated: true, completion: nil)
-        }
-    }
-    
-    /// アルバムビューの表示処理
-    func pickImageFromAlbum() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
-            let controller = UIImagePickerController()
-            controller.delegate = self
-            controller.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            present(controller, animated: true, completion: nil)
-        }
-    }
-    
-    /**
-     ローディングビューの表示
-     */
-    private func showLoadingView() {
-        self.loadingView.isHidden = false
-        self.indicatorView.startAnimating()
-    }
-    
-    /**
-     ローディングビューの非表示
-     */
-    private func hiddenLoadingView() {
-        self.loadingView.isHidden = true
-        self.indicatorView.stopAnimating()
-    }
-    
-    /**
-     2点間の距離を取得
-     
-     - parameter from: 1つ目の位置情報
-     - parameter to: 2つ目のいち1つ目の位置情報
-     - returns: 2点間の距離 (単位は [m] )
-     */
-    private func getDistance(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
-        let fromLocation = CLLocation(latitude: from.latitude, longitude: to.longitude)
-        let toLocation = CLLocation(latitude: to.latitude, longitude: to.longitude)
-        return toLocation.distance(from: fromLocation)
-    }
-    
-    /**
-     ショップの新規保存処理
-     */
-    private func saveShop() {
-        let globalQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
-        let mainQueue = DispatchQueue.main
-        
-        // 確認アラートを表示
-        self.showConfirm(title: "確認", message: "このショップへの来店履歴を保存しますか？", okCompletion: {
-            // ローディングビューの表示
-            self.showLoadingView()
-            
-            globalQueue.async {
-                guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
-                    // ショップの位置が不明な場合
-                    mainQueue.async {
-                        // ローディングビューの非表示
-                        self.hiddenLoadingView()
-                        self.showAlert(title: "確認", message: "ショップの情報が正しく取得できません。", completion: {})
-                    }
-                    return
-                }
-                guard let coordinate = self.myLocation?.coordinate else {
-                    // 現在地が不明な場合
-                    mainQueue.async {
-                        // ローディングビューの非表示
-                        self.hiddenLoadingView()
-                        self.showAlert(title: "確認", message: "現在地が正しく取得できません。", completion: {})
-                    }
-                    return
-                }
-                let shopLocation = CLLocationCoordinate2D(latitude: shopLatitude, longitude: shopLongitude)
-                if self.getDistance(from: coordinate, to: shopLocation) > self.maxDistance {
-                    // ショップが現在地から遠い場合
-                    mainQueue.async {
-                        // ローディングビューの非表示
-                        self.hiddenLoadingView()
-                        self.showAlert(title: "確認", message: "ショップに近づいて再度お試しください", completion: {})
-                    }
-                    return
-                }
-                // 画像データの変換
-                var imageDatas: [Data]? = nil
-                if let images = self.images, images.count > 0 {
-                    imageDatas = [Data]()
-                    for image in images {
-                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
-                        imageDatas?.append(imageData)
-                    }
-                }
-                // データを保存
-                self.realmShopManager.createShop(shop: self.shop, rating: Int(self.ratingBar.value), images: imageDatas, mealTime: self.segmentedControl.selectedSegmentIndex, memo: self.placeTextArea.text)
-                
-                mainQueue.async {
-                    // ローディングビューの非表示
-                    self.hiddenLoadingView()
-                    
-                    // 保存完了アラートを表示
-                    self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
-                        self.isSaved = true
-                        self.navigationController?.popToRootViewController(animated: true)
-                    })
-                }
-            }
-        }) {}
     }
     
     /**

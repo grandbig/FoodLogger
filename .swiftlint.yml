@@ -4,13 +4,15 @@ disabled_rules:
 # ネスト1つで怒られるのでDisableにしたい
 - nesting
 
+- force_cast
+
 # 追加したOSSライブラリは対象に含めたくない
 excluded:
 - Pods/
 - Podfile
 - Podfile.lock
-- HelpSenseOfDirectionTests/
-- HelpSenseOfDirectionUITests/
+- FoodLoggerTests/
+- FoodLoggerUITests/
 
 # 1行あたりの文字数制限を300に変更
 # プロジェクト作成時にデフォルトで追加されるコメントをひっかけないため

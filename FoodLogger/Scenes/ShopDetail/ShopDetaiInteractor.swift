@@ -20,11 +20,10 @@ protocol ShopDetailBusinessLogic {
 
 protocol ShopDetailDataStore {
     var shop: HotpepperShop! { get set }
-    var location: CLLocation { get set }
+    var location: CLLocation! { get set }
 }
 
 class ShopDetailInteractor: ShopDetailBusinessLogic, ShopDetailDataStore {
-    
     var presenter: ShopDetailPresentationLogic?
     var worker = ShopsWorker(dataStore: RealmShopManager.sharedInstance)
     var shop: HotpepperShop!

@@ -14,6 +14,9 @@ import UIKit
 
 protocol CreateShopMemoPresentationLogic {
     func presentShopStatus(response: CreateShopMemo.FetchShopStatus.Response)
+    func presentCreatedMyShop(response: CreateShopMemo.CreateMyShop.Response)
+    func presentUpdatedMyShop(response: CreateShopMemo.UpdateMyShop.Response)
+    func presentUploadedImage(response: CreateShopMemo.UploadImage.Response)
 }
 
 class CreateShopMemoPresenter: CreateShopMemoPresentationLogic {
@@ -26,8 +29,30 @@ class CreateShopMemoPresenter: CreateShopMemoPresentationLogic {
         if response.shop != nil {
             isSaved = true
         }
-        var displaySavedShop = CreateShopMemo.FetchShopStatus.ViewModel.SavedShop(shop: response.shop, isSaved: isSaved)
+        let displaySavedShop = CreateShopMemo.FetchShopStatus.ViewModel.SavedShop(shop: response.shop, isSaved: isSaved)
         let viewModel = CreateShopMemo.FetchShopStatus.ViewModel(savedShop: displaySavedShop)
         viewController?.displayShopStatus(viewModel: viewModel)
+    }
+    
+    // MARK: Created my shop
+    func presentCreatedMyShop(response: CreateShopMemo.CreateMyShop.Response) {
+        let viewModel = CreateShopMemo.CreateMyShop.ViewModel(isSaved: response.isSaved, message: response.message)
+        if response.isSaved {
+            // 保存に成功した場合
+            viewController?.displayCreatedMyShop(viewModel: viewModel)
+            return
+        }
+        // 保存に失敗した場合
+        viewController?.displayFailureToCreateMyShop(viewModel: viewModel)
+    }
+    
+    // MARK: Updated my shop
+    func presentUpdatedMyShop(response: CreateShopMemo.UpdateMyShop.Response) {
+        
+    }
+    
+    // MARK: Uploaded image
+    func presentUploadedImage(response: CreateShopMemo.UploadImage.Response) {
+        
     }
 }

@@ -46,6 +46,13 @@ class RealmShopManager: ShopsProtocol {
             if realmShops.count > 0, let realmShop = realmShops.first {
                 let coordinate = CLLocationCoordinate2D.init(latitude: realmShop.latitude, longitude: realmShop.longitude)
                 shop = MyShop(id: realmShop.id, name: realmShop.name, category: realmShop.category, imageURL: realmShop.imageURL, coordinate: coordinate, shopURL: realmShop.shopURL, rating: realmShop.rating)
+                shop?.memo = realmShop.memo
+                shop?.mealTime = realmShop.mealTime
+                for food in realmShop.foods {
+                    if let image = UIImage(data: food.imageData) {
+                        shop?.foodImages.append(image)
+                    }
+                }
             }
             completionHandler(shop)
         } catch _ as NSError {
@@ -53,7 +60,7 @@ class RealmShopManager: ShopsProtocol {
         }
     }
     
-    func createShop(shop: MyShop, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
+    func createShop(shop: MyShop, completionHandler: @escaping () -> Void) {
         do {
             // ショップデータのバリデーションチェック
             try validateShop(shop: shop)
@@ -69,22 +76,15 @@ class RealmShopManager: ShopsProtocol {
             realmShop.latitude = shop.coordinate!.latitude
             realmShop.longitude = shop.coordinate!.longitude
             realmShop.shopURL = shop.shopURL!
-            realmShop.mealTime = mealTime
-            
-            // 評価が指定されている場合
-            if let shopRating = shop.rating {
-                realmShop.rating = shopRating
-            }
-            // メモが指定されている場合
-            if let shopMemo = memo {
-                realmShop.memo = shopMemo
-            }
+            realmShop.mealTime = shop.mealTime
+            realmShop.rating = shop.rating
+            realmShop.memo = shop.memo
             // 画像が指定されている場合
-            if let foodImages = images {
+            if shop.foodImages.count > 0 {
                 let foods = List<RealmFood>()
-                for image in foodImages {
+                for image in shop.foodImages {
                     let realmFood = RealmFood()
-                    realmFood.imageData = image
+                    realmFood.imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
                     foods.append(realmFood)
                 }
                 realmShop.foods.append(objectsIn: foods)

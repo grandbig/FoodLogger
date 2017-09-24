@@ -120,6 +120,7 @@ class ShopDetailViewController: UIViewController, ShopDetailDisplayLogic {
     // MARK: Button Action
     @IBAction func touchSaveButton(_ sender: Any) {
         self.performSegue(withIdentifier: "routeToCreateShopMemoSegue", sender: nil)
+        router?.routeToCreateShopMemo(segue: nil)
     }
 }
 

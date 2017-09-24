@@ -31,8 +31,8 @@ class ShopsWorker {
         }
     }
     
-    func createShop(shop: MyShop, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
-        dataStore.createShop(shop: shop, images: images, mealTime: mealTime, memo: memo) {
+    func createShop(shop: MyShop, completionHandler: @escaping () -> Void) {
+        dataStore.createShop(shop: shop) {
             DispatchQueue.main.async {
                 completionHandler()
             }
@@ -86,11 +86,8 @@ protocol ShopsProtocol {
      ショップ情報をRealmに保存する処理
      
      - parameter shop: ショップデータ
-     - parameter images: 画像データリスト
-     - parameter mealTIme: 食事種別
-     - parameter memo: メモ
      */
-    func createShop(shop: MyShop, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void)
+    func createShop(shop: MyShop, completionHandler: @escaping () -> Void)
     
     /**
      Realmに保存したショップ情報を更新する処理

@@ -170,7 +170,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     
     func transitionToShopDetail(viewModel: MapView.SelectShop.ViewModel) {
         // 画面遷移
-        performSegue(withIdentifier: "routeToShopDetailSegue", sender: nil)
+        router?.routeToShopDetail(segue: nil)
     }
     
     // MARK: Other

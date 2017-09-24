@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol MapViewRoutingLogic {
     func routeToShopList(segue: UIStoryboardSegue?)
+    func routeToShopDetail(segue: UIStoryboardSegue?)
 }
 
 protocol MapViewDataPassing {
