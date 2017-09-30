@@ -165,6 +165,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
             // 既にマップ上に検索結果が表示されている場合
             // 全てのマーカを削除
             mapView.clear()
+            
             // 保存済みショップマーカをプロット
             fetchMyShopOnLoad()
         }

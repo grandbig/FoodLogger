@@ -84,11 +84,13 @@ class MapViewInteractor: MapViewBusinessLogic, MapViewDataStore {
         
         mapViewWorker = MapViewWorker()
         mapViewWorker?.searchShop(latitude: request.latitude, longitude: request.longitude, success: { (shops) in
-            if let myShops = self.myShops {
+            if let myShops = self.myShops, myShops.count > 0 {
                 // 登録済みショップとの差分計算
+                self.searchedShops = []
                 for shop in shops {
                     for myShop in myShops where shop.id != myShop.id {
                         self.searchedShops?.append(shop)
+                        break
                     }
                 }
             } else {
