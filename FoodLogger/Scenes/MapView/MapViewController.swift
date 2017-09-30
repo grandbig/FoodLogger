@@ -180,7 +180,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate, MapVi
     }
     
     // MARK: Transition to shop detail
-    func selectShop(marker: CustomGMSMarker,shop: HotpepperShop) {
+    func selectShop(marker: CustomGMSMarker, shop: HotpepperShop) {
         let latitude = mapView.myLocation?.coordinate.latitude ?? 0
         let longitude = mapView.myLocation?.coordinate.longitude ?? 0
         let request = MapView.SelectShop.Request(marker: marker, shop: shop, latitude: latitude, longitude: longitude)

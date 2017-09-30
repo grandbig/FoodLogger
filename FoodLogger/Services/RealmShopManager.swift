@@ -22,14 +22,14 @@ class RealmShopManager: ShopsProtocol {
     
     // MARK: CRUD operations
     func fetchShops(completionHandler: @escaping ([MyShop]?) -> Void) {
-        var shops: [MyShop]?
+        var shops = [MyShop]()
         do {
             let realmShops = try Realm().objects(RealmShop.self)
             if realmShops.count > 0 {
                 for realmShop in realmShops {
                     let coordinate = CLLocationCoordinate2D.init(latitude: realmShop.latitude, longitude: realmShop.longitude)
                     let shop = MyShop(id: realmShop.id, name: realmShop.name, category: realmShop.category, imageURL: realmShop.imageURL, coordinate: coordinate, shopURL: realmShop.shopURL, rating: realmShop.rating)
-                    shops?.append(shop)
+                    shops.append(shop)
                 }
             }
             completionHandler(shops)

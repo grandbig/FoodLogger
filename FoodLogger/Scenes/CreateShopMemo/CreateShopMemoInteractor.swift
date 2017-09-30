@@ -43,8 +43,13 @@ class CreateShopMemoInteractor: CreateShopMemoBusinessLogic, CreateShopMemoDataS
     
     // MARK: Create my shop
     func createMyShop(request: CreateShopMemo.CreateMyShop.Request) {
-        let myShop = shop as! MyShop
         let myCoordinate = location.coordinate
+        var coordinate: CLLocationCoordinate2D?
+        if let latitude = shop.latitude, let longitude = shop.longitude {
+            coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        }
+        let myShop = MyShop(id: shop.id, name: shop.name, category: shop.category, imageURL: shop.imageURL, coordinate: coordinate, shopURL: shop.shopURL, rating: request.rating)
+        
         if let shopCoordinate = myShop.coordinate, getDistance(from: shopCoordinate, to: myCoordinate) > 500 {
             // 現在地がショップから離れすぎている場合
             let response = CreateShopMemo.CreateMyShop.Response(isSaved: false, message: "ショップに近づいて再度お試しください")

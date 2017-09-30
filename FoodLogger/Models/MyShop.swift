@@ -35,9 +35,10 @@ class MyShop: HotpepperShop {
      - parameter shopURL: ショップURL
      - parameter rating: 評価
      */
-    init(id: String, name: String, category: String, imageURL: String, coordinate: CLLocationCoordinate2D, shopURL: String, rating: Int) {
-        super.init(id: id, name: name, category: category, imageURL: imageURL, latitude: coordinate.latitude, longitude: coordinate.longitude, shopURL: shopURL)
-        self.rating = rating
+    init(id: String?, name: String?, category: String?, imageURL: String?, coordinate: CLLocationCoordinate2D?, shopURL: String?, rating: Int?) {
+        super.init(id: id, name: name, category: category, imageURL: imageURL, latitude: coordinate?.latitude, longitude: coordinate?.longitude, shopURL: shopURL)
+        self.coordinate = coordinate
+        self.rating = rating ?? 1
     }
     
     /**
