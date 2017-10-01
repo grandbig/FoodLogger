@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ShopsWorker {
     var dataStore: ShopsProtocol
@@ -39,7 +40,7 @@ class ShopsWorker {
         }
     }
     
-    func updateShop(id: String, rating: Int?, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
+    func updateShop(id: String, rating: Int?, images: [UIImage]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
         dataStore.updateShop(id: id, rating: rating, images: images, mealTime: mealTime, memo: memo) {
             DispatchQueue.main.async {
                 completionHandler()
@@ -98,7 +99,7 @@ protocol ShopsProtocol {
      - parameter mealTIme: 食事種別
      - parameter memo: メモ
      */
-    func updateShop(id: String, rating: Int?, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void)
+    func updateShop(id: String, rating: Int?, images: [UIImage]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void)
     
     /**
      保存した全てのショップを削除する処理

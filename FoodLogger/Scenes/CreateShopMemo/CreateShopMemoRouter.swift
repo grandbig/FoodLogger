@@ -14,6 +14,7 @@ import UIKit
 
 @objc protocol CreateShopMemoRoutingLogic {
     func routeToMapView(segue: UIStoryboardSegue?)
+    func routeShopList(segue: UIStoryboardSegue?)
 }
 
 protocol CreateShopMemoDataPassing {
@@ -39,16 +40,38 @@ class CreateShopMemoRouter: NSObject, CreateShopMemoRoutingLogic, CreateShopMemo
             navigateToMapView(source: viewController!, destination: destinationVC)
         }
     }
+    
+    func routeToShopList(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! ShopListViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToShopList(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "ShopListViewController") as! ShopListViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToShopList(source: dataStore!, destination: &destinationDS)
+            navigateToShopList(source: viewController!, destination: destinationVC)
+        }
+    }
 
     // MARK: Navigation
     
     func navigateToMapView(source: CreateShopMemoViewController, destination: MapViewController) {
         source.show(destination, sender: nil)
     }
+    
+    func navigateToShopList(source: CreateShopMemoViewController, destination: ShopListViewController) {
+        source.show(destination, sender: nil)
+    }
 
     // MARK: Passing data
     
     func passDataToMapView(source: CreateShopMemoDataStore, destination: inout MapViewDataStore) {
+        destination.savedView = true
+    }
+    
+    func passDataToShopList(source: CreateShopMemoDataStore, destination: inout ShopListDataStore) {
         destination.savedView = true
     }
 }

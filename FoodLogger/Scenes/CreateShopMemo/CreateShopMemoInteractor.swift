@@ -54,22 +54,31 @@ class CreateShopMemoInteractor: CreateShopMemoBusinessLogic, CreateShopMemoDataS
             // 現在地がショップから離れすぎている場合
             let response = CreateShopMemo.CreateMyShop.Response(isSaved: false, message: "ショップに近づいて再度お試しください")
             presenter?.presentCreatedMyShop(response: response)
+            return
         }
         
-        myShop.rating = request.rating
         myShop.memo = request.memo
         myShop.mealTime = request.mealTime
         myShop.foodImages = request.images
         
         worker.createShop(shop: myShop) {
-            let response = CreateShopMemo.CreateMyShop.Response(isSaved: true, message: nil)
+            let response = CreateShopMemo.CreateMyShop.Response(isSaved: true, message: "ショップへの来店履歴を保存しました。")
             self.presenter?.presentCreatedMyShop(response: response)
         }
     }
     
     // MARK: Update my shop
     func updateMyShop(request: CreateShopMemo.UpdateMyShop.Request) {
+        guard let shopId = shop.id else {
+            let response = CreateShopMemo.UpdateMyShop.Response(isSaved: false, message: "ショップ情報が取得できませんでした。再度お試しください。")
+            presenter?.presentUpdatedMyShop(response: response)
+            return
+        }
         
+        worker.updateShop(id: shopId, rating: request.rating, images: request.images, mealTime: request.mealTime, memo: request.memo) {
+            let response = CreateShopMemo.UpdateMyShop.Response(isSaved: true, message: "ショップへの来店履歴を更新しました。")
+            self.presenter?.presentUpdatedMyShop(response: response)
+        }
     }
     
     // MARK: Upload image

@@ -48,7 +48,15 @@ class CreateShopMemoPresenter: CreateShopMemoPresentationLogic {
     
     // MARK: Updated my shop
     func presentUpdatedMyShop(response: CreateShopMemo.UpdateMyShop.Response) {
+        let viewModel = CreateShopMemo.UpdateMyShop.ViewModel(isSaved: response.isSaved, message: response.message)
+        if response.isSaved {
+            // 更新に成功した場合
+            viewController?.displayUpdatedMyShop(viewModel: viewModel)
+            return
+        }
         
+        // 更新に失敗した場合
+        viewController?.displayFailureToUpdateMyShop(viewModel: viewModel)
     }
     
     // MARK: Uploaded image

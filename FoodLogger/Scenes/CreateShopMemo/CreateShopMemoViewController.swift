@@ -23,6 +23,7 @@ protocol CreateShopMemoDisplayLogic: class {
     func displayCreatedMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel)
     func displayUpdatedMyShop(viewModel: CreateShopMemo.UpdateMyShop.ViewModel)
     func displayFailureToCreateMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel)
+    func displayFailureToUpdateMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel)
 }
 
 class CreateShopMemoViewController: UIViewController, UINavigationControllerDelegate, CreateShopMemoDisplayLogic {
@@ -146,9 +147,9 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
     func displayCreatedMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel) {
         // ローディングビューの非表示
         self.hiddenLoadingView()
-        
+        let defaultMessage = "ショップへの来店履歴を保存しました"
         // 保存完了アラートを表示
-        self.showAlert(title: "確認", message: "ショップへの来店履歴を保存しました", completion: {
+        self.showAlert(title: "確認", message: viewModel.message ?? defaultMessage, completion: {
             //self.isSaved = true
             self.router?.routeToMapView(segue: nil)
         })
@@ -168,11 +169,28 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
         self.showConfirm(title: "確認", message: "このショップへの記録を更新しますか？", okCompletion: {
             // ローディングビューの表示
             self.showLoadingView()
+            // 更新リクエストの発行
+            let request = CreateShopMemo.UpdateMyShop.Request(rating: Int(self.ratingBar.value), memo: self.placeTextArea.text, images: self.images, mealTime: self.segmentedControl.selectedSegmentIndex)
+            self.interactor?.updateMyShop(request: request)
         }) {}
     }
     
     func displayUpdatedMyShop(viewModel: CreateShopMemo.UpdateMyShop.ViewModel) {
-        
+        // ローディングビューの非表示
+        self.hiddenLoadingView()
+        let defaultMessage = "ショップへの来店履歴を更新しました。"
+        // 保存完了アラートを表示
+        self.showAlert(title: "確認", message: viewModel.message ?? defaultMessage, completion: {
+            // ショップ一覧に戻る
+            self.router?.routeShopList(segue: nil)
+        })
+    }
+    
+    func displayFailureToUpdateMyShop(viewModel: CreateShopMemo.CreateMyShop.ViewModel) {
+        // ローディングビューの非表示
+        self.hiddenLoadingView()
+        let defaultMessage = "ショップへの来店履歴の更新に失敗しました。"
+        self.showAlert(title: "確認", message: viewModel.message ?? defaultMessage, completion: {})
     }
     
     // MARK: Upload Image
@@ -355,86 +373,3 @@ extension CreateShopMemoViewController: UITextFieldDelegate {
         return true
     }
 }
-
-/*
-class CreateShopMemoViewController: UIViewController, UINavigationControllerDelegate {
-    /// 現在地
-    internal var myLocation: CLLocation?
-    /// ショップの保存済/未保存フラグ
-    internal var isSaved: Bool = false
-    /// 店舗情報ボタンの表示/非表示フラグ
-    internal var isRightButton: Bool = false
-    /// 選択したIndexPath
-    internal var selectedIndexPath: IndexPath!
-    /// 現在地からショップまでの許容できる最大距離
-    private var maxDistance: Double = 300
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let accuracy = self.myLocation?.horizontalAccuracy, accuracy > 10 {
-            self.maxDistance = accuracy
-        }
-        
-        guard let shopId = self.shop.id else {
-            return
-        }
-        
-        if let shop = self.realmShopManager.selectById(shopId)?[0] {
-            // 保存済みショップの場合
-            self.isSaved = true
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    /**
-     ショップの更新処理
-     */
-    private func updateShop() {
-        let globalQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default)
-        let mainQueue = DispatchQueue.main
-        
-        // 確認アラートを表示
-        self.showConfirm(title: "確認", message: "このショップへの記録を更新しますか？", okCompletion: {
-            // ローディングビューの表示
-            self.showLoadingView()
-            
-            globalQueue.async {
-                // 画像データの変換
-                var imageDatas: [Data]? = nil
-                if let images = self.images, images.count > 0 {
-                    imageDatas = [Data]()
-                    for image in images {
-                        let imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
-                        imageDatas?.append(imageData)
-                    }
-                }
-                // データを更新
-                guard let shopId = self.shop.id else {
-                    mainQueue.async {
-                        // ローディングビューの非表示
-                        self.hiddenLoadingView()
-                        self.showAlert(title: "確認", message: "ショップ情報が正しく取得できません。", completion: {})
-                    }
-                    return
-                }
-                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), images: imageDatas, mealTime: self.segmentedControl.selectedSegmentIndex, memo: self.placeTextArea.text)
-                
-                mainQueue.async {
-                    // ローディングビューの非表示
-                    self.hiddenLoadingView()
-                    // 保存完了アラートを表示
-                    self.showAlert(title: "確認", message: "ショップの記録を更新しました", completion: {
-                        self.isSaved = true
-                        self.navigationController?.popViewController(animated: true)
-                    })
-                }
-            }
-        }) {}
-    }
-}
- */

@@ -104,7 +104,7 @@ class RealmShopManager: ShopsProtocol {
         }
     }
     
-    func updateShop(id: String, rating: Int?, images: [Data]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
+    func updateShop(id: String, rating: Int?, images: [UIImage]?, mealTime: Int, memo: String?, completionHandler: @escaping () -> Void) {
         do {
             let realm = try Realm()
             let shop = realm.objects(RealmShop.self).filter("id == '\(id)'")
@@ -125,7 +125,7 @@ class RealmShopManager: ShopsProtocol {
                     
                     let foods = images.map { (image) -> RealmFood in
                         let food = RealmFood()
-                        food.imageData = image
+                        food.imageData = NSData.init(data: UIImageJPEGRepresentation(image, 1.0)!) as Data
                         return realm.create(RealmFood.self, value: food, update: true)
                     }
                     shop[0].foods.append(objectsIn: foods)
