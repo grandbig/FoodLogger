@@ -12,24 +12,32 @@
 
 import UIKit
 
-protocol ShopListBusinessLogic  {
+protocol ShopListBusinessLogic {
     func fetchMyShop(request: ShopList.FetchMyShop.Request)
+    func selectShop(request: ShopList.SelectShop.Request)
 }
 
 protocol ShopListDataStore {
-    //var name: String { get set }
+    var shop: HotpepperShop! { get set }
 }
 
-class ShopListInteractor: ShopListBusinessLogic, ShopListDataStore  {
+class ShopListInteractor: ShopListBusinessLogic, ShopListDataStore {
     var presenter: ShopListPresentationLogic?
     var worker = ShopsWorker(dataStore: RealmShopManager.sharedInstance)
+    var shop: HotpepperShop!
   
     // MARK: Fetch my shop
-    
     func fetchMyShop(request: ShopList.FetchMyShop.Request) {
         worker.fetchShops { (shops) in
             let response = ShopList.FetchMyShop.Response(shops: shops)
             self.presenter?.presentFetchedMyShops(response: response)
         }
+    }
+    
+    // MARK: Select one shop
+    func selectShop(request: ShopList.SelectShop.Request) {
+        shop = request.shop
+        let response = ShopList.SelectShop.Response()
+        self.presenter?.presentSelectedShop(response: response)
     }
 }

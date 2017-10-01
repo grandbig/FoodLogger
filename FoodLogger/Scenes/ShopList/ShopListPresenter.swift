@@ -14,13 +14,13 @@ import UIKit
 
 protocol ShopListPresentationLogic {
     func presentFetchedMyShops(response: ShopList.FetchMyShop.Response)
+    func presentSelectedShop(response: ShopList.SelectShop.Response)
 }
 
 class ShopListPresenter: ShopListPresentationLogic {
     weak var viewController: ShopListDisplayLogic?
     
     // MARK: Present my shop
-  
     func presentFetchedMyShops(response: ShopList.FetchMyShop.Response) {
         var displayShops: [MyShop] = []
         if let shops = response.shops {
@@ -28,5 +28,10 @@ class ShopListPresenter: ShopListPresentationLogic {
         }
         let viewModel = ShopList.FetchMyShop.ViewModel(shops: displayShops)
         viewController?.displayMyShop(viewModel: viewModel)
+    }
+    
+    // MARK: Select one shop
+    func presentSelectedShop(response: ShopList.SelectShop.Response) {
+        viewController?.transitionToCreateShopMemo(viewModel: ShopList.SelectShop.ViewModel())
     }
 }

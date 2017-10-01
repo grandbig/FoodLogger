@@ -25,4 +25,15 @@ enum ShopList {
             var shops: [MyShop]
         }
     }
+    
+    // MARK: Select one shop
+    enum SelectShop {
+        struct Request {
+            var shop: HotpepperShop
+        }
+        struct Response {
+        }
+        struct ViewModel {
+        }
+    }
 }

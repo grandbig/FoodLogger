@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol ShopListRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToCreateShopMemo(segue: UIStoryboardSegue?)
 }
 
 protocol ShopListDataPassing {
@@ -21,37 +21,34 @@ protocol ShopListDataPassing {
 }
 
 class ShopListRouter: NSObject, ShopListRoutingLogic, ShopListDataPassing {
-  weak var viewController: ShopListViewController?
-  var dataStore: ShopListDataStore?
+    weak var viewController: ShopListViewController?
+    var dataStore: ShopListDataStore?
   
-  // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+    // MARK: Routing
+    
+    func routeToCreateShopMemo(segue: UIStoryboardSegue?) {
+        if let segue = segue {
+            let destinationVC = segue.destination as! CreateShopMemoViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreateShopMemo(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "CreateShopMemoViewController") as! CreateShopMemoViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreateShopMemo(source: dataStore!, destination: &destinationDS)
+            navigateToCreateShopMemo(source: viewController!, destination: destinationVC)
+        }
+    }
 
-  // MARK: Navigation
+    // MARK: Navigation
   
-  //func navigateToSomewhere(source: ___VARIABLE_sceneName___ViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+    func navigateToCreateShopMemo(source: ShopListViewController, destination: CreateShopMemoViewController) {
+        source.show(destination, sender: nil)
+    }
+
+    // MARK: Passing data
   
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: ___VARIABLE_sceneName___DataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+    func passDataToCreateShopMemo(source: ShopListDataStore, destination: inout CreateShopMemoDataStore) {
+        destination.shop = source.shop
+    }
 }

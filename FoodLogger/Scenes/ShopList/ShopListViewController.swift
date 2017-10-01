@@ -19,6 +19,7 @@ import AlamofireImage
 
 protocol ShopListDisplayLogic: class {
     func displayMyShop(viewModel: ShopList.FetchMyShop.ViewModel)
+    func transitionToCreateShopMemo(viewModel: ShopList.SelectShop.ViewModel)
 }
 
 class ShopListViewController: UIViewController, UINavigationControllerDelegate, ShopListDisplayLogic {
@@ -56,6 +57,13 @@ class ShopListViewController: UIViewController, UINavigationControllerDelegate, 
     // MARK: Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // 戻るボタンの設定
+        let backButton = UIBarButtonItem.init()
+        backButton.title = "戻る"
+        backButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationItem.backBarButtonItem = backButton
+        
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
@@ -100,8 +108,21 @@ class ShopListViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     func displayMyShop(viewModel: ShopList.FetchMyShop.ViewModel) {
+        // 取得したショップをテーブルビューに表示するためのオブジェクトに格納
+        displayMyShops = viewModel.shops
         // テーブルビューのリロード
         tableView.reloadData()
+    }
+    
+    // MARK: Transition to shop detail
+    func selectShop(_ shop: HotpepperShop) {
+        let request = ShopList.SelectShop.Request(shop: shop)
+        interactor?.selectShop(request: request)
+    }
+    
+    func transitionToCreateShopMemo(viewModel: ShopList.SelectShop.ViewModel) {
+        // 画面遷移
+        router?.routeToCreateShopMemo(segue: nil)
     }
     
     // MARK: Other
@@ -126,8 +147,7 @@ extension ShopListViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let shop = displayMyShops[indexPath.row] as HotpepperShop
-        // 画面遷移
-        // performSegue(withIdentifier: "editShopMemoSegue", sender: shop)
+        selectShop(shop)
     }
     
     // MARK: UITableViewDataSource
