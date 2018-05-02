@@ -12,9 +12,9 @@ target "FoodLogger" do
   pod 'AlamofireImage', '~> 3.3'
   pod 'HCSStarRatingView', '~> 1.5'
   pod 'NVActivityIndicatorView'
+  pod 'PromiseKit', '~> 6.0'
 
   abstract_target 'Tests' do
-    inherit! :search_paths
     target "FoodLoggerTests"
     target "FoodLoggerUITests"
 
@@ -26,7 +26,7 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+      config.build_settings['SWIFT_VERSION'] = '4.1'
     end
   end
 end

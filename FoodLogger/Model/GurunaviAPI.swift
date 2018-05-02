@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import Alamofire
 import SwiftyJSON
+import PromiseKit
 
 /**
  ぐるなびAPI
@@ -38,14 +39,42 @@ class GurunaviAPI {
      - parameter coordinate: 位置
      - parameter completion: レストラン情報を返却するcallback
      */
-    func searchRestaurant(coordinate: CLLocationCoordinate2D, completion: @escaping ((JSON) -> Void)) {
+    func searchRestaurant(coordinate: CLLocationCoordinate2D)  -> Promise<Restaurants> {
+        let (promise, resolver) = Promise<Restaurants>.pending()
+
         let requestURL = "\(baseURL)&keyid=\(String(describing: self.apiKey))&format=json"
-        let parameters = ["keyid": self.apiKey, "format": "json", "latitude": coordinate.latitude, "longitude": coordinate.longitude] as [String : Any]
-        Alamofire.request(requestURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { response in
-            let json = JSON(response.result.value as Any)
-            let result = json["rest"]
-            
-            completion(result)
+        let parameters = ["keyid": self.apiKey, "format": "json", "latitude": coordinate.latitude, "longitude": coordinate.longitude] as [String: Any]
+        Alamofire.request(requestURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+            .response { response in
+                do {
+                    var result = Restaurants(rest: [], totalHitCount: "", hitPerPage: "", pageOffset: "")
+
+                    guard let data = response.data else {
+                        return
+                    }
+                    let rest = JSON(data)["rest"]
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let restaurants = try decoder.decode(Restaurants.self, from: data)
+                    guard let array = rest.array else {
+                        resolver.fulfill(restaurants)
+                        return
+                    }
+                    for elem in array {
+                        for restaurant in restaurants.rest where restaurant.id == elem["id"].string {
+                            var convertedRestaurant = restaurant
+                            convertedRestaurant.shopImage1 = elem["image_url"]["shop_image1"].string
+                            convertedRestaurant.shopImage2 = elem["image_url"]["shop_image2"].string
+                            result.rest.append(convertedRestaurant)
+                            break
+                        }
+                    }
+                    
+                    resolver.fulfill(result)
+                } catch {
+                    resolver.reject(error)
+                }
         }
+        return promise
     }
 }

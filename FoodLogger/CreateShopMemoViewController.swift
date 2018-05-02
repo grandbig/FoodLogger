@@ -125,7 +125,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
     }
     
     /// ツールバーのDONEボタンタップ時の処理
-    func doneButtonTapped() {
+    @objc func doneButtonTapped() {
         self.view.endEditing(true)
     }
     
@@ -363,7 +363,7 @@ extension CreateShopMemoViewController: UICollectionViewDataSource, UICollection
 extension CreateShopMemoViewController: UIImagePickerControllerDelegate {
     
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         guard let info = info[UIImagePickerControllerOriginalImage] else {
             return
         }

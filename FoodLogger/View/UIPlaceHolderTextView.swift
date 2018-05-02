@@ -36,7 +36,7 @@ class UIPlaceHolderTextView: UITextView {
     }
     
     override public func draw(_ rect: CGRect) {
-        if self.placeHolder.characters.count > 0 {
+        if self.placeHolder.count > 0 {
             self.placeHolderLabel.frame           = CGRect.init(x: 8.0, y: 24.0, width: self.bounds.size.width, height: -16.0)
             self.placeHolderLabel.lineBreakMode   = NSLineBreakMode.byWordWrapping
             self.placeHolderLabel.numberOfLines   = 0
@@ -53,19 +53,19 @@ class UIPlaceHolderTextView: UITextView {
         
         self.sendSubview(toBack: placeHolderLabel)
         
-        if self.text.utf16.count == 0 && self.placeHolder.characters.count > 0 {
+        if self.text.utf16.count == 0 && self.placeHolder.count > 0 {
             self.viewWithTag(999)?.alpha = 1
         }
         
         super.draw(rect)
     }
     
-    public func textChanged(notification: NSNotification?) {
-        if self.placeHolder.characters.count == 0 {
+    @objc public func textChanged(notification: NSNotification?) {
+        if self.placeHolder.count == 0 {
             return
         }
         
-        if self.text.characters.count == 0 {
+        if self.text.count == 0 {
             self.viewWithTag(999)?.alpha = 1
         } else {
             self.viewWithTag(999)?.alpha = 0

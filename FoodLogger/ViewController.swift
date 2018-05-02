@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import SwiftyJSON
 import RealmSwift
+import PromiseKit
 
 class ViewController: UIViewController, UINavigationControllerDelegate {
 
@@ -78,20 +79,29 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             // 保存済みショップマーカをプロット
             self.putSavedMarkers()
         }
-        
-        // 現在地周辺のレストランを取得
-        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation, success: { (result) in
-            if let searchShops = result.array {
-                self.searchShops = searchShops
-                for searchShop in searchShops {
-                    if !self.checkSavedShop(searchShop) {
-                        self.putMarker(shop: HotpepperShop(data: searchShop), rating: nil, type: MarkerType.searched)
-                    }
-                }
-            }
-        }) { _ in
-            self.showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
+
+        firstly {
+            GurunaviAPI.init().searchRestaurant(coordinate: myCurrentLocation)
+        }.done { [weak self] result in
+            guard let strongSelf = self else { return }
+            print(result)
+        }.catch { [weak self] error in
+            guard let strongSelf = self else { return }
+            strongSelf.showAlert(title: "確認", message: error.localizedDescription, completion: {})
         }
+//        // 現在地周辺のレストランを取得
+//        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation, success: { (result) in
+//            if let searchShops = result.array {
+//                self.searchShops = searchShops
+//                for searchShop in searchShops {
+//                    if !self.checkSavedShop(searchShop) {
+//                        self.putMarker(shop: HotpepperShop(data: searchShop), rating: nil, type: MarkerType.searched)
+//                    }
+//                }
+//            }
+//        }) { _ in
+//            self.showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
+//        }
     }
     
     @IBAction func showHotpepperCreditPage(_ sender: Any) {

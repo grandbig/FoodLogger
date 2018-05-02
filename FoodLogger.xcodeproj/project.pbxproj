@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DD09F0CC7A596B4C5BE3C68 /* Pods_FoodLogger_Tests_FoodLoggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532889AAA3CA8D44414CE1E6 /* Pods_FoodLogger_Tests_FoodLoggerUITests.framework */; };
 		2E1DDBAC1F3DB2D500DFA9C6 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E66423C1F23C6DD003AB65A /* SafariServices.framework */; };
 		2E1DDBB01F3E086C00DFA9C6 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */; };
 		2E1DDBB21F3E30D700DFA9C6 /* LicenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1DDBB11F3E30D700DFA9C6 /* LicenseViewController.swift */; };
@@ -37,11 +38,13 @@
 		2E6642391F23904C003AB65A /* ShopValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6642381F23904C003AB65A /* ShopValidateError.swift */; };
 		2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423A1F23BBCE003AB65A /* MarkerType.swift */; };
 		2E6642401F23C818003AB65A /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */; };
+		2E667D332099B625008576DA /* GurunaviRestaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E667D322099B625008576DA /* GurunaviRestaurant.swift */; };
 		2EA98CCB1F30D63A004F285F /* CreateShopMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */; };
 		2EA98CCE1F361375004F285F /* RealmFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CCD1F361375004F285F /* RealmFood.swift */; };
 		2EA98CD41F3629A9004F285F /* UIPlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */; };
 		2EC4C5871F2E0CF4005198E8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */; };
 		4EEE2C2878D463A757BC7452 /* Pods_FoodLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */; };
+		52EB02E311D54B8AAFA358A9 /* Pods_FoodLogger_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7448C0110A39AEF3AD0AB72 /* Pods_FoodLogger_Tests_FoodLoggerTests.framework */; };
 		6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */; };
 		694DA7D05A0993B8BCFF68E6 /* Pods_Tests_FoodLoggerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +105,7 @@
 		2E66423A1F23BBCE003AB65A /* MarkerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarkerType.swift; path = Enum/MarkerType.swift; sourceTree = "<group>"; };
 		2E66423C1F23C6DD003AB65A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		2E66423F1F23C818003AB65A /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		2E667D322099B625008576DA /* GurunaviRestaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GurunaviRestaurant.swift; sourceTree = "<group>"; };
 		2EA98CCA1F30D63A004F285F /* CreateShopMemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateShopMemoViewController.swift; sourceTree = "<group>"; };
 		2EA98CCD1F361375004F285F /* RealmFood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmFood.swift; path = Model/RealmFood.swift; sourceTree = "<group>"; };
 		2EA98CD31F3629A9004F285F /* UIPlaceHolderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextView.swift; sourceTree = "<group>"; };
@@ -109,10 +113,16 @@
 		2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 		4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		491627DFC96DDCF99FF2FC00 /* Pods-FoodLogger-Tests-FoodLoggerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger-Tests-FoodLoggerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerUITests/Pods-FoodLogger-Tests-FoodLoggerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		52343972551DF7511E91869A /* Pods-Tests-FoodLoggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		532889AAA3CA8D44414CE1E6 /* Pods_FoodLogger_Tests_FoodLoggerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodLogger_Tests_FoodLoggerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EF4947C98C5E6032543585D /* Pods-FoodLogger-Tests-FoodLoggerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger-Tests-FoodLoggerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerUITests/Pods-FoodLogger-Tests-FoodLoggerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7BF26B06BF80064291169EC0 /* Pods-FoodLogger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger.release.xcconfig"; sourceTree = "<group>"; };
 		876CC5E369541BC578E4DF35 /* Pods-Tests-FoodLoggerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests-FoodLoggerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests_FoodLoggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4757984E83E8DC6511794BC /* Pods-FoodLogger-Tests-FoodLoggerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger-Tests-FoodLoggerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerTests/Pods-FoodLogger-Tests-FoodLoggerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E7448C0110A39AEF3AD0AB72 /* Pods_FoodLogger_Tests_FoodLoggerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodLogger_Tests_FoodLoggerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEE352C489F579876F75FC74 /* Pods-FoodLogger-Tests-FoodLoggerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodLogger-Tests-FoodLoggerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerTests/Pods-FoodLogger-Tests-FoodLoggerTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6226C81B486C3A8FABD23733 /* Pods_Tests_FoodLoggerTests.framework in Frameworks */,
+				52EB02E311D54B8AAFA358A9 /* Pods_FoodLogger_Tests_FoodLoggerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				694DA7D05A0993B8BCFF68E6 /* Pods_Tests_FoodLoggerUITests.framework in Frameworks */,
+				0DD09F0CC7A596B4C5BE3C68 /* Pods_FoodLogger_Tests_FoodLoggerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +163,8 @@
 				2D6E730A7FC1092D71E741D0 /* Pods_FoodLogger.framework */,
 				8CA49AEB0F31C2861E65ECF2 /* Pods_Tests_FoodLoggerTests.framework */,
 				2F6E6C4BE8DAD79F49BA9867 /* Pods_Tests_FoodLoggerUITests.framework */,
+				E7448C0110A39AEF3AD0AB72 /* Pods_FoodLogger_Tests_FoodLoggerTests.framework */,
+				532889AAA3CA8D44414CE1E6 /* Pods_FoodLogger_Tests_FoodLoggerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -225,6 +239,7 @@
 				2EC4C5861F2E0CF4005198E8 /* UIImage+Extension.swift */,
 				2E23DD8A1F2E24530088BE5F /* UnwindFadeSegue.swift */,
 				2E1DDBAF1F3E086C00DFA9C6 /* Rating.swift */,
+				2E667D322099B625008576DA /* GurunaviRestaurant.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -283,6 +298,10 @@
 				4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */,
 				876CC5E369541BC578E4DF35 /* Pods-Tests-FoodLoggerUITests.debug.xcconfig */,
 				4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */,
+				D4757984E83E8DC6511794BC /* Pods-FoodLogger-Tests-FoodLoggerTests.debug.xcconfig */,
+				EEE352C489F579876F75FC74 /* Pods-FoodLogger-Tests-FoodLoggerTests.release.xcconfig */,
+				6EF4947C98C5E6032543585D /* Pods-FoodLogger-Tests-FoodLoggerUITests.debug.xcconfig */,
+				491627DFC96DDCF99FF2FC00 /* Pods-FoodLogger-Tests-FoodLoggerUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -452,13 +471,34 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerTests/Pods-FoodLogger-Tests-FoodLoggerTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerTests/Pods-FoodLogger-Tests-FoodLoggerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4C0C6F330039C2E2A224E49B /* [CP] Copy Pods Resources */ = {
@@ -467,13 +507,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerUITests/Pods-FoodLogger-Tests-FoodLoggerUITests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerUITests/Pods-FoodLogger-Tests-FoodLoggerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6A539EC4341ACB1927766AC0 /* [CP] Copy Pods Resources */ = {
@@ -482,9 +527,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -497,13 +547,34 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerUITests/Pods-FoodLogger-Tests-FoodLoggerUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FoodLoggerUITests/Pods-Tests-FoodLoggerUITests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerUITests/Pods-FoodLogger-Tests-FoodLoggerUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AD4808C7B796EC451B7080C6 /* [CP] Check Pods Manifest.lock */ = {
@@ -512,13 +583,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodLogger-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B4E8C895D122440515BEB3F9 /* [CP] Copy Pods Resources */ = {
@@ -527,13 +601,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerTests/Pods-FoodLogger-Tests-FoodLoggerTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests-FoodLoggerTests/Pods-Tests-FoodLoggerTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger-Tests-FoodLoggerTests/Pods-FoodLogger-Tests-FoodLoggerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D7A75FDD18137022DC7157FA /* [CP] Embed Pods Frameworks */ = {
@@ -542,9 +621,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FoodLogger/Pods-FoodLogger-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -557,13 +653,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodLogger-Tests-FoodLoggerUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FDD85969C2F3A10BC6BC17F6 /* [CP] Check Pods Manifest.lock */ = {
@@ -572,13 +671,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodLogger-Tests-FoodLoggerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -611,6 +713,7 @@
 				2E2A3CBF1F278DB4004977B5 /* ViewController+Alert.swift in Sources */,
 				2E1DDBB21F3E30D700DFA9C6 /* LicenseViewController.swift in Sources */,
 				2E23DD891F2E1DC40088BE5F /* PushFadeSegue.swift in Sources */,
+				2E667D332099B625008576DA /* GurunaviRestaurant.swift in Sources */,
 				2E6642361F238DF4003AB65A /* RealmShopManager.swift in Sources */,
 				2E66423B1F23BBCE003AB65A /* MarkerType.swift in Sources */,
 			);
@@ -714,6 +817,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -756,6 +860,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -771,7 +876,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kato.FoodLogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -786,13 +891,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kato.FoodLogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
 		2E66421B1F1CFB14003AB65A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52343972551DF7511E91869A /* Pods-Tests-FoodLoggerTests.debug.xcconfig */;
+			baseConfigurationReference = D4757984E83E8DC6511794BC /* Pods-FoodLogger-Tests-FoodLoggerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -801,14 +906,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kato.FoodLoggerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodLogger.app/FoodLogger";
 			};
 			name = Debug;
 		};
 		2E66421C1F1CFB14003AB65A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4564349300CB77D31B5AED72 /* Pods-Tests-FoodLoggerTests.release.xcconfig */;
+			baseConfigurationReference = EEE352C489F579876F75FC74 /* Pods-FoodLogger-Tests-FoodLoggerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -817,14 +922,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kato.FoodLoggerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodLogger.app/FoodLogger";
 			};
 			name = Release;
 		};
 		2E66421E1F1CFB14003AB65A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 876CC5E369541BC578E4DF35 /* Pods-Tests-FoodLoggerUITests.debug.xcconfig */;
+			baseConfigurationReference = 6EF4947C98C5E6032543585D /* Pods-FoodLogger-Tests-FoodLoggerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 6J4XG67E62;
@@ -832,14 +937,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kato.FoodLoggerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = FoodLogger;
 			};
 			name = Debug;
 		};
 		2E66421F1F1CFB14003AB65A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4890E0F88BF8D86469532123 /* Pods-Tests-FoodLoggerUITests.release.xcconfig */;
+			baseConfigurationReference = 491627DFC96DDCF99FF2FC00 /* Pods-FoodLogger-Tests-FoodLoggerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 6J4XG67E62;
@@ -847,7 +952,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kato.FoodLoggerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = FoodLogger;
 			};
 			name = Release;
