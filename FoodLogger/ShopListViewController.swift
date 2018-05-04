@@ -21,7 +21,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
     /// 検索ショップ
     internal var shops: Results<RealmShop>!
     /// UITableViewCellの高さ
-    private let rowHeight: CGFloat = 88.0
+    private let rowHeight: CGFloat = 88.5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +33,12 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         
         let nib = UINib.init(nibName: "CustomTableViewCell", bundle: nil)
         self.tableView.register(nib, forCellReuseIdentifier: "ShopInfoCell")
-        self.tableView.rowHeight = self.rowHeight
+        self.tableView.rowHeight = rowHeight
         
         if let savedShops = self.realmShopManager.selectAll() {
             self.shops = savedShops
         }
+        self.tableView.tableFooterView = UIView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,7 +52,14 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
         
         let selectedShop = self.shops[indexPath.row]
-        let shop = HotpepperShop(id: selectedShop.id, name: selectedShop.name, category: selectedShop.category, imageURL: selectedShop.imageURL, latitude: selectedShop.latitude, longitude: selectedShop.longitude, shopURL: selectedShop.shopURL)
+        let shop = Restaurant(id: selectedShop.id,
+                              name: selectedShop.name,
+                              latitude: String(selectedShop.latitude),
+                              longitude: String(selectedShop.longitude),
+                              category: selectedShop.category,
+                              url: selectedShop.shopURL,
+                              shopImage1: selectedShop.imageURL,
+                              shopImage2: nil)
         // 画面遷移
         performSegue(withIdentifier: "editShopMemoSegue", sender: shop)
     }
@@ -98,7 +106,7 @@ class ShopListViewController: UIViewController, UITableViewDelegate, UITableView
             guard let createShopMemoViewController = segue.destination as? CreateShopMemoViewController else {
                 return
             }
-            guard let shop = sender as? HotpepperShop else {
+            guard let shop = sender as? Restaurant else {
                 return
             }
             createShopMemoViewController.shop = shop

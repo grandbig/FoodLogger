@@ -26,7 +26,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
     /// 現在地
     internal var myLocation: CLLocation?
     /// ショップ
-    internal var shop: HotpepperShop!
+    internal var shop: Restaurant!
     /// ショップの保存済/未保存フラグ
     internal var isSaved: Bool = false
     
@@ -35,7 +35,7 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
         
         self.webView.delegate = self
         
-        if let shopURL = self.shop.shopURL, let url = URL(string: shopURL) {
+        if let url = URL(string: shop.url) {
             let urlRequest = URLRequest(url: url)
             self.webView.loadRequest(urlRequest)
         }
@@ -46,13 +46,11 @@ class ShopDetailViewController: UIViewController, UIWebViewDelegate {
         super.viewWillAppear(animated)
         
         self.isSaved = false
-        if let id = shop.id {
-            if self.realmShopManager.exsitsById(id) {
-                // TODO: 既に保存済みの場合は編集ボタンに変える
-                // 既に保存済みの場合はボタンをDisabledに変更
-                self.saveButton.isEnabled = false
-                self.isSaved = true
-            }
+        if self.realmShopManager.exsitsById(self.shop.id) {
+            // TODO: 既に保存済みの場合は編集ボタンに変える
+            // 既に保存済みの場合はボタンをDisabledに変更
+            self.saveButton.isEnabled = false
+            self.isSaved = true
         }
     }
     

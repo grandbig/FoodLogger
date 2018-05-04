@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import SwiftyJSON
 import RealmSwift
 import PromiseKit
 
@@ -27,7 +26,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
     /// 保存済みショップ
     internal var savedShops: Results<RealmShop>!
     /// 検索ショップ
-    internal var searchShops: [JSON]!
+    internal var searchShops: [Restaurant]!
     /// ホットペッパーAPI
     internal let hotpepperAPI = HotpepperAPI.init()
     /// 選択中マーカ
@@ -85,28 +84,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         }.done { [weak self] result in
             guard let strongSelf = self else { return }
             print(result)
-        }.catch { [weak self] error in
+            strongSelf.searchShops = result.rest
+            for searchShop in strongSelf.searchShops {
+                if !strongSelf.checkSavedShop(searchShop) {
+                    strongSelf.putMarker(shop: searchShop, rating: nil, type: MarkerType.searched)
+                }
+            }
+        }.catch { [weak self] _ in
             guard let strongSelf = self else { return }
-            strongSelf.showAlert(title: "確認", message: error.localizedDescription, completion: {})
+            strongSelf.showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
         }
-//        // 現在地周辺のレストランを取得
-//        self.hotpepperAPI.searchRestaurant(coordinate: myCurrentLocation, success: { (result) in
-//            if let searchShops = result.array {
-//                self.searchShops = searchShops
-//                for searchShop in searchShops {
-//                    if !self.checkSavedShop(searchShop) {
-//                        self.putMarker(shop: HotpepperShop(data: searchShop), rating: nil, type: MarkerType.searched)
-//                    }
-//                }
-//            }
-//        }) { _ in
-//            self.showAlert(title: "確認", message: "周辺のショップ情報を取得できませんでした。", completion: {})
-//        }
-    }
-    
-    @IBAction func showHotpepperCreditPage(_ sender: Any) {
-        let url = URL(string: "http://webservice.recruit.co.jp/")
-        UIApplication.shared.open(url!, options: [:], completionHandler: nil)
     }
     
     // MARK: Storyboard Segue
@@ -121,7 +108,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
             guard let shopDetailViewController = segue.destination as? ShopDetailViewController else {
                 return
             }
-            guard let shop = sender as? HotpepperShop else {
+            guard let shop = sender as? Restaurant else {
                 return
             }
             shopDetailViewController.shop = shop
@@ -154,14 +141,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
      - parameter rating: 評価
      - parameter type: マーカタイプ
      */
-    private func putMarker(shop: HotpepperShop, rating: Int?, type: MarkerType) {
+    private func putMarker(shop: Restaurant, rating: Int?, type: MarkerType) {
         let marker = CustomGMSMarker()
+        let latitude = Double(shop.latitude)
+        let longitude = Double(shop.longitude)
         marker.id = shop.id
         marker.shopName = shop.name
         marker.categoryName = shop.category
-        marker.imageURL = shop.imageURL
-        marker.shopURL = shop.shopURL
-        marker.position = CLLocationCoordinate2D(latitude: shop.latitude ?? 0, longitude: shop.longitude ?? 0)
+        marker.imageURL = shop.shopImage1 ?? shop.shopImage2
+        marker.shopURL = shop.url
+        marker.position = CLLocationCoordinate2D(latitude: latitude ?? 0, longitude: longitude ?? 0)
         marker.rating = rating
         marker.type = type
         if type == MarkerType.saved {
@@ -179,8 +168,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
      - parameter shop: ショップ
      - returns: 保存済み/未保存判定結果 (true: 保存済み, false: 未保存)
      */
-    private func checkSavedShop(_ shop: JSON) -> Bool {
-        for savedShop in self.savedShops where shop["id"].string == savedShop.id {
+    private func checkSavedShop(_ shop: Restaurant) -> Bool {
+        for savedShop in self.savedShops where shop.id == savedShop.id {
             return true
         }
         return false
@@ -193,7 +182,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         if let savedShops = self.realmShopManager.selectAll() {
             self.savedShops = savedShops
             for savedShop in savedShops {
-                let shop = HotpepperShop(id: savedShop.id, name: savedShop.name, category: savedShop.category, imageURL: savedShop.imageURL, latitude: savedShop.latitude, longitude: savedShop.longitude, shopURL: savedShop.shopURL)
+                let shop = Restaurant(id: savedShop.id,
+                                      name: savedShop.name,
+                                      latitude: String(savedShop.latitude),
+                                      longitude: String(savedShop.longitude),
+                                      category: savedShop.category,
+                                      url: savedShop.shopURL,
+                                      shopImage1: savedShop.imageURL,
+                                      shopImage2: nil)
                 self.putMarker(shop: shop, rating: savedShop.rating, type: MarkerType.saved)
             }
         }
@@ -268,10 +264,18 @@ extension ViewController: GMSMapViewDelegate {
         guard let cMarker = marker as? CustomGMSMarker else {
             return
         }
-        guard let id = cMarker.id, let name = cMarker.shopName, let category = cMarker.categoryName, let imageURL = cMarker.imageURL, let shopURL = cMarker.shopURL else {
+        guard let id = cMarker.id, let name = cMarker.shopName, let category = cMarker.categoryName,
+            let imageURL = cMarker.imageURL, let shopURL = cMarker.shopURL else {
             return
         }
-        let shop = HotpepperShop(id: id, name: name, category: category, imageURL: imageURL, latitude: cMarker.position.latitude, longitude: cMarker.position.longitude, shopURL: shopURL)
+        let shop = Restaurant(id: id,
+                              name: name,
+                              latitude: String(cMarker.position.latitude),
+                              longitude: String(cMarker.position.longitude),
+                              category: category,
+                              url: shopURL,
+                              shopImage1: imageURL,
+                              shopImage2: nil)
         
         // 画面遷移
         performSegue(withIdentifier: "shopDetailSegueFromMap", sender: shop)

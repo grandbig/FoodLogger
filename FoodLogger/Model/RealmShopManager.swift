@@ -27,22 +27,19 @@ class RealmShopManager {
      - parameter mealTIme: 食事種別
      - parameter memo: メモ
      */
-    func createShop(shop: HotpepperShop, rating: Int?, images: [Data]?, mealTime: Int, memo: String?) {
+    func createShop(shop: Restaurant, rating: Int?, images: [Data]?, mealTime: Int, memo: String?) {
         do {
-            // ショップデータのバリデーションチェック
-            try validateShop(shop: shop)
-            
             let realm = try Realm()
             let realmShop = RealmShop()
             
             // 保存必須項目
-            realmShop.id = shop.id!
-            realmShop.name = shop.name!
-            realmShop.category = shop.category!
-            realmShop.imageURL = shop.imageURL!
-            realmShop.latitude = shop.latitude!
-            realmShop.longitude = shop.longitude!
-            realmShop.shopURL = shop.shopURL!
+            realmShop.id = shop.id
+            realmShop.name = shop.name
+            realmShop.category = shop.category
+            realmShop.imageURL = shop.shopImage1 ?? ""
+            realmShop.latitude = Double(shop.latitude) ?? 0
+            realmShop.longitude = Double(shop.longitude) ?? 0
+            realmShop.shopURL = shop.url
             realmShop.mealTime = mealTime
             
             // 評価が指定されている場合

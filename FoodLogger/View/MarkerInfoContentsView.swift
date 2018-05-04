@@ -44,14 +44,14 @@ class MarkerInfoContentsView: UIView {
      */
     func setData(shopName: String?, categoryName: String?, rating: Int?, shopImageURLString: String?) {
         // ショップ名の設定
-        if let shopNameTextCount = shopName?.characters.count, shopNameTextCount > 0 {
+        if let shopNameTextCount = shopName?.count, shopNameTextCount > 0 {
             self.shopName.text = shopName
         } else {
             self.shopName.text = "---"
             self.shopName.textColor = UIColor.gray
         }
         // カテゴリ名の設定
-        if let categoryNameTextCount = categoryName?.characters.count, categoryNameTextCount > 0 {
+        if let categoryNameTextCount = categoryName?.count, categoryNameTextCount > 0 {
             self.categoryName.text = categoryName
         } else {
             self.categoryName.text = "---"
@@ -65,7 +65,7 @@ class MarkerInfoContentsView: UIView {
             self.rating.textColor = UIColor.gray
         }
         // 画像の設定
-        if let shopImageURLStringTextCount = shopImageURLString?.characters.count, shopImageURLStringTextCount > 0 {
+        if let shopImageURLStringTextCount = shopImageURLString?.count, shopImageURLStringTextCount > 0 {
             if let shopImageURL = URL(string: shopImageURLString!) {
                 self.shopImage.af_setImage(withURL: shopImageURL, placeholderImage: UIImage(named: "NoImageIcon"))
             } else {

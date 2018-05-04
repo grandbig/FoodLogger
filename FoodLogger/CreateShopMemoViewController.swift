@@ -33,7 +33,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
     /// 現在地
     internal var myLocation: CLLocation?
     /// ショップ
-    internal var shop: HotpepperShop!
+    internal var shop: Restaurant!
     /// ショップの保存済/未保存フラグ
     internal var isSaved: Bool = false
     /// 店舗情報ボタンの表示/非表示フラグ
@@ -64,11 +64,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
             self.maxDistance = accuracy
         }
         
-        guard let shopId = self.shop.id else {
-            return
-        }
-        
-        if let shop = self.realmShopManager.selectById(shopId)?[0] {
+        if let shop = self.realmShopManager.selectById(self.shop.id)?[0] {
             // 保存済みショップの場合
             self.ratingBar.value = CGFloat(shop.rating)
             self.placeTextArea.text = shop.memo
@@ -103,7 +99,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
     }
     
     @IBAction func showShopInfo(_ sender: Any) {
-        let shopURL = NSURL(string: self.shop.shopURL!)
+        let shopURL = NSURL(string: self.shop.url)
         
         if let shopURL = shopURL {
             let safariViewController = SFSafariViewController(url: shopURL as URL)
@@ -191,7 +187,7 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
             self.showLoadingView()
             
             globalQueue.async {
-                guard let shopLatitude = self.shop.latitude, let shopLongitude = self.shop.longitude else {
+                guard let shopLatitude = Double(self.shop.latitude), let shopLongitude = Double(self.shop.longitude) else {
                     // ショップの位置が不明な場合
                     mainQueue.async {
                         // ローディングビューの非表示
@@ -268,15 +264,11 @@ class CreateShopMemoViewController: UIViewController, UINavigationControllerDele
                     }
                 }
                 // データを更新
-                guard let shopId = self.shop.id else {
-                    mainQueue.async {
-                        // ローディングビューの非表示
-                        self.hiddenLoadingView()
-                        self.showAlert(title: "確認", message: "ショップ情報が正しく取得できません。", completion: {})
-                    }
-                    return
-                }
-                self.realmShopManager.updateShop(id: shopId, rating: Int(self.ratingBar.value), images: imageDatas, mealTime: self.segmentedControl.selectedSegmentIndex, memo: self.placeTextArea.text)
+                self.realmShopManager.updateShop(id: self.shop.id,
+                                                 rating: Int(self.ratingBar.value),
+                                                 images: imageDatas,
+                                                 mealTime: self.segmentedControl.selectedSegmentIndex,
+                                                 memo: self.placeTextArea.text)
                 
                 mainQueue.async {
                     // ローディングビューの非表示
