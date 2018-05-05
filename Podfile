@@ -7,7 +7,7 @@ target "FoodLogger" do
   pod 'RealmSwift'
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-  pod 'Alamofire', '~> 4.5'
+  pod 'Moya', '~> 11.0'
   pod 'SwiftyJSON'
   pod 'AlamofireImage', '~> 3.3'
   pod 'HCSStarRatingView', '~> 1.5'

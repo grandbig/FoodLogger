@@ -10,6 +10,11 @@ PODS:
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
   - HCSStarRatingView (1.5)
+  - Moya (11.0.2):
+    - Moya/Core (= 11.0.2)
+  - Moya/Core (11.0.2):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
   - Nimble (7.1.1)
   - NVActivityIndicatorView (4.2.0):
     - NVActivityIndicatorView/Presenter (= 4.2.0)
@@ -29,14 +34,15 @@ PODS:
   - Realm/Headers (3.5.0)
   - RealmSwift (3.5.0):
     - Realm (= 3.5.0)
+  - Result (3.2.4)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
   - AlamofireImage (~> 3.3)
   - GoogleMaps
   - GooglePlaces
   - HCSStarRatingView (~> 1.5)
+  - Moya (~> 11.0)
   - Nimble
   - NVActivityIndicatorView
   - PromiseKit (~> 6.0)
@@ -50,14 +56,16 @@ SPEC CHECKSUMS:
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
   Nimble: 391f07782af4b37914f9bd7b2ffbb952731b8202
   NVActivityIndicatorView: 75c9634073e03b31d7e2748cd2417feab1206195
   PromiseKit: a26828b0a8d5874960dfdb575b57a70790ec36f1
   Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
   Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
   RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: ea57538c98757dfbcb558aceadd882bfea0956e8
+PODFILE CHECKSUM: 5f264bbe177d3f439bb63da7c9238bf601095206
 
 COCOAPODS: 1.4.0

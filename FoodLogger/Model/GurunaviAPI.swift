@@ -8,54 +8,123 @@
 
 import Foundation
 import CoreLocation
+import Moya
 import Alamofire
 import SwiftyJSON
 import PromiseKit
+
+internal enum GurunaviAPITarget {
+    case restaurants(lat: Double, lng: Double)
+}
+
+internal enum APIError: Error {
+    case cancel
+    case apiError(description: String)
+    case decodeError
+}
+
+extension GurunaviAPITarget: TargetType {
+    
+    /// API Key
+    private var apiKey: String {
+        guard let path = Bundle.main.path(forResource: "key", ofType: "plist") else {
+            fatalError("key.plistが見つかりません")
+        }
+        
+        guard let dic = NSDictionary(contentsOfFile: path) as? [String: Any] else {
+            fatalError("key.plistの中身が想定通りではありません")
+        }
+        
+        guard let apiKey = dic["gurunaviApiKey"] as? String else {
+            fatalError("ぐるなびAPIのKeyが設定されていません")
+        }
+        
+        return apiKey
+    }
+    
+    // ベースURLを文字列で定義
+    private var _baseURL: String {
+        return "https://api.gnavi.co.jp/RestSearchAPI/20150630/"
+    }
+    
+    public var baseURL: URL {
+        return URL(string: _baseURL)!
+    }
+    
+    // enumの値に対応したパスを指定
+    public var path: String {
+        switch self {
+        case .restaurants:
+            return ""
+        }
+    }
+    
+    // enumの値に対応したHTTPメソッドを指定
+    public var method: Moya.Method {
+        switch self {
+        case .restaurants:
+            return .get
+        }
+    }
+    
+    // スタブデータの設定
+    public var sampleData: Data {
+        switch self {
+        case .restaurants:
+            return "Stub data".data(using: String.Encoding.utf8)!
+        }
+    }
+    
+    // パラメータの設定
+    var task: Task {
+        switch self {
+        case .restaurants(let lat, let lng):
+            return .requestParameters(parameters: [
+                "keyid": apiKey,
+                "latitude": lat,
+                "longitude": lng,
+                "format": "json"
+                ], encoding: URLEncoding.default)
+        }
+    }
+    
+    // ヘッダーの設定
+    var headers: [String: String]? {
+        switch self {
+        case .restaurants:
+            return nil
+        }
+    }
+}
 
 /**
  ぐるなびAPI
  */
 class GurunaviAPI {
     
-    /// API Key
-    private var apiKey: String = String()
-    /// Geocoding APIのベースURL
-    private let baseURL: String = "https://api.gnavi.co.jp/RestSearchAPI/20150630/"
+    private var provider: MoyaProvider<GurunaviAPITarget>!
     
-    /// 初期化処理
+    /// イニシャライザ
     init() {
-        if let path = Bundle.main.path(forResource: "key", ofType: "plist") {
-            if let dic = NSDictionary(contentsOfFile: path) as? [String: Any] {
-                if let apiKey = dic["gurunaviApiKey"] as? String {
-                    self.apiKey = apiKey
-                }
-            }
-        }
+        provider = MoyaProvider<GurunaviAPITarget>()
     }
     
-    /**
-     ぐるなびレストラン検索API
-     
-     - parameter coordinate: 位置
-     - parameter completion: レストラン情報を返却するcallback
-     */
+    /// ぐるなびレストラン検索API
+    ///
+    /// - Parameter coordinate: 位置
+    /// - Returns: レストラン情報
     func searchRestaurant(coordinate: CLLocationCoordinate2D)  -> Promise<Restaurants> {
         let (promise, resolver) = Promise<Restaurants>.pending()
 
-        let requestURL = "\(baseURL)&keyid=\(String(describing: self.apiKey))&format=json"
-        let parameters = ["keyid": self.apiKey, "format": "json", "latitude": coordinate.latitude, "longitude": coordinate.longitude] as [String: Any]
-        Alamofire.request(requestURL, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil)
-            .response { response in
+        provider.request(.restaurants(lat: coordinate.latitude, lng: coordinate.longitude)) { result in
+            switch result {
+            case .success(let response):
                 do {
                     var result = Restaurants(rest: [], totalHitCount: "", hitPerPage: "", pageOffset: "")
-
-                    guard let data = response.data else {
-                        return
-                    }
-                    let rest = JSON(data)["rest"]
+                    let rest = JSON(response.data)["rest"]
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let restaurants = try decoder.decode(Restaurants.self, from: data)
+                    let restaurants = try decoder.decode(Restaurants.self, from: response.data)
                     guard let array = rest.array else {
                         resolver.fulfill(restaurants)
                         return
@@ -69,11 +138,13 @@ class GurunaviAPI {
                             break
                         }
                     }
-                    
                     resolver.fulfill(result)
                 } catch {
-                    resolver.reject(error)
+                    resolver.reject(APIError.decodeError)
                 }
+            case .failure(let error):
+                resolver.reject(APIError.apiError(description: error.localizedDescription))
+            }
         }
         return promise
     }
